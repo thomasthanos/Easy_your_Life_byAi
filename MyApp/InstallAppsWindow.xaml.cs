@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 
 namespace MyApp
 {
@@ -14,14 +16,46 @@ namespace MyApp
         public InstallAppsWindow()
         {
             InitializeComponent();
-            LoadAppsAsync();  // Ασύγχρονη φόρτωση των εφαρμογών
+
+            // Έλεγχος για το αν το winget είναι εγκατεστημένο
+            if (!IsWingetInstalled())
+            {
+                // Εάν δεν είναι εγκατεστημένο, εγκαθιστά το winget
+                InstallWingetAsync().ContinueWith(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        // Εμφάνιση σφάλματος αν η εγκατάσταση αποτύχει
+                        Dispatcher.Invoke(() =>
+                        {
+                            var customMessageBox = new CustomMessageBox("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.", "Σφάλμα", IconType.Error);
+                            customMessageBox.ShowDialog();
+                        });
+                    }
+                    else
+                    {
+                        // Εάν η εγκατάσταση είναι επιτυχής, κλείνουμε το τρέχον παράθυρο και ανοίγουμε ένα νέο
+                        Dispatcher.Invoke(() =>
+                        {
+                            var newWindow = new InstallAppsWindow();
+                            newWindow.Show();
+                            this.Close();
+                        });
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            else
+            {
+                // Εάν το winget είναι ήδη εγκατεστημένο, φόρτωσε τις εφαρμογές
+                LoadAppsAsync();
+            }
         }
 
         private async void LoadAppsAsync()
         {
             try
             {
-                // Εμφάνιση προσωρινού μηνύματος ή loading indicator
+                Debug.WriteLine("Starting to load apps...");
                 AppsListBox.ItemsSource = new List<AppInfo> { new AppInfo { Name = "Φόρτωση εφαρμογών...", Version = "", PackageName = "" } };
 
                 apps = new List<AppInfo>
@@ -72,18 +106,18 @@ namespace MyApp
                     new AppInfo { Name = "WinRAR", PackageName = "RARLab.WinRAR" }
                 };
 
-                // Ασύγχρονη ανάκτηση έκδοσης για κάθε πακέτο
+                Debug.WriteLine("Retrieving versions...");
                 var tasks = apps.Select(async app =>
                 {
                     app.Version = await GetPackageVersionAsync(app.PackageName);
+                    Debug.WriteLine($"Retrieved version for {app.Name}: {app.Version}");
                 }).ToList();
 
-                await Task.WhenAll(tasks);  // Περιμένουμε όλες τις εργασίες να ολοκληρωθούν
+                await Task.WhenAll(tasks);
 
-                // Ταξινόμηση της λίστας με αλφαβητική σειρά
                 apps.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
 
-                // Ενημέρωση του ListBox στο UI thread
+                Debug.WriteLine("Updating ListBox...");
                 await Dispatcher.InvokeAsync(() =>
                 {
                     AppsListBox.ItemsSource = apps;
@@ -91,11 +125,12 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-                // Χρήση του CustomMessageBox αντί για MessageBox
+                Debug.WriteLine($"Error loading apps: {ex.Message}");
                 var customMessageBox = new CustomMessageBox($"Σφάλμα κατά τη φόρτωση των εφαρμογών: {ex.Message}", "Σφάλμα");
                 customMessageBox.ShowDialog();
             }
         }
+
 
         private async Task<string> GetPackageVersionAsync(string packageName)
         {
@@ -106,7 +141,8 @@ namespace MyApp
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = "winget",
-                        Arguments = $"list --id {packageName}",
+                        // Προσθήκη flags για αυτόματη αποδοχή όρων
+                        Arguments = $"list --id {packageName} --accept-package-agreements --accept-source-agreements",
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,
                         UseShellExecute = false,
@@ -154,37 +190,39 @@ namespace MyApp
         {
             if (!IsWingetInstalled())
             {
-                bool wingetInstalled = await InstallWingetAsync(); // Εγκατάσταση του Winget
-                if (!wingetInstalled || !IsWingetInstalled()) // Επαναληπτικός έλεγχος
-                {
-                    await Dispatcher.InvokeAsync(() =>
-                    {
-                        var customMessageBox = new CustomMessageBox("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.", "Σφάλμα");
-                        customMessageBox.ShowDialog();
-                    });
-                    return;
-                }
+                await InstallWingetAsync();
+                return;
             }
 
             var selectedApps = AppsListBox.SelectedItems.Cast<AppInfo>().ToList();
-            if (selectedApps.Any())
+            if (selectedApps.Count > 0)
             {
-                try
+                DownloadButton.IsEnabled = false;
+
+                foreach (var app in selectedApps)
                 {
-                    DownloadProgressBar.IsIndeterminate = false; // Απενεργοποίηση της απροσδιόριστης κατάστασης
-                    DownloadProgressBar.Value = 0; // Αρχικοποίηση της τιμής του ProgressBar
-                    DownloadProgressBar.Maximum = selectedApps.Count * 100; // Ορισμός της μέγιστης τιμής
-                    DownloadButton.IsEnabled = false;
-
-                    // Ταξινόμηση των επιλεγμένων εφαρμογών με αλφαβητική σειρά
-                    var sortedApps = selectedApps.OrderBy(app => app.Name).ToList();
-
-                    foreach (var app in sortedApps)
+                    try
                     {
+                        DownloadProgressBar.IsIndeterminate = false;
+                        DownloadProgressBar.Value = 0;
+                        DownloadProgressBar.Maximum = 100;
+
+                        var timer = new System.Timers.Timer(500);
+                        timer.Elapsed += (s, ev) =>
+                        {
+                            Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                if (DownloadProgressBar.Value < 95)
+                                {
+                                    DownloadProgressBar.Value += 5;
+                                }
+                            }));
+                        };
+                        timer.Start();
+
                         string errorOutput = string.Empty;
                         bool installationSuccess = false;
 
-                        // Εκτέλεση της διεργασίας σε ξεχωριστό νήμα
                         await Task.Run(() =>
                         {
                             var process = new Process
@@ -192,65 +230,89 @@ namespace MyApp
                                 StartInfo = new ProcessStartInfo
                                 {
                                     FileName = "winget",
-                                    Arguments = $"install --id {app.PackageName} --silent --accept-package-agreements",
+                                    Arguments = $"install --id {app.PackageName} --silent --accept-package-agreements --accept-source-agreements",
                                     RedirectStandardOutput = true,
                                     RedirectStandardError = true,
                                     UseShellExecute = false,
-                                    CreateNoWindow = true,
-                                    StandardOutputEncoding = System.Text.Encoding.UTF8
+                                    CreateNoWindow = true
                                 }
                             };
 
                             process.Start();
-                            errorOutput = process.StandardError.ReadToEnd(); // Διαβάζουμε την έξοδο του σφάλματος
+                            errorOutput = process.StandardError.ReadToEnd();
                             process.WaitForExit();
 
-                            installationSuccess = process.ExitCode == 0; // Ελέγχουμε αν η εγκατάσταση ήταν επιτυχής
+                            installationSuccess = process.ExitCode == 0;
                         });
 
-                        // Ενημέρωση του ProgressBar μετά από κάθε εγκατάσταση
+                        timer.Stop();
+
                         await Dispatcher.InvokeAsync(() =>
                         {
-                            DownloadProgressBar.Value += 100; // Αυξάνουμε το ProgressBar κατά 100 για κάθε εφαρμογή
-                        });
+                            if (installationSuccess)
+                            {
+                                DownloadProgressBar.Value = 100;
+                                var customMessageBox = new CustomMessageBox($"Η εφαρμογή {app.Name} εγκαταστάθηκε επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε", IconType.Success);
+                                customMessageBox.ShowDialog();
 
-                        if (!installationSuccess)
-                        {
-                            await Dispatcher.InvokeAsync(() =>
+                                // Κατάργηση της εφαρμογής από τις επιλεγμένες
+                                AppsListBox.SelectedItems.Remove(app);
+                            }
+                            else
                             {
                                 var customMessageBox = new CustomMessageBox($"Σφάλμα κατά την εγκατάσταση της εφαρμογής {app.Name}: {errorOutput}", "Σφάλμα", IconType.Error, errorOutput);
                                 customMessageBox.ShowDialog();
-                            });
-                        }
-                    }
+                            }
+                        });
 
-                    await Dispatcher.InvokeAsync(() =>
+                        await Task.Delay(1000); // Καθυστέρηση 1 δευτερολέπτου πριν την επόμενη εγκατάσταση
+                    }
+                    catch (Exception ex)
                     {
-                        var customMessageBox = new CustomMessageBox("Όλες οι εφαρμογές εγκαταστάθηκαν επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε", IconType.Success);
-                        customMessageBox.ShowDialog();
-                        DownloadButton.IsEnabled = true;
-                    });
+                        await Dispatcher.InvokeAsync(() =>
+                        {
+                            var customMessageBox = new CustomMessageBox($"Σφάλμα: {ex.Message}", "Σφάλμα", IconType.Error, ex.StackTrace);
+                            customMessageBox.ShowDialog();
+                        });
+                    }
                 }
-                catch (Exception ex)
+
+                DownloadButton.IsEnabled = true;
+
+                // Έλεγχος αν δεν υπάρχει άλλη επιλεγμένη εφαρμογή
+                if (AppsListBox.SelectedItems.Count == 0)
                 {
-                    await Dispatcher.InvokeAsync(() =>
+                    // Animation για clear του ProgressBar
+                    var clearTimer = new System.Windows.Threading.DispatcherTimer
                     {
-                        var customMessageBox = new CustomMessageBox($"Σφάλμα: {ex.Message}", "Σφάλμα", IconType.Error, ex.StackTrace);
-                        customMessageBox.ShowDialog();
-                        DownloadButton.IsEnabled = true;
-                    });
+                        Interval = TimeSpan.FromMilliseconds(50)
+                    };
+
+                    clearTimer.Tick += (s, ev) =>
+                    {
+                        if (DownloadProgressBar.Value > 0)
+                        {
+                            DownloadProgressBar.Value -= 5; // Μείωση της τιμής σταδιακά
+                        }
+                        else
+                        {
+                            clearTimer.Stop();
+                            DownloadProgressBar.Value = 0; // Βεβαιώνεται ότι είναι στο 0
+                        }
+                    };
+
+                    clearTimer.Start();
                 }
-                finally
-                {
-                    DownloadProgressBar.IsIndeterminate = false;
-                }
+
             }
             else
             {
-                var customMessageBox = new CustomMessageBox("Παρακαλώ επιλέξτε τουλάχιστον μια εφαρμογή για εγκατάσταση.", "Δεν Επιλέχθηκε Εφαρμογή", IconType.Info);
+                var customMessageBox = new CustomMessageBox("Παρακαλώ επιλέξτε τουλάχιστον μία εφαρμογή για εγκατάσταση.", "Δεν Επιλέχθηκε Εφαρμογή", IconType.Info);
                 customMessageBox.ShowDialog();
             }
         }
+
+
 
         private bool IsWingetInstalled()
         {
@@ -280,17 +342,42 @@ namespace MyApp
             }
         }
 
-        private async Task<bool> InstallWingetAsync()
+        private async Task InstallWingetAsync()
         {
             try
             {
+                string url = "https://aka.ms/getwinget"; // Official Microsoft link
+                string filePath = Path.Combine(Path.GetTempPath(), "winget.msixbundle");
+
+                // Download the winget package
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.GetAsync(url);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        ShowError("Αποτυχία λήψης του Winget. Παρακαλώ δοκιμάστε ξανά.");
+                        return;
+                    }
+
+                    byte[] fileBytes = await response.Content.ReadAsByteArrayAsync();
+                    await File.WriteAllBytesAsync(filePath, fileBytes);
+                }
+
+                // Verify that the file exists before attempting to install
+                if (!File.Exists(filePath))
+                {
+                    ShowError("Το αρχείο εγκατάστασης του Winget δεν βρέθηκε.");
+                    return;
+                }
+
+                // Run PowerShell as Admin to install Winget
                 var process = new Process
                 {
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = "powershell",
-                        Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\"",
-                        Verb = "runas", // Εκτέλεση ως διαχειριστής
+                        Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"Start-Process PowerShell -ArgumentList 'Add-AppxPackage -Path {filePath}' -Verb RunAs\"",
+                        Verb = "runas", // Run as administrator
                         UseShellExecute = true
                     }
                 };
@@ -300,32 +387,29 @@ namespace MyApp
 
                 if (process.ExitCode == 0)
                 {
-                    await Dispatcher.InvokeAsync(() =>
-                    {
-                        var customMessageBox = new CustomMessageBox("Το Winget εγκαταστάθηκε επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε");
-                        customMessageBox.ShowDialog();
-                    });
-                    return true; // Επιστροφή επιτυχίας
+                    ShowSuccess("Το Winget εγκαταστάθηκε επιτυχώς!");
                 }
                 else
                 {
-                    await Dispatcher.InvokeAsync(() =>
-                    {
-                        var customMessageBox = new CustomMessageBox("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.", "Σφάλμα");
-                        customMessageBox.ShowDialog();
-                    });
-                    return false; // Επιστροφή αποτυχίας
+                    ShowError("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.");
                 }
             }
             catch (Exception ex)
             {
-                await Dispatcher.InvokeAsync(() =>
-                {
-                    var customMessageBox = new CustomMessageBox($"Σφάλμα κατά την εγκατάσταση του Winget: {ex.Message}", "Σφάλμα");
-                    customMessageBox.ShowDialog();
-                });
-                return false; // Επιστροφή αποτυχίας
+                ShowError($"Σφάλμα κατά την εγκατάσταση του Winget: {ex.Message}");
             }
+        }
+
+        private void ShowSuccess(string message)
+        {
+            var customMessageBox = new CustomMessageBox(message, "Εγκατάσταση Ολοκληρώθηκε");
+            customMessageBox.ShowDialog();
+        }
+
+        private void ShowError(string message)
+        {
+            var customMessageBox = new CustomMessageBox(message, "Σφάλμα");
+            customMessageBox.ShowDialog();
         }
 
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

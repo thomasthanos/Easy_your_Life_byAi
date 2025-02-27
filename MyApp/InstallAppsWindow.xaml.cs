@@ -30,7 +30,6 @@ namespace MyApp
                     new AppInfo { Name = "Advanced Installer", PackageName = "Caphyon.AdvancedInstaller" },
                     new AppInfo { Name = "Better Discord", PackageName = "BetterDiscord.BetterDiscord" },
                     new AppInfo { Name = "Blender", PackageName = "BlenderFoundation.Blender" },
-                    new AppInfo { Name = "Blender", PackageName = "BlenderFoundation.Blender" },
                     new AppInfo { Name = "Bluestack", PackageName = "BlueStack.BlueStacks" },
                     new AppInfo { Name = "Brave", PackageName = "Brave.Brave" },
                     new AppInfo { Name = "Corsair", PackageName = "Corsair.iCUE.5" },
@@ -159,72 +158,68 @@ namespace MyApp
                 return;
             }
 
-            var selectedApp = AppsListBox.SelectedItem as AppInfo;
-            if (selectedApp != null)
+            var selectedApps = AppsListBox.SelectedItems.Cast<AppInfo>().ToList();
+            if (selectedApps.Any())
             {
                 try
                 {
                     DownloadProgressBar.IsIndeterminate = false; // Απενεργοποίηση της απροσδιόριστης κατάστασης
                     DownloadProgressBar.Value = 0; // Αρχικοποίηση της τιμής του ProgressBar
-                    DownloadProgressBar.Maximum = 100; // Ορισμός της μέγιστης τιμής
+                    DownloadProgressBar.Maximum = selectedApps.Count * 100; // Ορισμός της μέγιστης τιμής
                     DownloadButton.IsEnabled = false;
 
-                    // Δημιουργία Timer για περιοδική ενημέρωση του ProgressBar
-                    var timer = new System.Timers.Timer(500); // Ανανεώνεται κάθε 500ms
-                    timer.Elapsed += (s, ev) =>
+                    // Ταξινόμηση των επιλεγμένων εφαρμογών με αλφαβητική σειρά
+                    var sortedApps = selectedApps.OrderBy(app => app.Name).ToList();
+
+                    foreach (var app in sortedApps)
                     {
-                        Dispatcher.BeginInvoke(new Action(() =>
+                        string errorOutput = string.Empty;
+                        bool installationSuccess = false;
+
+                        // Εκτέλεση της διεργασίας σε ξεχωριστό νήμα
+                        await Task.Run(() =>
                         {
-                            if (DownloadProgressBar.Value < 95)
+                            var process = new Process
                             {
-                                DownloadProgressBar.Value += 5; // Αύξηση κατά 5% κάθε 500ms
-                            }
-                        }));
-                    };
-                    timer.Start();
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    FileName = "winget",
+                                    Arguments = $"install --id {app.PackageName} --silent --accept-package-agreements",
+                                    RedirectStandardOutput = true,
+                                    RedirectStandardError = true,
+                                    UseShellExecute = false,
+                                    CreateNoWindow = true,
+                                    StandardOutputEncoding = System.Text.Encoding.UTF8
+                                }
+                            };
 
-                    string errorOutput = string.Empty;
-                    bool installationSuccess = false;
+                            process.Start();
+                            errorOutput = process.StandardError.ReadToEnd(); // Διαβάζουμε την έξοδο του σφάλματος
+                            process.WaitForExit();
 
-                    // Εκτέλεση της διεργασίας σε ξεχωριστό νήμα
-                    await Task.Run(() =>
-                    {
-                        var process = new Process
+                            installationSuccess = process.ExitCode == 0; // Ελέγχουμε αν η εγκατάσταση ήταν επιτυχής
+                        });
+
+                        // Ενημέρωση του ProgressBar μετά από κάθε εγκατάσταση
+                        await Dispatcher.InvokeAsync(() =>
                         {
-                            StartInfo = new ProcessStartInfo
+                            DownloadProgressBar.Value += 100; // Αυξάνουμε το ProgressBar κατά 100 για κάθε εφαρμογή
+                        });
+
+                        if (!installationSuccess)
+                        {
+                            await Dispatcher.InvokeAsync(() =>
                             {
-                                FileName = "winget",
-                                Arguments = $"install --id {selectedApp.PackageName} --silent --accept-package-agreements",
-                                RedirectStandardOutput = true,
-                                RedirectStandardError = true,
-                                UseShellExecute = false,
-                                CreateNoWindow = true,
-                                StandardOutputEncoding = System.Text.Encoding.UTF8
-                            }
-                        };
-
-                        process.Start();
-                        errorOutput = process.StandardError.ReadToEnd(); // Διαβάζουμε την έξοδο του σφάλματος
-                        process.WaitForExit();
-
-                        installationSuccess = process.ExitCode == 0; // Ελέγχουμε αν η εγκατάσταση ήταν επιτυχής
-                    });
-
-                    timer.Stop();
+                                var customMessageBox = new CustomMessageBox($"Σφάλμα κατά την εγκατάσταση της εφαρμογής {app.Name}: {errorOutput}", "Σφάλμα", IconType.Error, errorOutput);
+                                customMessageBox.ShowDialog();
+                            });
+                        }
+                    }
 
                     await Dispatcher.InvokeAsync(() =>
                     {
-                        if (installationSuccess)
-                        {
-                            DownloadProgressBar.Value = 100;
-                            var customMessageBox = new CustomMessageBox($"Η εφαρμογή {selectedApp.Name} εγκαταστάθηκε επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε", IconType.Success);
-                            customMessageBox.ShowDialog();
-                        }
-                        else
-                        {
-                            var customMessageBox = new CustomMessageBox($"Σφάλμα κατά την εγκατάσταση της εφαρμογής {selectedApp.Name}: {errorOutput}", "Σφάλμα", IconType.Error, errorOutput);
-                            customMessageBox.ShowDialog();
-                        }
+                        var customMessageBox = new CustomMessageBox("Όλες οι εφαρμογές εγκαταστάθηκαν επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε", IconType.Success);
+                        customMessageBox.ShowDialog();
                         DownloadButton.IsEnabled = true;
                     });
                 }
@@ -244,7 +239,7 @@ namespace MyApp
             }
             else
             {
-                var customMessageBox = new CustomMessageBox("Παρακαλώ επιλέξτε μια εφαρμογή για εγκατάσταση.", "Δεν Επιλέχθηκε Εφαρμογή", IconType.Info);
+                var customMessageBox = new CustomMessageBox("Παρακαλώ επιλέξτε τουλάχιστον μια εφαρμογή για εγκατάσταση.", "Δεν Επιλέχθηκε Εφαρμογή", IconType.Info);
                 customMessageBox.ShowDialog();
             }
         }
@@ -315,6 +310,7 @@ namespace MyApp
                 customMessageBox.ShowDialog();
             }
         }
+
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             string searchText = SearchTextBox.Text;
@@ -330,7 +326,7 @@ namespace MyApp
                 AppsListBox.ItemsSource = apps;
             }
         }
-        // Προσθήκη της μεθόδου για το κουμπί αναζήτησης
+
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string searchText = SearchTextBox.Text;

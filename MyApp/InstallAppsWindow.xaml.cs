@@ -9,7 +9,7 @@ namespace MyApp
 {
     public partial class InstallAppsWindow : Window
     {
-        private List<AppInfo> apps; // Προσθήκη λίστας για αποθήκευση των εφαρμογών
+        private List<AppInfo> apps; // Λίστα για αποθήκευση των εφαρμογών
 
         public InstallAppsWindow()
         {
@@ -154,8 +154,16 @@ namespace MyApp
         {
             if (!IsWingetInstalled())
             {
-                await InstallWingetAsync(); // Εγκατάσταση του winget αν δεν είναι εγκατεστημένο
-                return;
+                bool wingetInstalled = await InstallWingetAsync(); // Εγκατάσταση του Winget
+                if (!wingetInstalled || !IsWingetInstalled()) // Επαναληπτικός έλεγχος
+                {
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        var customMessageBox = new CustomMessageBox("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.", "Σφάλμα");
+                        customMessageBox.ShowDialog();
+                    });
+                    return;
+                }
             }
 
             var selectedApps = AppsListBox.SelectedItems.Cast<AppInfo>().ToList();
@@ -272,7 +280,7 @@ namespace MyApp
             }
         }
 
-        private async Task InstallWingetAsync()
+        private async Task<bool> InstallWingetAsync()
         {
             try
             {
@@ -292,22 +300,31 @@ namespace MyApp
 
                 if (process.ExitCode == 0)
                 {
-                    // Χρήση του CustomMessageBox αντί για MessageBox
-                    var customMessageBox = new CustomMessageBox("Το Winget εγκαταστάθηκε επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε");
-                    customMessageBox.ShowDialog();
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        var customMessageBox = new CustomMessageBox("Το Winget εγκαταστάθηκε επιτυχώς!", "Εγκατάσταση Ολοκληρώθηκε");
+                        customMessageBox.ShowDialog();
+                    });
+                    return true; // Επιστροφή επιτυχίας
                 }
                 else
                 {
-                    // Χρήση του CustomMessageBox αντί για MessageBox
-                    var customMessageBox = new CustomMessageBox("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.", "Σφάλμα");
-                    customMessageBox.ShowDialog();
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        var customMessageBox = new CustomMessageBox("Η εγκατάσταση του Winget απέτυχε. Παρακαλώ εγκαταστήστε το χειροκίνητα.", "Σφάλμα");
+                        customMessageBox.ShowDialog();
+                    });
+                    return false; // Επιστροφή αποτυχίας
                 }
             }
             catch (Exception ex)
             {
-                // Χρήση του CustomMessageBox αντί για MessageBox
-                var customMessageBox = new CustomMessageBox($"Σφάλμα κατά την εγκατάσταση του Winget: {ex.Message}", "Σφάλμα");
-                customMessageBox.ShowDialog();
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    var customMessageBox = new CustomMessageBox($"Σφάλμα κατά την εγκατάσταση του Winget: {ex.Message}", "Σφάλμα");
+                    customMessageBox.ShowDialog();
+                });
+                return false; // Επιστροφή αποτυχίας
             }
         }
 

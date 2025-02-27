@@ -5,8 +5,6 @@ VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp", "MyApp.csproj", "{D2E5DD25-70D8-450C-84D7-E192DB857736}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "MyApp_Ai", "..\MyApp_Ai\MyApp_Ai.aiproj", "{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,12 +18,6 @@ Global
 		{D2E5DD25-70D8-450C-84D7-E192DB857736}.DefaultBuild|Any CPU.Build.0 = Release|Any CPU
 		{D2E5DD25-70D8-450C-84D7-E192DB857736}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2E5DD25-70D8-450C-84D7-E192DB857736}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}.Debug|Any CPU.ActiveCfg = DefaultBuild
-		{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}.Debug|Any CPU.Build.0 = DefaultBuild
-		{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}.DefaultBuild|Any CPU.ActiveCfg = DefaultBuild
-		{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}.DefaultBuild|Any CPU.Build.0 = DefaultBuild
-		{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}.Release|Any CPU.ActiveCfg = DefaultBuild
-		{65DC8CAE-DCBA-4694-8812-1ACCE445C50D}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

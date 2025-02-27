@@ -181,9 +181,16 @@ namespace MyApp
             this.WindowState = WindowState.Minimized;
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Κλείσιμο του InstallAppsWindow
+            this.Close();
+        }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            // Τερματισμός ολόκληρης της εφαρμογής
+            Application.Current.Shutdown();
         }
 
         private async void DownloadButton_Click(object sender, RoutedEventArgs e)
@@ -443,6 +450,7 @@ namespace MyApp
                 AppsListBox.ItemsSource = apps;
             }
         }
+
     }
 
     public class AppInfo

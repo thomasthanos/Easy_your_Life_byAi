@@ -22,8 +22,12 @@ public partial class MainWindow : Window
     #region --> buttons
     private void InstallAppsButton_Click(object sender, RoutedEventArgs e)
     {
-        // Δημιουργία και εμφάνιση του νέου παραθύρου
+        // Κρύψε το MainWindow
+        this.Hide();
+
+        // Άνοιγμα του InstallAppsWindow
         InstallAppsWindow installAppsWindow = new InstallAppsWindow();
+        installAppsWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το InstallAppsWindow, εμφάνισε ξανά το MainWindow
         installAppsWindow.Show();
     }
     #endregion

@@ -52,7 +52,7 @@ namespace MyApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MyApp;component/cracksitewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyApp;V1.0.0.0;component/cracksitewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\CrackSiteWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

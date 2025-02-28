@@ -1,0 +1,135 @@
+﻿<Window x:Class="MyApp.multitool"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Modern Window" Height="450" Width="400"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <!-- Electric Blue Color Palette -->
+        <Color x:Key="AccentColor">#FF00B4FF</Color>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <Color x:Key="DarkBackground">#FF121212</Color>
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackground}"/>
+
+        <!-- Glow Effect -->
+        <DropShadowEffect x:Key="ButtonGlow" Color="#00B4FF" BlurRadius="20" Opacity="0" Direction="0"/>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="2.5"/>
+            <!-- Λιγότερο παχύ border -->
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2A2A2A"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#00B4FF" BlurRadius="20" Opacity="0.8"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <!-- Pressed Effect -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#333333"/>
+                                <Setter Property="BorderBrush" Value="#00C8FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Window Control Buttons -->
+        <Style x:Key="WindowButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#606060"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                <Setter Property="Background" Value="#2000B4FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#4000B4FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Main Container -->
+        <Border Background="{StaticResource DarkBackgroundBrush}" CornerRadius="10" Margin="20"
+            BorderBrush="{StaticResource AccentBrush}" BorderThickness="3.5">
+            <!-- Λιγότερο παχύ border -->
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="15" Opacity="0.3"/>
+            </Border.Effect>
+
+            <Grid>
+                <!-- Control Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                    <Button Content="─" Style="{StaticResource WindowButtonStyle}" Click="MinimizeButton_Click"/>
+                    <Button Content="✕" Style="{StaticResource WindowButtonStyle}" Margin="10,0,0,0" Click="CloseButton_Click"/>
+                </StackPanel>
+
+                <!-- Title -->
+                <TextBlock Text="Multitool" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Top" 
+                       Margin="0,12,0,0" 
+                       FontSize="22"
+                       FontWeight="bold"
+                       FontFamily="Segoe UI" 
+                       Foreground="{StaticResource AccentBrush}"
+                       TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#000000" BlurRadius="10" Opacity="0.8" Direction="320" ShadowDepth="3"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <!-- Buttons Stack -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,50,0,0">
+                    <Button Content="Ενημέρωση Εφαρμογών" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="WingetUpgradeAllButton_Click"/>
+                    <Button Content="Σβήσιμο 'Σκουπιδιών'" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="ClearTempButton_Click"/>
+                    <Button Content="Επιδιόρθωση" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="SfcScanButton_Click"/>
+                    <Button Content="Περιγραφή" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="DescriptionButton_Click"/>
+                    <Button Content="Exit" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="ExitButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

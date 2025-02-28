@@ -51,3 +51,9 @@ E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.genruntimecon
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\ref\MyApp.dll
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CrackSiteWindow.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CrackSiteWindow.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\ClearTempWindow.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\DescriptionWindow.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\multitool.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\ClearTempWindow.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\DescriptionWindow.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\multitool.g.cs

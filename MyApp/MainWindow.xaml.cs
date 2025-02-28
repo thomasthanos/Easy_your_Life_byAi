@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
 
-
 namespace MyApp;
 
 public partial class MainWindow : Window
@@ -41,5 +40,4 @@ public partial class MainWindow : Window
         crackSiteWindow.Show();
     }
     #endregion
-
 }

@@ -5,83 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600"
+        Title="MainWindow" Height="400" Width="650"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <!-- Custom Button Style without Hover Animation -->
-        <Style x:Key="ModernButton" TargetType="Button">
-            <Setter Property="FontSize" Value="17"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="UseLayoutRounding" Value="True"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
-            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
-            <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <!-- Electric Blue Color Palette -->
+        <Color x:Key="AccentColor">#FF00B4FF</Color>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <Color x:Key="DarkBackground">#FF121212</Color>
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackground}"/>
+
+        <!-- Glow Effect -->
+        <DropShadowEffect x:Key="ButtonGlow" Color="#00B4FF" BlurRadius="20" Opacity="0" Direction="0"/>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="2.5"/>
+            <Setter Property="FontSize" Value="18"/>
+            <!-- Μεγαλύτερο font size -->
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <!-- Καθαρό text -->
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            <!-- Anti-aliasing -->
+            <Setter Property="Padding" Value="15,5"/>
+            <!-- Περισσότερος χώρος γύρω από το κείμενο -->
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="5"
-                                SnapsToDevicePixels="True"
-                                UseLayoutRounding="True">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2A2A2A"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#00B4FF" BlurRadius="20" Opacity="0.8"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <!-- Pressed Effect -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#333333"/>
+                                <Setter Property="BorderBrush" Value="#00C8FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Custom Button Style with Hover Animation for Minimize and Close -->
-        <Style x:Key="ModernButtonWithHover" TargetType="Button" BasedOn="{StaticResource ModernButton}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGray"/>
-                    <Setter Property="Foreground" Value="DarkBlue"/>
-                    <Setter Property="BorderBrush" Value="DarkBlue"/>
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation To="DarkBlue" Duration="0:0:0.9" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation To="Black" Duration="0:0:0.9" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="DarkGray"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
+        <!-- Window Control Buttons -->
+        <Style x:Key="WindowButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#606060"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                <Setter Property="Background" Value="#2000B4FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#4000B4FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
 
     <Grid>
         <!-- Main Content -->
-        <Border Background="#FF2D2D30" CornerRadius="10" Margin="10">
+        <Border Background="{StaticResource DarkBackgroundBrush}" CornerRadius="10" Margin="10"
+                BorderBrush="{StaticResource AccentBrush}" BorderThickness="3.5">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="15" Opacity="0.3"/>
+            </Border.Effect>
+
             <Grid>
                 <!-- Title Bar -->
                 <Border Background="#FF252526" Height="40" VerticalAlignment="Top" CornerRadius="10 10 0 0">
@@ -93,18 +113,18 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Title (Centered) -->
-                        <TextBlock Text="Make Your Life Easier" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="3" FontFamily="Comic Sans MS"/>
+                        <TextBlock Text="Make Your Life Easier" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="3" FontFamily="Segoe UI"/>
 
                         <!-- Minimize Button -->
-                        <Button Grid.Column="1" Style="{StaticResource ModernButtonWithHover}" Width="30" Height="30" Content="─" Click="MinimizeButton_Click" Margin="0,0,5,0" Background="Transparent" Foreground="White"/>
+                        <Button Grid.Column="1" Style="{StaticResource WindowButtonStyle}" Width="30" Height="30" Content="─" Click="MinimizeButton_Click" Margin="0,0,5,0"/>
 
                         <!-- Close Button -->
-                        <Button Grid.Column="2" Style="{StaticResource ModernButtonWithHover}" Width="30" Height="30" Content="✕" Click="CloseButton_Click" Margin="0,0,10,0" Background="Transparent" Foreground="White"/>
+                        <Button Grid.Column="2" Style="{StaticResource WindowButtonStyle}" Width="30" Height="30" Content="✕" Click="CloseButton_Click" Margin="0,0,10,0"/>
                     </Grid>
                 </Border>
 
                 <!-- Main Content Area -->
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,35,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="20"/>
@@ -118,11 +138,9 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Πάνω κουμπιά -->
-                    <!-- MainWindow.xaml -->
-                    <Button Content="Install Apps" Style="{StaticResource ModernButton}" Width="200" Height="40" Grid.Row="0" Grid.Column="0"
-        RenderTransformOrigin="0.5, 0.5" Click="InstallAppsButton_Click">
-                        <!-- Προσθήκη του Click event -->
+                    <!-- Top Buttons -->
+                    <Button Content="Install Apps" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="0" Grid.Column="0"
+                            RenderTransformOrigin="0.5, 0.5" Click="InstallAppsButton_Click">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -130,8 +148,8 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -146,35 +164,8 @@
                         </Button.Triggers>
                     </Button>
 
-                    <Button Content="Activate / Auto Login" Style="{StaticResource ModernButton}" Width="200" Height="40" Grid.Row="0" Grid.Column="2"
-        RenderTransformOrigin="0.5, 0.5">
-                        <Button.RenderTransform>
-                            <ScaleTransform ScaleX="1" ScaleY="1"/>
-                        </Button.RenderTransform>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-
-                    <!-- Μεγάλο κουμπί στη μέση -->
-                    <Button Content="Sys Maintenance: Updates, Temp Del, PC Health" Style="{StaticResource ModernButton}" Width="420" Height="40" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                    <Button Content="Activate / Auto Login" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="0" Grid.Column="2"
                             RenderTransformOrigin="0.5, 0.5">
-                        <!-- Center scale -->
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -182,8 +173,8 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -198,10 +189,35 @@
                         </Button.Triggers>
                     </Button>
 
-                    <!-- Κάτω κουμπιά -->
-                    <Button Content="Crack Sites" Style="{StaticResource ModernButton}" Width="200" Height="40" Grid.Row="4" Grid.Column="0"
+                    <!-- Middle Button -->
+                    <Button Content="Sys Maintenance: Updates, Temp Del, PC Health" Style="{StaticResource ModernButtonStyle}" Width="460" Height="50" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                            RenderTransformOrigin="0.5, 0.5">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Button.RenderTransform>
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <!-- Bottom Buttons -->
+                    <Button Content="Crack Sites" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="4" Grid.Column="0"
                             RenderTransformOrigin="0.5, 0.5" Click="CrackSitesButton_Click">
-                        <!-- Center scale -->
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -209,8 +225,8 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -225,9 +241,8 @@
                         </Button.Triggers>
                     </Button>
 
-                    <Button Content="Crack Apps" Style="{StaticResource ModernButton}" Width="200" Height="40" Grid.Row="4" Grid.Column="2"
+                    <Button Content="Crack Apps" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="4" Grid.Column="2"
                             RenderTransformOrigin="0.5, 0.5">
-                        <!-- Center scale -->
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -235,8 +250,8 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

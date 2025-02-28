@@ -30,6 +30,16 @@ public partial class MainWindow : Window
         installAppsWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το InstallAppsWindow, εμφάνισε ξανά το MainWindow
         installAppsWindow.Show();
     }
+    private void CrackSitesButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Κρύψε το MainWindow
+        this.Hide();
+
+        // Άνοιγμα του CrackSiteWindow
+        CrackSiteWindow crackSiteWindow = new CrackSiteWindow();
+        crackSiteWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το CrackSiteWindow, εμφάνισε ξανά το MainWindow
+        crackSiteWindow.Show();
+    }
     #endregion
 
 }

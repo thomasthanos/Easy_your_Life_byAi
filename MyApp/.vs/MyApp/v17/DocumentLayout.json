@@ -3,23 +3,16 @@
   "WorkspaceRootPath": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\cracksitewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:cracksitewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\installappswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:installappswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\installappswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:installappswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{61875CDF-67FF-4E7C-9FA9-22E964FB4D18}|..\\myAppAi\\myAppAi.aiproj|E:\\Github\\Easy_your_Life_byAi\\myAppAi\\myAppAi.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\cracksitewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:cracksitewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,74 +21,50 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 140,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 119,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "myAppAi.aip",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\myAppAi\\myAppAi.aip",
-              "RelativeDocumentMoniker": "..\\myAppAi\\myAppAi.aip",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\myAppAi\\myAppAi.aip",
-              "RelativeToolTip": "..\\myAppAi\\myAppAi.aip",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHRSURBVDhPhdJPiIxhHAfwz7xrWzU1Lk7Exha5\u002BZfoTaRtFKc57OaixEFvSXIaXJy02Wy2NnNBDhzs1ryyNxdKc9td/3KSxooVi7JsRtodB8\u002Bw8x741tPT7/f98zw9zy8H8wPrVuIFangQ1qN8ub7gX2g2mzm/A/pxO0PP4SEefF4o3Dj05vynWqXUzGhEYd\u002Bf6UMBB3HxwsfDu/E8TtK\u002BrKgV0JvpwzvcxcTTRs8ObMJonKRX4yTtaImi\u002BYF1G7C23Ut1bs/R4vTQ7JkPx89h6cnHMNgqIhSXkGO4CYWO\u002BQgzk983ltGzRAOn4iTdLgTsCs0nxemhh8XpoVmM9eYnRu91ny515X5eafeCHE5CdOD14P07X3f3LYouYU135/spbEUeb380O6u4kU3APsjFSdr6mjkUIosj11cP3Fq17ONOvMyX6\u002BNxkm7BVLufWqWUi9AIdQEWRSeOvD27Ml\u002BuX86X6\u002BOBW/3X9gcN4Q2eZRkMx0m6DeIk3YrhrKDli1DNMliPiThJG5gMdRZVIWAEM1k2oCvbCJgJPlGtUvqG/iVv8T800B98v0e5VinVsBevsuoMXmFv0BMG4g/iJF0eRrUPm7ECX/A4TOm1WqXUdtNfzkGPxBC9wFQAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-02-27T02:31:02.685Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InstallAppsWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "InstallAppsWindow.xaml.cs",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml.cs",
-              "RelativeToolTip": "InstallAppsWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T16:28:46.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAFAAAAAAAAAA==",
+              "Title": "CrackSiteWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml.cs",
+              "RelativeDocumentMoniker": "CrackSiteWindow.xaml.cs",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml.cs",
+              "RelativeToolTip": "CrackSiteWindow.xaml.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwA4AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T19:43:22.918Z",
+              "WhenOpened": "2025-02-27T20:16:45.089Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 212,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 233,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-27T18:36:18.043Z",
+              "WhenOpened": "2025-02-28T02:35:48.976Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InstallAppsWindow.xaml",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml",
-              "RelativeDocumentMoniker": "InstallAppsWindow.xaml",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml",
-              "RelativeToolTip": "InstallAppsWindow.xaml",
+              "DocumentIndex": 0,
+              "Title": "CrackSiteWindow.xaml",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml",
+              "RelativeDocumentMoniker": "CrackSiteWindow.xaml",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml",
+              "RelativeToolTip": "CrackSiteWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-26T16:28:39.763Z",
+              "WhenOpened": "2025-02-27T20:16:35.533Z",
               "EditorCaption": ""
             }
           ]

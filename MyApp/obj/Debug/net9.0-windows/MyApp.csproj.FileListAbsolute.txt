@@ -49,3 +49,5 @@ E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\refint\MyApp.dll
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.pdb
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.genruntimeconfig.cache
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\ref\MyApp.dll
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CrackSiteWindow.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CrackSiteWindow.g.cs

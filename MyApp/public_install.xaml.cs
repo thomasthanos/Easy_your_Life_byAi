@@ -49,7 +49,11 @@ namespace MyApp
                 fileUrl = "https://drive.usercontent.google.com/download?id=1Ur66w8CIGlKScy21ZoNQUzyidZPsJD39&export=download&authuser=0&confirm=t&uuid=d77760ad-9e12-438e-991f-745c5c508928&at=AEz70l7KibMmZL_RFs-3o8UVlaov:1740762499506";
                 savePath += "Office2024.zip";
             }
-
+            else if (sender == ClipStudioButton)
+            {
+                fileUrl = "https://cdn.discordapp.com/attachments/1203478665304866887/1338317398692069378/Clip_Studio_Paint.zip?ex=67c30874&is=67c1b6f4&hm=1c6fbdee037fdda529cc45c5355667f22a07bba2f17977eae52c953beef52c71&"; // Βάλε το σωστό URL εδώ
+                savePath += "ClipStudio.zip";
+            }
             await DownloadFileWithProgressAsync(fileUrl, savePath);
         }
 
@@ -101,6 +105,22 @@ namespace MyApp
             {
                 MessageBox.Show($"Error downloading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        // Event handlers για τα κουμπιά Minimize, Back, Close
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

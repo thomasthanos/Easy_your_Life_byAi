@@ -11,9 +11,6 @@
     <Compile Update="CustomMessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="DescriptionWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="InstallAppsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

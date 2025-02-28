@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\installappswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:installappswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\multitool.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:multitool.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\installappswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:installappswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\multitool.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:multitool.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,33 +22,27 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InstallAppsWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "InstallAppsWindow.xaml.cs",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml.cs",
-              "RelativeToolTip": "InstallAppsWindow.xaml.cs",
-              "ViewState": "AgIAAIcBAAAAAAAAAADwv64BAAANAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "multitool.xaml.cs",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml.cs",
+              "RelativeDocumentMoniker": "multitool.xaml.cs",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml.cs*",
+              "RelativeToolTip": "multitool.xaml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-28T14:56:31.498Z",
+              "WhenOpened": "2025-02-28T16:51:18.278Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 233,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "InstallAppsWindow.xaml",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml",
-              "RelativeDocumentMoniker": "InstallAppsWindow.xaml",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\InstallAppsWindow.xaml",
-              "RelativeToolTip": "InstallAppsWindow.xaml",
+              "DocumentIndex": 1,
+              "Title": "multitool.xaml",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml",
+              "RelativeDocumentMoniker": "multitool.xaml",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml*",
+              "RelativeToolTip": "multitool.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-28T14:56:25.243Z",
+              "WhenOpened": "2025-02-28T16:50:45.121Z",
               "EditorCaption": ""
             }
           ]

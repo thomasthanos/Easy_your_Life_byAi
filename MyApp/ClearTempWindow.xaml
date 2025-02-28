@@ -6,33 +6,57 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType">
+
     <Window.Resources>
-        <!-- Ειδικό Style για τα κουμπιά Close και Minimize -->
-        <Style x:Key="WindowButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#CCCCCC"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Padding" Value="5"/>
+        <!-- Electric Blue Color Palette -->
+        <Color x:Key="AccentColor">#FF00B4FF</Color>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <Color x:Key="DarkBackground">#FF121212</Color>
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackground}"/>
+
+        <!-- Glow Effect -->
+        <DropShadowEffect x:Key="ButtonGlow" Color="#00B4FF" BlurRadius="20" Opacity="0" Direction="0"/>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="2.5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <!-- Cursor τύπου Hand -->
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <!-- Hover Effect -->
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#444444"/>
+                                <Setter Property="Background" Value="#2A2A2A"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#00B4FF" BlurRadius="20" Opacity="0.8"/>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                             <!-- Pressed Effect -->
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#555555"/>
+                                <Setter Property="Background" Value="#333333"/>
+                                <Setter Property="BorderBrush" Value="#00C8FF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -40,74 +64,117 @@
             </Setter>
         </Style>
 
-        <!-- Custom Style για το ScrollBar -->
-        <Style TargetType="ScrollBar">
-            <Setter Property="Background" Value="#333333"/>
-            <Setter Property="Foreground" Value="#666666"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Width" Value="10"/>
+        <!-- Window Control Buttons -->
+        <Style x:Key="WindowButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#606060"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ScrollBar">
-                        <Grid>
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5"/>
-                            <Track x:Name="PART_Track" IsDirectionReversed="False">
-                                <Track.Thumb>
-                                    <Thumb>
-                                        <Thumb.Template>
-                                            <ControlTemplate TargetType="Thumb">
-                                                <Border Background="#666666" CornerRadius="5"/>
-                                            </ControlTemplate>
-                                        </Thumb.Template>
-                                    </Thumb>
-                                </Track.Thumb>
-                                <Track.IncreaseRepeatButton>
-                                    <RepeatButton Command="ScrollBar.LineDownCommand"/>
-                                </Track.IncreaseRepeatButton>
-                                <Track.DecreaseRepeatButton>
-                                    <RepeatButton Command="ScrollBar.LineUpCommand"/>
-                                </Track.DecreaseRepeatButton>
-                            </Track>
-                        </Grid>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                <Setter Property="Background" Value="#2000B4FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#4000B4FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Στυλ για το τελικό αποτέλεσμα -->
+        <!-- Custom ScrollBar Style -->
+        <Style TargetType="ScrollBar">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Grid Margin="0,5,0,5">
+                                <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                    <Track.Thumb>
+                                        <Thumb Background="#FFA0A0A0" MinHeight="20">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                            CornerRadius="4"
+                                                            Width="6"
+                                                            Margin="1"/>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Height" Value="8"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Final Result Style -->
         <Style x:Key="FinalResultStyle" TargetType="Border">
-            <Setter Property="Background" Value="#333333"/>
-            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Background" Value="#FF3E3E42"/>
+            <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="20"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="#00FF00"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#FF00FF00" Opacity="0.8"/>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="3" Color="Black" Opacity="0.6"/>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Στυλ για τα TextBlock στο τελικό αποτέλεσμα -->
+        <!-- Result Text Style -->
         <Style x:Key="ResultTextStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
         </Style>
 
-        <!-- Στυλ για τους τίτλους στο τελικό αποτέλεσμα -->
+        <!-- Result Title Style -->
         <Style x:Key="ResultTitleStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#00FF00"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="0,10,0,5"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
         </Style>
     </Window.Resources>
 
     <!-- Κύριο Border για το παράθυρο με στρογγυλεμένες γωνίες -->
-    <Border Background="#1E1E1E" CornerRadius="15" Padding="10">
+    <Border Background="{StaticResource DarkBackgroundBrush}" CornerRadius="15" Padding="10">
         <Grid>
             <!-- StackPanel με τα κουμπιά Close και Minimize -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Panel.ZIndex="1">
@@ -120,23 +187,23 @@
             </StackPanel>
 
             <!-- Εξωτερικό Border με corner-radius -->
-            <Border Background="#444444" CornerRadius="15" Margin="10,50,10,10" Padding="10" Panel.ZIndex="0">
+            <Border Background="#FF3E3E42" CornerRadius="15" Margin="10,50,10,10" Padding="10" Panel.ZIndex="0">
                 <Grid>
                     <!-- Εσωτερικό Border με rounded corners για το RichTextBox -->
-                    <Border Background="#333333" CornerRadius="10">
+                    <Border Background="#FF2D2D30" CornerRadius="10">
                         <RichTextBox x:Name="OutputRichTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                                     Background="Transparent" Foreground="#FFFFFF" 
+                                     Background="Transparent" Foreground="White" 
                                      IsReadOnly="True" VerticalScrollBarVisibility="Auto" BorderThickness="0"
-                                     FontFamily="Consolas" FontSize="14">
+                                     FontFamily="Segoe UI" FontSize="14">
                             <RichTextBox.Resources>
                                 <!-- Στυλ για τις γραμμές προόδου -->
                                 <Style TargetType="Paragraph">
-                                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                                    <Setter Property="Foreground" Value="White"/>
                                     <Setter Property="Margin" Value="0"/>
                                 </Style>
                                 <!-- Στυλ για τα progress bars -->
                                 <Style x:Key="ProgressBarStyle" TargetType="Paragraph">
-                                    <Setter Property="Foreground" Value="#00FF00"/>
+                                    <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
                                     <Setter Property="FontWeight" Value="Bold"/>
                                     <Setter Property="Margin" Value="0"/>
                                 </Style>
@@ -152,41 +219,29 @@
 
                     <!-- Τελικό αποτέλεσμα -->
                     <Border x:Name="FinalResultBorder" Style="{StaticResource FinalResultStyle}" 
-        HorizontalAlignment="Center" VerticalAlignment="Center" 
-        Visibility="Collapsed">
+                            HorizontalAlignment="Center" VerticalAlignment="Center" 
+                            Visibility="Collapsed">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 0: Τίτλος -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 1: Γραμμή διαχωρισμού -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 2: C:\Windows\Temp -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 3: %TEMP% -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 4: C:\Windows\Prefetch -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 5: C:\Windows\SoftwareDistribution\Download -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 6: C:\Windows.old -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 7: C:\Windows\Logs\CBS -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 8: Γραμμή διαχωρισμού -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 9: Total files deleted -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 10: Total folders deleted -->
                                 <RowDefinition Height="Auto"/>
-                                <!-- Γραμμή 11: Total size deleted -->
                             </Grid.RowDefinitions>
 
                             <!-- Τίτλος -->
                             <TextBlock Text="Cleaning Results" Style="{StaticResource ResultTitleStyle}" Grid.Row="0" HorizontalAlignment="Center"/>
 
                             <!-- Γραμμή διαχωρισμού -->
-                            <Border Height="1" Background="#00FF00" Margin="0,5,0,10" Grid.Row="1"/>
+                            <Border Height="1" Background="{StaticResource AccentBrush}" Margin="0,5,0,10" Grid.Row="1"/>
 
                             <!-- Αποτελέσματα -->
                             <TextBlock x:Name="TempResultText" Style="{StaticResource ResultTextStyle}" Grid.Row="2" HorizontalAlignment="Center"/>

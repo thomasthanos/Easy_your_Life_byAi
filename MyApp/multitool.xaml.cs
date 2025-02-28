@@ -36,6 +36,12 @@ namespace MyApp
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Κλείνει το multitool και επιστρέφει στο MainWindow
             this.Close();
         }
 
@@ -139,14 +145,6 @@ namespace MyApp
             {
                 MessageBox.Show("File not found: " + filePath);
             }
-        }
-
-        private void DescriptionButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionWindow descriptionWindow = new DescriptionWindow();
-            descriptionWindow.Owner = this; // Ορίστε το MainWindow ως ιδιοκτήτη
-            descriptionWindow.Show(); // Εμφάνιση του DescriptionWindow
-            this.Hide(); // Κρύψτε το MainWindow
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

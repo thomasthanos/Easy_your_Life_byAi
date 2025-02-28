@@ -190,8 +190,12 @@
                     </Button>
 
                     <!-- Middle Button -->
-                    <Button Content="Sys Maintenance: Updates, Temp Del, PC Health" Style="{StaticResource ModernButtonStyle}" Width="460" Height="50" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                            RenderTransformOrigin="0.5, 0.5">
+                    <Button Content="Sys Maintenance: Updates, Temp Del, PC Health" 
+        Style="{StaticResource ModernButtonStyle}" 
+        Width="460" Height="50" 
+        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+        RenderTransformOrigin="0.5, 0.5"
+        Click="SysMaintenanceButton_Click">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>

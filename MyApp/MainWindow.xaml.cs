@@ -39,5 +39,15 @@ public partial class MainWindow : Window
         crackSiteWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το CrackSiteWindow, εμφάνισε ξανά το MainWindow
         crackSiteWindow.Show();
     }
+    private void SysMaintenanceButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Κρύψε το MainWindow
+        this.Hide();
+
+        // Άνοιγμα του multitool window
+        multitool multitoolWindow = new multitool();
+        multitoolWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το multitool, εμφάνισε ξανά το MainWindow
+        multitoolWindow.Show();
+    }
     #endregion
 }

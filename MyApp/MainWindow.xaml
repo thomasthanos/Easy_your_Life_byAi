@@ -246,7 +246,7 @@
                     </Button>
 
                     <Button Content="Crack Apps" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="4" Grid.Column="2"
-                            RenderTransformOrigin="0.5, 0.5">
+                            RenderTransformOrigin="0.5, 0.5" Click="CrackAppsButton_Click">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>

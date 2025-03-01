@@ -84,7 +84,7 @@ namespace MyApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MyApp;V1.0.0.0;component/installappswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyApp;component/installappswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\InstallAppsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

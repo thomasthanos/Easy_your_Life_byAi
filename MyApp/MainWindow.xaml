@@ -92,6 +92,41 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Small Button Style for Info Button -->
+        <Style x:Key="SmallButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2A2A2A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#333333"/>
+                                <Setter Property="BorderBrush" Value="#00C8FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -165,7 +200,7 @@
                     </Button>
 
                     <Button Content="Activate / Auto Login" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="0" Grid.Column="2"
-                            RenderTransformOrigin="0.5, 0.5">
+                            RenderTransformOrigin="0.5, 0.5" Click="ActivateAutoLoginButton_Click">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -269,6 +304,20 @@
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
+                </Grid>
+
+                <!-- Info Button and Code TextBox (Bottom) -->
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Info" Style="{StaticResource SmallButtonStyle}" Grid.Column="0" Click="InfoButton_Click"/>
+                    <Border Width="50" Height="25" Background="#1E1E1E" BorderBrush="{StaticResource AccentBrush}" BorderThickness="1.5" CornerRadius="5" Grid.Column="2">
+                        <TextBox x:Name="CodeTextBox" Background="Transparent" Foreground="White" BorderThickness="0" TextAlignment="Center" FontSize="12" FontFamily="Segoe UI Semibold"/>
+                    </Border>
                 </Grid>
             </Grid>
         </Border>

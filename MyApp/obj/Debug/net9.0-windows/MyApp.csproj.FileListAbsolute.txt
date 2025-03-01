@@ -57,3 +57,9 @@ E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\ClearTempWindow.g.c
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\multitool.g.cs
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\public_install.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\public_install.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\Sims.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\Sims.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\windows.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\windows.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\info.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\info.g.cs

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="650"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="hacker.ico">
 
     <Window.Resources>
         <!-- Electric Blue Color Palette -->
@@ -226,11 +227,11 @@
 
                     <!-- Middle Button -->
                     <Button Content="Sys Maintenance: Updates, Temp Del, PC Health" 
-        Style="{StaticResource ModernButtonStyle}" 
-        Width="460" Height="50" 
-        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-        RenderTransformOrigin="0.5, 0.5"
-        Click="SysMaintenanceButton_Click">
+                                        Style="{StaticResource ModernButtonStyle}" 
+                                        Width="460" Height="50" 
+                                        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                                        RenderTransformOrigin="0.5, 0.5"
+                                        Click="SysMaintenanceButton_Click">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -310,10 +311,14 @@
                 <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="190"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                     <Button Content="Info" Style="{StaticResource SmallButtonStyle}" Grid.Column="0" Click="InfoButton_Click"/>
                     <Border Width="50" Height="25" Background="#1E1E1E" BorderBrush="{StaticResource AccentBrush}" BorderThickness="1.5" CornerRadius="5" Grid.Column="2">
                         <TextBox x:Name="CodeTextBox" Background="Transparent" Foreground="White" BorderThickness="0" TextAlignment="Center" FontSize="12" FontFamily="Segoe UI Semibold"/>

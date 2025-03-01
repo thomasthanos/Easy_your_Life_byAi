@@ -152,21 +152,18 @@ namespace MyApp
                 {
                     if (line.Contains(packageName, StringComparison.OrdinalIgnoreCase))
                     {
-                        var parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                        if (parts.Length >= 2)
-                        {
-                            return parts[1]; // Η έκδοση είναι το δεύτερο μέρος
-                        }
+                        return "Εγκαταστάθηκε"; // Αν βρεθεί το πακέτο, επιστρέφουμε "Εγκαταστάθηκε"
                     }
                 }
 
-                return ""; // Επιστροφή κενής συμβολοσειράς αν δεν βρεθεί έκδοση
+                return ""; // Αν δεν βρεθεί, επιστρέφουμε κενό
             }
             catch
             {
-                return ""; // Επιστροφή κενής συμβολοσειράς σε περίπτωση σφάλματος
+                return ""; // Σε περίπτωση σφάλματος, επιστρέφουμε κενό
             }
         }
+
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -276,7 +273,15 @@ namespace MyApp
                         DownloadButton.IsEnabled = true;
                         isDownloading = false; // Ορισμός του flag σε false μετά το τέλος της λήψης
                     });
+                    if (installationSuccess)
+                    {
+                        DownloadProgressBar.Value = 100;
+                        selectedApp.Version = await GetPackageVersionAsync(selectedApp.PackageName); // Ενημέρωση της έκδοσης
+                        AppsListBox.Items.Refresh(); // Ανανεώνει τη λίστα στο UI
+                    }
+
                 }
+
                 catch (Exception ex)
                 {
                     await Dispatcher.InvokeAsync(() =>

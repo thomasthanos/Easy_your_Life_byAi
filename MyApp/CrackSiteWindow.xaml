@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Crack Sites" Height="300" Width="500"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="hacker.ico">
     <Window.Resources>
         <!-- Style για Site και Games κουμπιά -->
         <Style x:Key="SimpleModernButton" TargetType="Button">

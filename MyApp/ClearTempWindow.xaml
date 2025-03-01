@@ -9,7 +9,8 @@
         AllowsTransparency="True"
         UseLayoutRounding="True"
         TextOptions.TextFormattingMode="Display"
-        TextOptions.TextRenderingMode="ClearType">
+        TextOptions.TextRenderingMode="ClearType"
+        Icon="hacker.ico">
 
     <Window.Resources>
         <!-- Electric Blue Color Palette -->

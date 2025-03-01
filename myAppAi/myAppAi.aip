@@ -21,13 +21,14 @@
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPNOREPAIR" Value="1" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="ARPPRODUCTICON" Value="hacker.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="AiPreventAutoPin" Value="System.AppUserModel.ExcludeFromShowInNewInstall"/>
     <ROW Property="Manufacturer" Value="Kolokithes A.E."/>
-    <ROW Property="ProductCode" Value="1031:{90200D7C-922E-4278-B279-E7A2B048E586} 1032:{90200D7C-922E-4278-B279-E7A2B048E586} 1033:{90200D7C-922E-4278-B279-E7A2B048E586} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{F9FC51DA-CA85-4445-86D6-931430B54343} 1032:{F9FC51DA-CA85-4445-86D6-931430B54343} 1033:{F9FC51DA-CA85-4445-86D6-931430B54343} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Make your life easier"/>
-    <ROW Property="ProductVersion" Value="8.0.4" Options="32"/>
+    <ROW Property="ProductVersion" Value="8.0.5" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{7479805A-0E04-458A-B2B0-C1077005905E}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -62,7 +63,7 @@
     <ROW Component="ProductInformation" Value="{26E14AD1-4508-4690-A662-D06E32AB247B}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{46563C8C-5AAE-4C12-81E7-BC08B5F1B8C3}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{5F3770E0-069B-4FAF-866E-F11A85D4D730}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{48E2AADF-6313-4B14-BC61-556BCAEA4D67}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_IA_ENABLE" ComponentId="{E523AD05-74A4-496D-9AB0-7C9FC05E51FD}" Directory_="APPDIR" Attributes="4" KeyPath="AI_IA_ENABLE" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{2E4024A6-B1B9-4ABD-AF7C-84BCD0BDBE2E}" Directory_="APPDIR" Attributes="0"/>
@@ -426,6 +427,7 @@
     <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="hacker.exe" SourcePath="..\MyApp\hacker.ico" Index="0"/>
     <ROW Name="main.exe" SourcePath="..\MyApp\bin\Debug\net9.0-windows\main.ico" Index="0"/>
     <ROW Name="updater.exe" SourcePath="..\..\..\εικονιδια\ico\update.ico" Index="0"/>
   </COMPONENT>

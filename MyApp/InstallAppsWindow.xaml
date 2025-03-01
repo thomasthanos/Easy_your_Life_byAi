@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="App Downloader" Height="600" Width="800"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="hacker.ico">
     <Window.Resources>
         <!-- Electric Blue Color Palette -->
         <Color x:Key="AccentColor">#FF00B4FF</Color>

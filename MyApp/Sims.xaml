@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         Title="Sims Tools" Height="400" Width="500"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="hacker.ico">
 
     <Window.Resources>
         <!-- Electric Blue Color Palette -->

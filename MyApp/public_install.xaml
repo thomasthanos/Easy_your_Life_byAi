@@ -8,7 +8,8 @@
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Icon="hacker.ico">
 
     <Window.Resources>
         <!-- Electric Blue Color Palette -->

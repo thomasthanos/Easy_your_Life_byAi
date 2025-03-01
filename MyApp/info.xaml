@@ -9,7 +9,8 @@
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        Icon="hacker.ico">
 
     <Window.Resources>
         <!-- Electric Blue Color Palette -->

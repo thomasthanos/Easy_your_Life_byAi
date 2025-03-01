@@ -9,6 +9,7 @@ namespace MyApp
         public info()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         // Event handler for the Back button - returns to MainWindow
@@ -23,6 +24,13 @@ namespace MyApp
 
             // Close this window (optional, depending on your needs)
             this.Close();
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
         // Event handler for the Minimize button

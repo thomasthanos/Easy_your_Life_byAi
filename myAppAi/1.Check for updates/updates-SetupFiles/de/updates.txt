@@ -6,15 +6,15 @@ LicenseIdCheckURL = https://thomasthanos.github.io/Make_your_life_easier/Licence
 [Update]
 Name = Make your life easier
 Category = System maintenance
-ProductVersion = 8.0.4
+ProductVersion = 8.0.5
 URL = https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&st=vg4jr140&dl=1
 URL1 = https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe
-Size = 14571408
+Size = 14712720
 ReleaseDate = 01/03/2025
-SHA256 = 04D9FD8610032809814BEF09CAB9F85BEB4ABD4C2FC81B881FE69F87B72956CB
-MD5 = 0e22774f9bbb161d8a95fb4bfa136731
+SHA256 = C3A179E0438EE208889852CFF50325CCD9EAFEFAAC5ECFDEBF310C810EBBCDC1
+MD5 = b9379166266aa1b297568a0a492fbd3c
 ServerFileName = make your life easier2.exe
 Flags = Critical
 RegistryKey = HKUD\Software\Kolokithes A.E.\Make your life easier\Version
-Version = 8.0.4
+Version = 8.0.5
 Description = New APP

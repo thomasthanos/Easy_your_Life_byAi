@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MyApp
 {
@@ -12,6 +13,7 @@ namespace MyApp
         public CustomWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         private async void Button1_Click(object sender, RoutedEventArgs e)
@@ -34,6 +36,13 @@ namespace MyApp
             {
                 // Εμφάνιση μηνύματος σφάλματος
                 MessageBox.Show($"Σφάλμα κατά τη λήψη ή εκτέλεση του αρχείου: {ex.Message}", "Σφάλμα", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace MyApp
 {
@@ -13,7 +14,7 @@ namespace MyApp
             MessageText.Text = message;
             Title = title;
             _errorDetails = errorDetails;
-
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
             // Αυτόματη ρύθμιση του ύψους του παραθύρου ανάλογα με το μήνυμα
             AdjustWindowHeight();
 
@@ -44,6 +45,13 @@ namespace MyApp
                     break;
                 default:
                     break;
+            }
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
             }
         }
 

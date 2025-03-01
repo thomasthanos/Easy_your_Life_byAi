@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -20,6 +21,7 @@ namespace multitool
             InitializeComponent();
             // Ξεκινάμε τον καθαρισμό αυτόματα όταν ανοίγει το παράθυρο
             ClearTempFolders();
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         // Μέθοδος για προσθήκη κειμένου στο RichTextBox
@@ -42,6 +44,13 @@ namespace multitool
             });
             // Προσθήκη μηνύματος για έλεγχο
             Debug.WriteLine($"AppendOutput: {text}");
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
         // Κουμπί Minimize

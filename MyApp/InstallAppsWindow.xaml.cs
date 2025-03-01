@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MyApp
 {
@@ -20,6 +21,7 @@ namespace MyApp
             // Προσθήκη event handlers για το κλείσιμο και την ελαχιστοποίηση του παραθύρου
             this.Closing += InstallAppsWindow_Closing;
             this.StateChanged += InstallAppsWindow_StateChanged;
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         private void InstallAppsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -43,6 +45,13 @@ namespace MyApp
                 {
                     this.WindowState = WindowState.Normal; // Επαναφορά του παραθύρου σε κανονική κατάσταση
                 }
+            }
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
             }
         }
 

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MyApp
 {
@@ -11,6 +12,7 @@ namespace MyApp
         public Sims()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -31,6 +33,13 @@ namespace MyApp
         {
             // Κλείσιμο της εφαρμογής (shutdown)
             Application.Current.Shutdown();
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
         private void sims_bat_Click(object sender, RoutedEventArgs e)

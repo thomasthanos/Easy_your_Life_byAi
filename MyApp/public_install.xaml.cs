@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace MyApp
 {
@@ -23,6 +24,14 @@ namespace MyApp
         public PublicInstallWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
         private async void DownloadButton_Click(object sender, RoutedEventArgs e)

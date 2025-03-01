@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MyApp
 {
@@ -24,6 +25,7 @@ namespace MyApp
         public CrackSiteWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +43,13 @@ namespace MyApp
         {
             // Τερματισμός ολόκληρης της εφαρμογής
             Application.Current.Shutdown();
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
         private void NavigateToLink_Click(object sender, RoutedEventArgs e)

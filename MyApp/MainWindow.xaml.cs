@@ -11,6 +11,7 @@ namespace MyApp
 
             // Add an event handler for the CodeTextBox to check the code when Enter is pressed or focus is lost
             CodeTextBox.KeyDown += CodeTextBox_KeyDown;
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -33,6 +34,13 @@ namespace MyApp
             InstallAppsWindow installAppsWindow = new InstallAppsWindow();
             installAppsWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το InstallAppsWindow, εμφάνισε ξανά το MainWindow
             installAppsWindow.Show();
+        }
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
 
         private void CrackSitesButton_Click(object sender, RoutedEventArgs e)

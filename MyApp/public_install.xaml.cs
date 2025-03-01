@@ -183,7 +183,7 @@ namespace MyApp
         {
             try
             {
-                string sevenZipPath = @"C:\Program Files (x86)\Kolokithes A.E\Make your life easier\7-Zip\7z.exe";
+                string sevenZipPath = @"C:\Program Files (x86)\Kolokithes A.E\myapp\7-Zip\7z.exe";
 
                 if (!File.Exists(zipPath))
                 {

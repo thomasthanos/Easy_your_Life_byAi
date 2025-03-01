@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Info" Height="450" Width="700"
+        Title="Πληροφορίες" Height="450" Width="700"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -97,6 +97,36 @@
             <GradientStop Color="#FF1E1E1E" Offset="0.0"/>
             <GradientStop Color="#FF252526" Offset="1.0"/>
         </LinearGradientBrush>
+
+        <!-- Custom Colors for Icons -->
+        <Color x:Key="IconColor1">#FF00FF00</Color>
+        <!-- Green -->
+        <Color x:Key="IconColor2">#FFFFA500</Color>
+        <!-- Orange -->
+        <Color x:Key="IconColor3">#FFFF0000</Color>
+        <!-- Red -->
+        <Color x:Key="IconColor4">#FF800080</Color>
+        <!-- Purple -->
+        <Color x:Key="IconColor5">#FFFFFF00</Color>
+        <!-- Yellow -->
+        <Color x:Key="IconColor6">#FF00FFFF</Color>
+        <!-- Cyan -->
+        <Color x:Key="IconColor7">#FFFF00FF</Color>
+        <!-- Magenta -->
+        <Color x:Key="IconColor8">#FF008000</Color>
+        <!-- Dark Green -->
+        <Color x:Key="IconColor9">#FF0000FF</Color>
+        <!-- Blue -->
+
+        <SolidColorBrush x:Key="IconBrush1" Color="{StaticResource IconColor1}"/>
+        <SolidColorBrush x:Key="IconBrush2" Color="{StaticResource IconColor2}"/>
+        <SolidColorBrush x:Key="IconBrush3" Color="{StaticResource IconColor3}"/>
+        <SolidColorBrush x:Key="IconBrush4" Color="{StaticResource IconColor4}"/>
+        <SolidColorBrush x:Key="IconBrush5" Color="{StaticResource IconColor5}"/>
+        <SolidColorBrush x:Key="IconBrush6" Color="{StaticResource IconColor6}"/>
+        <SolidColorBrush x:Key="IconBrush7" Color="{StaticResource IconColor7}"/>
+        <SolidColorBrush x:Key="IconBrush8" Color="{StaticResource IconColor8}"/>
+        <SolidColorBrush x:Key="IconBrush9" Color="{StaticResource IconColor9}"/>
     </Window.Resources>
 
     <Grid>
@@ -109,7 +139,7 @@
 
             <Grid>
                 <!-- Title Bar -->
-                <Border Background="#FF252526" Height="40" VerticalAlignment="Top" CornerRadius="10 10 0 0">
+                <Border Background="#FF252526" Height="35" VerticalAlignment="Top" CornerRadius="10 10 0 0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -132,67 +162,201 @@
                 <!-- Content Area with Custom Scrollbar -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,50,10,10">
                     <StackPanel>
-                        <!-- Section 1: System Optimization -->
+                        <!-- Section 1: Εγκατάσταση Εφαρμογών -->
                         <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
                             <Border.Effect>
                                 <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
                             </Border.Effect>
                             <StackPanel Margin="15">
-                                <TextBlock Text="System Optimization" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <TextBlock Text="Automatically clean up temporary files, optimize system performance, and check system health." Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <Button Content="Optimize Now" Background="{StaticResource AccentBrush}" Foreground="White" FontSize="14" Margin="0,10,0,0" Padding="10,5" HorizontalAlignment="Left" BorderThickness="0" Cursor="Hand">
-                                    <Button.Effect>
-                                        <DropShadowEffect Color="#00B4FF" BlurRadius="5" Opacity="0.3"/>
-                                    </Button.Effect>
-                                </Button>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="📦" Foreground="{StaticResource IconBrush1}" FontSize="18"/>
+                                    <Run Text=" Εγκατάσταση Εφαρμογών" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Δυνατότητα μαζικής εγκατάστασης δημοφιλών εφαρμογών μέσω Winget με λίγα μόνο κλικ." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
                         </Border>
 
-                        <!-- Section 2: Software Management -->
+                        <!-- Section 2: Συντήρηση Συστήματος -->
                         <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
                             <Border.Effect>
                                 <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
                             </Border.Effect>
                             <StackPanel Margin="15">
-                                <TextBlock Text="Software Management" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <TextBlock Text="Install and manage popular applications with just one click. Keep your software up to date automatically." Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <Button Content="Manage Software" Background="{StaticResource AccentBrush}" Foreground="White" FontSize="14" Margin="0,10,0,0" Padding="10,5" HorizontalAlignment="Left" BorderThickness="0" Cursor="Hand">
-                                    <Button.Effect>
-                                        <DropShadowEffect Color="#00B4FF" BlurRadius="5" Opacity="0.3"/>
-                                    </Button.Effect>
-                                </Button>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="🛠️" Foreground="{StaticResource IconBrush2}" FontSize="18"/>
+                                    <Run Text=" Συντήρηση Συστήματος" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Περιλαμβάνει εργαλεία καθαρισμού προσωρινών αρχείων (ClearTemp), ενημέρωσης εφαρμογών και διάγνωσης του συστήματος." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
                         </Border>
 
-                        <!-- Section 3: Gaming & Entertainment -->
+                        <!-- Section 3: Crack & Activation Tools -->
                         <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
                             <Border.Effect>
                                 <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
                             </Border.Effect>
                             <StackPanel Margin="15">
-                                <TextBlock Text="Gaming  Entertainment" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <TextBlock Text="Access platforms for downloading games and entertainment software. Activate and manage your gaming software." Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <Button Content="Explore Games" Background="{StaticResource AccentBrush}" Foreground="White" FontSize="14" Margin="0,10,0,0" Padding="10,5" HorizontalAlignment="Left" BorderThickness="0" Cursor="Hand">
-                                    <Button.Effect>
-                                        <DropShadowEffect Color="#00B4FF" BlurRadius="5" Opacity="0.3"/>
-                                    </Button.Effect>
-                                </Button>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="🔓" Foreground="{StaticResource IconBrush3}" FontSize="18"/>
+                                    <Run Text=" Crack  Activation Tools" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Παρέχει γρήγορη πρόσβαση σε σελίδες λογισμικού και εργαλείων ενεργοποίησης." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
                         </Border>
 
-                        <!-- Section 4: System Settings -->
+                        <!-- Section 4: Διαχείριση Sims 4 DLC -->
                         <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
                             <Border.Effect>
                                 <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
                             </Border.Effect>
                             <StackPanel Margin="15">
-                                <TextBlock Text="System Settings" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <TextBlock Text="Configure system settings, enable automatic login, and customize your experience." Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"/>
-                                <Button Content="Configure Settings" Background="{StaticResource AccentBrush}" Foreground="White" FontSize="14" Margin="0,10,0,0" Padding="10,5" HorizontalAlignment="Left" BorderThickness="0" Cursor="Hand">
-                                    <Button.Effect>
-                                        <DropShadowEffect Color="#00B4FF" BlurRadius="5" Opacity="0.3"/>
-                                    </Button.Effect>
-                                </Button>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="🎮" Foreground="{StaticResource IconBrush4}" FontSize="18"/>
+                                    <Run Text=" Διαχείριση Sims 4 DLC" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Εύκολη λήψη και εγκατάσταση εργαλείων για την ενεργοποίηση DLCs του Sims 4." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Section 5: Αυτόματη Σύνδεση (Auto-Login) -->
+                        <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="🔑" Foreground="{StaticResource IconBrush5}" FontSize="18"/>
+                                    <Run Text=" Αυτόματη Σύνδεση (Auto-Login)" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Επιτρέπει τη γρήγορη ρύθμιση αυτόματης σύνδεσης στα Windows." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Section 6: Καθαρισμός Συστήματος -->
+                        <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="♻️" Foreground="{StaticResource IconBrush6}" FontSize="18"/>
+                                    <Run Text=" Καθαρισμός Συστήματος" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Διαγραφή προσωρινών αρχείων, prefetch data, software distribution cache και άδειασμα κάδου ανακύκλωσης για βελτίωση της απόδοσης." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Section 7: Πρόσβαση σε Crack Sites -->
+                        <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="🌐" Foreground="{StaticResource IconBrush7}" FontSize="18"/>
+                                    <Run Text=" Πρόσβαση σε Crack Sites" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Λίστα με δημοφιλείς ιστοσελίδες για λήψη software και games." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Section 8: Πληροφορίες και Ειδοποιήσεις -->
+                        <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="ℹ️" Foreground="{StaticResource IconBrush8}" FontSize="18"/>
+                                    <Run Text=" Πληροφορίες και Ειδοποιήσεις" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Παράθυρο πληροφοριών με δυνατότητα εμφάνισης ειδοποιήσεων μέσω CustomMessageBox." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Section 9: Ελαφρύ και Γρήγορο UI -->
+                        <Border Background="{StaticResource SectionBackgroundBrush}" CornerRadius="8" Margin="0,0,0,10" BorderBrush="#3000B4FF" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00B4FF" BlurRadius="10" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType">
+                                    <Run Text="📏" Foreground="{StaticResource IconBrush9}" FontSize="18"/>
+                                    <Run Text=" Ελαφρύ και Γρήγορο UI" Foreground="{StaticResource AccentBrush}" FontSize="18" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontFamily="Comic Sans MS" 
+                                           RenderOptions.ClearTypeHint="Enabled" 
+                                           TextOptions.TextFormattingMode="Ideal" 
+                                           TextOptions.TextRenderingMode="ClearType"
+                                           Text="Απλό και φιλικό περιβάλλον με κουμπιά γρήγορης πρόσβασης." 
+                                           Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>

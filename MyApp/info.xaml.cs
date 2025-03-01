@@ -11,31 +11,38 @@ namespace MyApp
             InitializeComponent();
         }
 
-        // Event handler για το κουμπί Back
+        // Event handler for the Back button - returns to MainWindow
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Εδώ μπορείτε να προσθέσετε τη λειτουργία που θέλετε να εκτελείται όταν πατηθεί το κουμπί Back
-            MessageBox.Show("Back button clicked!");
+            // Hide this window
+            this.Hide();
+
+            // Create and show the MainWindow
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            // Close this window (optional, depending on your needs)
+            this.Close();
         }
 
-        // Event handler για το κουμπί Minimize
+        // Event handler for the Minimize button
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized; // Ελαχιστοποίηση του παραθύρου
+            this.WindowState = WindowState.Minimized; // Minimize the window
         }
 
-        // Event handler για το κουμπί Close
+        // Event handler for the Close button - shuts down the application
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); // Κλείσιμο του παραθύρου
+            Application.Current.Shutdown(); // Shutdown the entire application
         }
 
-        // Event handler για την κίνηση του παραθύρου όταν γίνεται drag
+        // Event handler for window dragging
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                this.DragMove(); // Επιτρέπει την κίνηση του παραθύρου όταν γίνεται drag
+                this.DragMove(); // Allows moving the window when dragged
             }
         }
     }

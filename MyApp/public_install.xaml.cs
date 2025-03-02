@@ -72,7 +72,7 @@ namespace MyApp
             }
             else if (sender == ClipStudioButton)
             {
-                fileUrl = "https://cdn.discordapp.com/attachments/1203478665304866887/1338317398692069378/Clip_Studio_Paint.zip?ex=67c30874&is=67c1b6f4&hm=1c6fbdee037fdda529cc45c5355667f22a07bba2f17977eae52c953beef52c71&";
+                fileUrl = "https://drive.usercontent.google.com/download?id=1-5uPMgiPAf_pDtxyvD5MDb1cMTT6XFK_&export=download&authuser=0&confirm=t&uuid=d77760ad-9e12-438e-991f-745c5c508928&at=AEz70l7KibMmZL_RFs-3o8UVlaov:1740762499506";
                 savePath = Path.Combine(savePath, "ClipStudio.zip");
             }
 
@@ -192,7 +192,7 @@ namespace MyApp
         {
             try
             {
-                string sevenZipPath = @"C:\Program Files (x86)\Kolokithes A.E\myapp\7-Zip\7z.exe";
+                string sevenZipPath = @"C:\Program Files (x86)\Kolokithes A.E\Make your life easier\7-Zip\7z.exe";
 
                 if (!File.Exists(zipPath))
                 {

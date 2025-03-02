@@ -3,19 +3,15 @@
   "WorkspaceRootPath": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\myapp.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:myapp.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{25FA3AEB-0AD9-4E8A-8595-113B32DCB210}|..\\make_your_life_easier\\make_your_life_easier.aiproj|E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\cracksitewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:cracksitewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\public_install.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:public_install.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\cracksitewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:cracksitewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CE86D595-D6FD-4D43-8CC6-06C3F5F08588}|..\\make_your_life_easier\\make_your_life_easier.aiproj|E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\public_install.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:public_install.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,12 +20,12 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 217,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 380,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "make_your_life_easier.aip",
               "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip",
               "RelativeDocumentMoniker": "..\\make_your_life_easier\\make_your_life_easier.aip",
@@ -41,38 +37,34 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MyApp",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MyApp.csproj",
-              "RelativeDocumentMoniker": "MyApp.csproj",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MyApp.csproj",
-              "RelativeToolTip": "MyApp.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-02T00:02:34.428Z",
+              "DocumentIndex": 1,
+              "Title": "public_install.xaml.cs",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\public_install.xaml.cs",
+              "RelativeDocumentMoniker": "public_install.xaml.cs",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\public_install.xaml.cs",
+              "RelativeToolTip": "public_install.xaml.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAiwFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T02:54:00.305Z",
               "EditorCaption": ""
-            },
+            }
+          ]
+        },
+        {
+          "DockedWidth": 54,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CrackSiteWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml.cs",
-              "RelativeDocumentMoniker": "CrackSiteWindow.xaml.cs",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml.cs",
-              "RelativeToolTip": "CrackSiteWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T23:31:01.964Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CrackSiteWindow.xaml",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml",
-              "RelativeDocumentMoniker": "CrackSiteWindow.xaml",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\CrackSiteWindow.xaml",
-              "RelativeToolTip": "CrackSiteWindow.xaml",
+              "Title": "public_install.xaml",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\public_install.xaml",
+              "RelativeDocumentMoniker": "public_install.xaml",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\public_install.xaml",
+              "RelativeToolTip": "public_install.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-01T23:30:57.137Z"
+              "WhenOpened": "2025-03-02T02:53:56.176Z",
+              "EditorCaption": ""
             }
           ]
         }

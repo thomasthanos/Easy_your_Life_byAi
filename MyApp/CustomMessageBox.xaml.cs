@@ -15,7 +15,6 @@ namespace MyApp
             Title = title;
             _errorDetails = errorDetails;
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
-            // Αυτόματη ρύθμιση του ύψους του παραθύρου ανάλογα με το μήνυμα
             AdjustWindowHeight();
 
             // Set the icon based on the iconType
@@ -47,6 +46,7 @@ namespace MyApp
                     break;
             }
         }
+
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
@@ -57,9 +57,8 @@ namespace MyApp
 
         private void AdjustWindowHeight()
         {
-            // Υπολογισμός του απαιτούμενου ύψους για το μήνυμα
             double messageHeight = MessageText.ActualHeight;
-            if (messageHeight > 50)  // Αν το μήνυμα είναι μεγάλο, αυξάνουμε το ύψος του παραθύρου
+            if (messageHeight > 50)
             {
                 Height += messageHeight - 50;
             }
@@ -77,7 +76,11 @@ namespace MyApp
             {
                 ErrorDetailsTextBox.Text = _errorDetails ?? "No error details available.";
                 ErrorDetailsTextBox.Visibility = Visibility.Visible;
-                Height += 60; // Αύξηση του ύψους για τα σφάλματα
+
+                // Υπολογισμός του απαιτούμενου ύψους για τα error details
+                double requiredHeight = ErrorDetailsTextBox.ActualHeight + 20; // Προσθήκη περιθωρίου
+                Height += requiredHeight;
+
                 _isErrorDetailsVisible = true;
             }
         }

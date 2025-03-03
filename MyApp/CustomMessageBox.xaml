@@ -110,7 +110,6 @@
                            FontSize="14" 
                            TextWrapping="Wrap"
                            Width="300"/>
-                <!-- Προσθήκη Width για να ελέγχουμε το μέγεθος -->
             </StackPanel>
 
             <!-- Error Details TextBox -->
@@ -120,27 +119,27 @@
                      Background="#FF3E3E42" 
                      BorderBrush="#FF6A6A6A" 
                      BorderThickness="1" 
-                     Margin="10" 
+                     Margin="10,0,10,10" 
                      VerticalAlignment="Bottom" 
-                     Height="50" 
+                     Height="Auto" 
                      MaxHeight="100"
                      Visibility="Collapsed" 
                      IsReadOnly="True" 
                      TextWrapping="Wrap"/>
 
-                <!-- Buttons -->
-                <StackPanel Orientation="Horizontal" 
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Bottom" 
                         Margin="10">
-                    <Button x:Name="OkButton" 
+                <Button x:Name="OkButton" 
                         Content="OK" 
                         Width="100" 
                         Height="30" 
                         Margin="10" 
                         Style="{StaticResource ModernButton}" 
                         Click="OkButton_Click"/>
-                    <Button x:Name="InfoButton" 
+                <Button x:Name="InfoButton" 
                         Content="Info" 
                         Width="100" 
                         Height="30" 
@@ -148,7 +147,7 @@
                         Style="{StaticResource ModernButton}" 
                         Click="InfoButton_Click"
                         Visibility="Collapsed"/>
-                    <Button x:Name="YesButton" 
+                <Button x:Name="YesButton" 
                         Content="Ναι" 
                         Width="100" 
                         Height="30" 
@@ -156,7 +155,7 @@
                         Style="{StaticResource ModernButton}" 
                         Click="YesButton_Click"
                         Visibility="Collapsed"/>
-                    <Button x:Name="CancelButton" 
+                <Button x:Name="CancelButton" 
                         Content="Cancel" 
                         Width="100" 
                         Height="30" 
@@ -164,7 +163,7 @@
                         Style="{StaticResource ModernButton}" 
                         Click="CancelButton_Click"
                         Visibility="Collapsed"/>
-                </StackPanel>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

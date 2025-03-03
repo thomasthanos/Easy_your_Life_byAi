@@ -84,7 +84,7 @@ namespace MyApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MyApp;V1.0.0.0;component/private_password.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyApp;component/private_password.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\private_password.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

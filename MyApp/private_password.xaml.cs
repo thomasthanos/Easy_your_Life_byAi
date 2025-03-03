@@ -65,6 +65,8 @@ namespace MyApp
             {
                 if (!credentials.ContainsKey(service.Key)) continue;
 
+                var (email, password) = credentials[service.Key];
+
                 var button = new Button
                 {
                     Style = (Style)FindResource("ModernButtonStyle"),
@@ -72,16 +74,38 @@ namespace MyApp
                     {
                         Orientation = Orientation.Horizontal,
                         Children =
+                {
+                    GetIconImage(service.Key),
+                    new StackPanel
+                    {
+                        Orientation = Orientation.Vertical,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Children =
                         {
-                            GetIconImage(service.Key),
                             new TextBlock
                             {
-                                Text = service.Key,
-                                FontSize = 14,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Foreground = Brushes.White
+                                Text = service.Key, // Όνομα υπηρεσίας
+                                FontSize = 16, // Μεγαλύτερο μέγεθος
+                                FontWeight = FontWeights.Bold, // Πιο έντονο
+                                Foreground = Brushes.White,
+                                Margin = new Thickness(0, 0, 0, 5)
+                            },
+                            new TextBlock
+                            {
+                                Text = $"Email: {email}", // Εμφάνιση email
+                                FontSize = 12,
+                                Foreground = Brushes.LightGray,
+                                Margin = new Thickness(0, 0, 0, 2)
+                            },
+                            new TextBlock
+                            {
+                                Text = $"Password: {password}", // Εμφάνιση κωδικού
+                                FontSize = 12,
+                                Foreground = Brushes.LightGray
                             }
                         }
+                    }
+                }
                     }
                 };
 
@@ -93,7 +117,6 @@ namespace MyApp
                 else OtherPanel.Children.Add(button);
             }
         }
-
         private Image GetIconImage(string serviceKey)
         {
             string resourceName = $"MyApp.Icons.{serviceKey}.ico";

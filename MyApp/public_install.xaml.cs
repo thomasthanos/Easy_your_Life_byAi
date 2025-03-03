@@ -1,7 +1,11 @@
-﻿using System.IO;
-using System.Net.Http;
-using System.Windows;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MyApp
@@ -19,11 +23,15 @@ namespace MyApp
             { "DaVinci_Resolve", "Install Resolve 19.1.3.exe" }
         };
 
+        private CancellationTokenSource _cancellationTokenSource;
+        private bool _isPaused = false;
+
         public PublicInstallWindow()
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
+
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
@@ -31,6 +39,7 @@ namespace MyApp
                 this.DragMove();
             }
         }
+
         private void clipstudio_Click(object sender, RoutedEventArgs e)
         {
             string sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Clip_Studio_Paint", "CLIPStudioPaint.exe");
@@ -38,16 +47,12 @@ namespace MyApp
 
             try
             {
-                // Ελέγχει αν το αρχείο προορισμού υπάρχει
                 if (File.Exists(destinationPath))
                 {
-                    // Διαγραφή του υπάρχοντος αρχείου
                     File.Delete(destinationPath);
                 }
 
-                // Αντιγραφή του νέου αρχείου στον προορισμό
                 File.Copy(sourcePath, destinationPath);
-
                 MessageBox.Show("Η αντικατάσταση του αρχείου ολοκληρώθηκε επιτυχώς.");
             }
             catch (Exception ex)
@@ -62,7 +67,6 @@ namespace MyApp
             {
                 string basePath = @"C:\Program Files\TEAM R2R\DVREMU2 Manager\commands";
 
-                // Λίστα με τα commands
                 string[] commands = new string[]
                 {
                     "DVREMU2 - Install Emulator.cmd",
@@ -71,7 +75,6 @@ namespace MyApp
                     "DVREMU2 - Use Shared VCRuntime.cmd"
                 };
 
-                // Εκτέλεση κάθε command ξεχωριστά
                 for (int i = 0; i < commands.Length; i++)
                 {
                     string fullPath = Path.Combine(basePath, commands[i]);
@@ -80,13 +83,13 @@ namespace MyApp
                         FileName = fullPath,
                         WorkingDirectory = basePath,
                         UseShellExecute = true,
-                        CreateNoWindow = false // Το παράθυρο θα εμφανίζεται για κάθε command
+                        CreateNoWindow = false
                     };
 
                     MessageBox.Show($"Εκτέλεση command {i + 1} από {commands.Length}: {commands[i]}");
 
                     Process process = Process.Start(processInfo);
-                    process.WaitForExit(); // Περιμένει να ολοκληρωθεί πριν προχωρήσει στο επόμενο
+                    process.WaitForExit();
                 }
 
                 MessageBox.Show("Όλα τα commands ολοκληρώθηκαν επιτυχώς!");
@@ -102,7 +105,6 @@ namespace MyApp
             string fileUrl = "";
             string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
-            // Καθορισμός URL και διαδρομής για κάθε κουμπί
             if (sender == PhotoshopButton)
             {
                 fileUrl = "https://drive.usercontent.google.com/download?id=12Ee6r0mTziMHi4I5N2J6CsV4Hyqcj9lw&export=download&authuser=0&confirm=t&uuid=d77760ad-9e12-438e-991f-745c5c508928&at=AEz70l7KibMmZL_RFs-3o8UVlaov:1740762499506";
@@ -210,9 +212,12 @@ namespace MyApp
         {
             try
             {
+                _cancellationTokenSource = new CancellationTokenSource();
+                var cancellationToken = _cancellationTokenSource.Token;
+
                 using (var httpClient = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true }))
                 {
-                    var response = await httpClient.GetAsync(fileUrl, HttpCompletionOption.ResponseHeadersRead);
+                    var response = await httpClient.GetAsync(fileUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                     response.EnsureSuccessStatusCode();
 
                     var totalBytes = response.Content.Headers.ContentLength ?? -1L;
@@ -227,14 +232,20 @@ namespace MyApp
 
                         do
                         {
-                            var bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                            if (_isPaused)
+                            {
+                                await Task.Delay(500, cancellationToken); // Περιμένει μέχρι να ξαναγίνει resume
+                                continue;
+                            }
+
+                            var bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
                             if (bytesRead == 0)
                             {
                                 isMoreToRead = false;
                             }
                             else
                             {
-                                await fileStream.WriteAsync(buffer, 0, bytesRead);
+                                await fileStream.WriteAsync(buffer, 0, bytesRead, cancellationToken);
 
                                 totalBytesRead += bytesRead;
 
@@ -244,11 +255,18 @@ namespace MyApp
                                     Dispatcher.Invoke(() => DownloadProgressBar.Value = progressPercentage);
                                 }
                             }
-                        } while (isMoreToRead);
+                        } while (isMoreToRead && !cancellationToken.IsCancellationRequested);
                     }
                 }
 
-                new CustomMessageBox("Download completed!", "Success", IconType.Success).ShowDialog();
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    new CustomMessageBox("Download completed!", "Success", IconType.Success).ShowDialog();
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                new CustomMessageBox("Download paused.", "Info", IconType.Info).ShowDialog();
             }
             catch (Exception ex)
             {
@@ -291,6 +309,9 @@ namespace MyApp
                         if (error.Contains("Wrong password"))
                         {
                             new CustomMessageBox("Wrong password for the ZIP file!", "Error", IconType.Error).ShowDialog();
+                            string downloadFolder = Path.GetDirectoryName(zipPath);
+                            Process.Start("explorer.exe", downloadFolder);
+                            return false;
                         }
                         else if (error.Contains("Unexpected end of archive") || error.Contains("CRC Failed"))
                         {
@@ -338,32 +359,43 @@ namespace MyApp
             }
         }
 
-        // Event handlers για τα κουμπιά
+        private void PauseResumeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isPaused)
+            {
+                _isPaused = false;
+                PauseResumeButton.Content = "Pause";
+            }
+            else
+            {
+                _isPaused = true;
+                PauseResumeButton.Content = "Resume";
+            }
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e) => this.Close();
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Minimized;
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            // Λίστα με τους φακέλους που θέλεις να διαγραφούν
             string[] foldersToDelete = new string[]
             {
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Photoshop"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "PremierePro"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "MediaEncoder"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "LightroomClassic"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Illustrator"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Office2024"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "DaVinci_Resolve"),
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "ClipStudio")
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Photoshop"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "PremierePro"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "MediaEncoder"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "LightroomClassic"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Illustrator"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Office2024"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "DaVinci_Resolve"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "ClipStudio")
             };
 
-            // Διαγραφή των φακέλων
             foreach (var folder in foldersToDelete)
             {
                 try
                 {
                     if (Directory.Exists(folder))
                     {
-                        Directory.Delete(folder, true); // Διαγραφή του φακέλου και όλων των υποφακέλων και αρχείων
+                        Directory.Delete(folder, true);
                     }
                 }
                 catch
@@ -371,7 +403,6 @@ namespace MyApp
                 }
             }
 
-            // Κλείσιμο της εφαρμογής
             Application.Current.Shutdown();
         }
     }

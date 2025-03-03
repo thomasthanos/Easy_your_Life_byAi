@@ -6,17 +6,17 @@ LicenseIdCheckURL = https://thomasthanos.github.io/Make_your_life_easier/Licence
 [Update]
 Name = Make your life easier
 Category = System maintenance
-ProductVersion = 8.4.5
+ProductVersion = 8.4.6
 URL = https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&st=vg4jr140&dl=1
 URL1 = https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe
-Size = 20378056
-ReleaseDate = 03/03/2025
-SHA256 = 0D9F7556DA726E8DB0F863048559480DFC0745970BE306FFAFCCFB0E632896B1
-MD5 = 9754bda74b5feb1d9b93a91ebf253859
+Size = 20375688
+ReleaseDate = 04/03/2025
+SHA256 = 5CC6561F437E65FBDED01D78A499D9FC3D458F1F11274DFAEB6171659C12A7C6
+MD5 = 5f158899b8ba93ca60c7f7f979ac461c
 ServerFileName = make your life easier2.exe
 Flags = Critical
 RegistryKey = HKUD\Software\Kolokithes A.E.\Make your life easier\Version
-Version = 8.4.5
+Version = 8.4.6
 Description = NEW APP
 Feature = Βελτιωμένη Διαχείριση Παράθυρων: Τα υποπαράθυρα κλείνουν και επαναφέρουν το κεντρικό παράθυρο όταν ολοκληρωθούν.
 Feature1 = Νέο Σύστημα Αυτόματης Ενεργοποίησης: Προστέθηκε λειτουργία για ενεργοποίηση Windows μέσω αυτόματης εκτέλεσης activate.bat.

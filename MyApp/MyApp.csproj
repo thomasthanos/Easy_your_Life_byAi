@@ -17,6 +17,9 @@
     <None Remove="credentials.txt" />
     <None Remove="hacker.ico" />
     <None Remove="Icons\1535.ico" />
+    <None Remove="Icons\1535_maria.ico" />
+    <None Remove="Icons\1535_marios.ico" />
+    <None Remove="Icons\1535_thomas.ico" />
     <None Remove="Icons\better_discord.ico" />
     <None Remove="Icons\bitdefender.ico" />
     <None Remove="Icons\bluestack.ico" />
@@ -24,11 +27,15 @@
     <None Remove="Icons\brave.ico" />
     <None Remove="Icons\corsair.ico" />
     <None Remove="Icons\default.ico" />
+    <None Remove="Icons\discord #1.ico" />
+    <None Remove="Icons\discord #2.ico" />
     <None Remove="Icons\discord.ico" />
+    <None Remove="Icons\discord_primary.ico" />
     <None Remove="Icons\discord_ptb.ico" />
     <None Remove="Icons\download manager.ico" />
     <None Remove="Icons\efood.ico" />
     <None Remove="Icons\email_icon.png" />
+    <None Remove="Icons\Epic Games.ico" />
     <None Remove="Icons\epic-games.ico" />
     <None Remove="Icons\epic_games.ico" />
     <None Remove="Icons\eye.svg" />
@@ -50,7 +57,10 @@
     <None Remove="Icons\poweriso.ico" />
     <None Remove="Icons\ps_remote.ico" />
     <None Remove="Icons\razer.ico" />
+    <None Remove="Icons\Riot Games.ico" />
     <None Remove="Icons\riot-games.ico" />
+    <None Remove="Icons\rockstar #1.ico" />
+    <None Remove="Icons\rockstar #2.ico" />
     <None Remove="Icons\rockstar.ico" />
     <None Remove="Icons\save wizard.ico" />
     <None Remove="Icons\spotify.ico" />
@@ -77,14 +87,15 @@
 
   <ItemGroup>
     <Resource Include="credentials.txt" />
-    <EmbeddedResource Include="Icons\1535.ico" />
+    <EmbeddedResource Include="Icons\1535_maria.ico" />
+    <EmbeddedResource Include="Icons\1535_marios.ico" />
+    <EmbeddedResource Include="Icons\1535_thomas.ico" />
     <EmbeddedResource Include="Icons\bitdefender.ico" />
     <EmbeddedResource Include="Icons\default.ico" />
-    <EmbeddedResource Include="Icons\discord.ico" />
-    <EmbeddedResource Include="Icons\discord_ptb.ico" />
+    <EmbeddedResource Include="Icons\discord #1.ico" />
+    <EmbeddedResource Include="Icons\discord #2.ico" />
     <EmbeddedResource Include="Icons\efood.ico" />
-    <EmbeddedResource Include="Icons\epic-games.ico" />
-    <EmbeddedResource Include="Icons\eye.svg" />
+    <EmbeddedResource Include="Icons\Epic Games.ico" />
     <EmbeddedResource Include="Icons\facebook.ico" />
     <EmbeddedResource Include="Icons\github.ico" />
     <EmbeddedResource Include="Icons\google.ico" />
@@ -93,14 +104,14 @@
     <EmbeddedResource Include="Icons\netflix.ico" />
     <EmbeddedResource Include="Icons\picsart.ico" />
     <EmbeddedResource Include="Icons\playstation.ico" />
-    <EmbeddedResource Include="Icons\riot-games.ico" />
-    <EmbeddedResource Include="Icons\rockstar.ico" />
+    <EmbeddedResource Include="Icons\Riot Games.ico" />
+    <EmbeddedResource Include="Icons\rockstar #1.ico" />
+    <EmbeddedResource Include="Icons\rockstar #2.ico" />
     <EmbeddedResource Include="Icons\spotify.ico" />
     <EmbeddedResource Include="Icons\steam.ico" />
     <EmbeddedResource Include="Icons\temp.ico" />
     <EmbeddedResource Include="Icons\twitch.ico" />
     <EmbeddedResource Include="Icons\ubisoft.ico" />
-    <EmbeddedResource Include="Icons\uneye.svg" />
     <EmbeddedResource Include="Icons\update.ico" />
   </ItemGroup>
 

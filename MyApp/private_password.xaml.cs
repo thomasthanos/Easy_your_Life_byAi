@@ -11,19 +11,26 @@ namespace MyApp
 {
     public partial class private_password : Window
     {
-        private Dictionary<string, (string Email, string Password)> credentials = new Dictionary<string, (string, string)>();
-        private Dictionary<string, string> services = new Dictionary<string, string>
+        private readonly Dictionary<string, (string Email, string Password)> credentials = new();
+        private readonly HashSet<string> services = new()
         {
-            { "1535_maria", "1535_maria" }, { "1535_marios", "1535_marios" }, { "1535_thomas", "1535_thomas" },
-            { "2take1", "2take1" }, { "bitdefender", "bitdefender" }, { "discord", "discord" },
-            { "discord_primary", "discord_primary" }, { "efood", "efood" }, { "epic_games", "epic_games" },
-            { "facebook", "facebook" }, { "github@28", "github@28" }, { "github@3", "github@3" },
-            { "google_@3", "google_@3" }, { "google_@28", "google_@28" }, { "google_@41", "google_@41" },
-            { "google_@78", "google_@78" }, { "google_@89", "google_@89" }, { "google_@090", "google_@090" },
-            { "league_of_legends", "league_of_legends" }, { "microsoft", "microsoft" }, { "netflix", "netflix" },
-            { "picsart", "picsart" }, { "playstation", "playstation" }, { "socialclub", "socialclub" },
-            { "socialclubprimary", "socialclubprimary" }, { "spotify", "spotify" }, { "steam", "steam" },
-            { "twitch", "twitch" }, { "ubisoft", "ubisoft" }
+            "1535_maria", "1535_marios", "1535_thomas", "2take1", "bitdefender", "discord",
+            "discord_primary", "efood", "epic_games", "facebook", "github@28", "github@3",
+            "google_@3", "google_@28", "google_@41", "google_@78", "google_@89", "google_@090",
+            "league_of_legends", "microsoft", "netflix", "picsart", "playstation", "socialclub",
+            "socialclubprimary", "spotify", "steam", "twitch", "ubisoft"
+        };
+
+        // Dictionary για τα ονόματα εμφάνισης (display names)
+        private readonly Dictionary<string, string> displayNames = new()
+        {
+            { "discord", "discord #2" }, // Αλλαγή του "discord" σε "discord_ptb"
+            { "discord_primary", "discord #1" }, // Παραμένει ίδιο
+            { "epic_games", "Epic Games" }, // Παραμένει ίδιο
+            { "league_of_legends", "Riot Games" }, // Παραμένει ίδιο
+            { "socialclubprimary", "rockstar #1" }, // Παραμένει ίδιο
+            { "socialclub", "rockstar #2" }, // Παραμένει ίδιο
+            // Προσθήκη περισσότερων mappings αν χρειάζεται
         };
 
         public private_password()
@@ -44,9 +51,9 @@ namespace MyApp
                     return;
                 }
 
-                foreach (var line in File.ReadAllLines(fullPath))
+                foreach (string line in File.ReadAllLines(fullPath))
                 {
-                    var parts = line.Split(':');
+                    string[] parts = line.Split(':');
                     if (parts.Length == 3)
                     {
                         credentials[parts[0]] = (parts[1], parts[2]);
@@ -61,12 +68,11 @@ namespace MyApp
 
         private void AddButtons()
         {
-            foreach (var service in services)
+            foreach (string service in services)
             {
-                if (!credentials.ContainsKey(service.Key)) continue;
+                if (!credentials.TryGetValue(service, out var credential)) continue;
 
-                var (email, password) = credentials[service.Key];
-
+                string displayName = displayNames.GetValueOrDefault(service, service);
                 var button = new Button
                 {
                     Style = (Style)FindResource("ModernButtonStyle"),
@@ -74,134 +80,124 @@ namespace MyApp
                     {
                         Orientation = Orientation.Horizontal,
                         Children =
-                {
-                    GetIconImage(service.Key),
-                    new StackPanel
-                    {
-                        Orientation = Orientation.Vertical,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Children =
                         {
-                            new TextBlock
+                            GetIconImage(displayName), // Χρήση του displayName για το εικονίδιο
+                            new StackPanel
                             {
-                                Text = service.Key, // Όνομα υπηρεσίας
-                                FontSize = 16, // Μεγαλύτερο μέγεθος
-                                FontWeight = FontWeights.Bold, // Πιο έντονο
-                                Foreground = Brushes.White,
-                                Margin = new Thickness(0, 0, 0, 5)
-                            },
-                            new TextBlock
-                            {
-                                Text = $"Email: {email}", // Εμφάνιση email
-                                FontSize = 12,
-                                Foreground = Brushes.LightGray,
-                                Margin = new Thickness(0, 0, 0, 2)
-                            },
-                            new TextBlock
-                            {
-                                Text = $"Password: {password}", // Εμφάνιση κωδικού
-                                FontSize = 12,
-                                Foreground = Brushes.LightGray
+                                Orientation = Orientation.Vertical,
+                                VerticalAlignment = VerticalAlignment.Center,
+                                Children =
+                                {
+                                    new TextBlock
+                                    {
+                                        Text = displayName,
+                                        FontSize = 16,
+                                        FontWeight = FontWeights.Bold,
+                                        Foreground = Brushes.White,
+                                        Margin = new Thickness(0, 0, 0, 5)
+                                    },
+                                    new TextBlock
+                                    {
+                                        Text = $"Email: {credential.Email}",
+                                        FontSize = 12,
+                                        Foreground = Brushes.LightGray,
+                                        Margin = new Thickness(0, 0, 0, 2)
+                                    },
+                                    new TextBlock
+                                    {
+                                        Text = $"Password: {credential.Password}",
+                                        FontSize = 12,
+                                        Foreground = Brushes.LightGray
+                                    }
+                                }
                             }
                         }
                     }
-                }
-                    }
                 };
 
-                button.Click += (s, e) => CopyCredentials(service.Key);
+                button.Click += (s, e) => CopyCredentials(service);
 
-                if (service.Key.StartsWith("google_")) GooglePanel.Children.Add(button);
-                else if (IsGameService(service.Key)) GamesPanel.Children.Add(button);
-                else if (IsAppService(service.Key)) AppsPanel.Children.Add(button);
+                if (service.StartsWith("google_")) GooglePanel.Children.Add(button);
+                else if (IsGameService(service)) GamesPanel.Children.Add(button);
+                else if (IsAppService(service)) AppsPanel.Children.Add(button);
                 else OtherPanel.Children.Add(button);
             }
         }
-        private Image GetIconImage(string serviceKey)
+
+        private Image GetIconImage(string iconName)
         {
-            string resourceName = $"MyApp.Icons.{serviceKey}.ico";
-            var assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            var assembly = Assembly.GetExecutingAssembly(); // Δήλωση της μεταβλητής assembly εδώ, μία φορά
+
+            // Αν το όνομα του εικονιδίου ξεκινά με "google_", χρησιμοποίησε το ίδιο εικονίδιο για όλα
+            if (iconName.StartsWith("google_"))
             {
-                if (stream != null)
+                string googleResourceName = "MyApp.Icons.google.ico"; // Όνομα του εικονιδίου για τα Google services
+                using Stream? googleStream = assembly.GetManifestResourceStream(googleResourceName); // Χρησιμοποίησε διαφορετικό όνομα (googleStream)
+                if (googleStream != null)
                 {
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.StreamSource = stream;
+                    bitmap.StreamSource = googleStream;
                     bitmap.DecodePixelWidth = 24;
                     bitmap.DecodePixelHeight = 24;
                     bitmap.EndInit();
-
-                    return new Image
-                    {
-                        Source = bitmap,
-                        Width = 24,
-                        Height = 24,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new Thickness(0, 0, 15, 0)
-                    };
+                    return new Image { Source = bitmap, Width = 24, Height = 24, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 15, 0) };
                 }
             }
-            // Fallback to default icon if resource not found
+
+            // Για τα υπόλοιπα services, χρησιμοποίησε το κανονικό εικονίδιο
+            string resourceName = $"MyApp.Icons.{iconName}.ico";
+            using Stream? stream = assembly.GetManifestResourceStream(resourceName); // Χρησιμοποίησε το όνομα "stream" εδώ
+            if (stream != null)
+            {
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = stream;
+                bitmap.DecodePixelWidth = 24;
+                bitmap.DecodePixelHeight = 24;
+                bitmap.EndInit();
+                return new Image { Source = bitmap, Width = 24, Height = 24, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 15, 0) };
+            }
+
+            // Αν δεν βρεθεί το εικονίδιο, επέστρεψε το default εικονίδιο
             return GetDefaultIcon();
         }
+
+
 
         private Image GetDefaultIcon()
         {
             string defaultResourceName = "MyApp.Icons.default.ico";
             var assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream(defaultResourceName))
+            using Stream? stream = assembly.GetManifestResourceStream(defaultResourceName);
+            if (stream != null)
             {
-                if (stream != null)
-                {
-                    var bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.StreamSource = stream;
-                    bitmap.DecodePixelWidth = 24;
-                    bitmap.DecodePixelHeight = 24;
-                    bitmap.EndInit();
-
-                    return new Image
-                    {
-                        Source = bitmap,
-                        Width = 24,
-                        Height = 24,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new Thickness(0, 0, 15, 0)
-                    };
-                }
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = stream;
+                bitmap.DecodePixelWidth = 24;
+                bitmap.DecodePixelHeight = 24;
+                bitmap.EndInit();
+                return new Image { Source = bitmap, Width = 24, Height = 24, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 15, 0) };
             }
-            // Ultimate fallback: empty image if default.ico is missing
-            return new Image
-            {
-                Width = 24,
-                Height = 24,
-                VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(0, 0, 15, 0)
-            };
+            return new Image { Width = 24, Height = 24, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 15, 0) };
         }
 
         private bool IsGameService(string key) =>
-            key == "epic_games" || key == "steam" || key == "ubisoft" || key == "playstation" ||
-            key == "socialclub" || key == "socialclubprimary" || key == "league_of_legends";
+            key is "epic_games" or "steam" or "ubisoft" or "playstation" or "socialclub" or "socialclubprimary" or "league_of_legends";
 
         private bool IsAppService(string key) =>
-            key == "1535_maria" || key == "1535_marios" || key == "1535_thomas" || key == "bitdefender" ||
-            key == "discord" || key == "discord_primary" || key == "efood" || key == "facebook" ||
-            key == "github@28" || key == "github@3" || key == "microsoft" || key == "netflix" ||
-            key == "picsart" || key == "spotify" || key == "twitch";
+            key is "1535_maria" or "1535_marios" or "1535_thomas" or "bitdefender" or "discord" or "discord_primary" or
+                   "efood" or "facebook" or "github@28" or "github@3" or "microsoft" or "netflix" or "picsart" or "spotify" or "twitch";
 
         private async void CopyCredentials(string serviceName)
         {
-            if (!credentials.ContainsKey(serviceName)) return;
+            if (!credentials.TryGetValue(serviceName, out var credential)) return;
 
-            var (email, password) = credentials[serviceName];
-
-            Clipboard.SetText(email);
+            Clipboard.SetText(credential.Email);
             MessageBox.Show($"Το email για {serviceName} αντιγράφηκε!", "Επιτυχία", MessageBoxButton.OK, MessageBoxImage.Information);
-
             await System.Threading.Tasks.Task.Delay(2000);
-            Clipboard.SetText(password);
+            Clipboard.SetText(credential.Password);
             MessageBox.Show($"Ο κωδικός για {serviceName} αντιγράφηκε!", "Επιτυχία", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

@@ -20,6 +20,9 @@
     <Compile Update="multitool.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="private_password.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="public_install.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

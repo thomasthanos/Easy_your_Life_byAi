@@ -112,6 +112,13 @@ namespace MyApp
                     simsWindow.Show();
                     CodeTextBox.Text = ""; // Clear the code after successful entry
                 }
+                else if (enteredCode == "2873")
+                {
+                    this.Hide();
+                    private_password privatePasswordWindow = new private_password();
+                    privatePasswordWindow.Closed += (s, args) => this.Show(); // Show MainWindow when PrivatePassword window closes
+                    privatePasswordWindow.Show();
+                }
                 else
                 {
                     MessageBox.Show("Invalid code. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);

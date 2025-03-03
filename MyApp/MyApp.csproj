@@ -14,13 +14,88 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="credentials.txt" />
     <None Remove="hacker.ico" />
+    <None Remove="Icons\better_discord.ico" />
+    <None Remove="Icons\bitdefender.ico" />
+    <None Remove="Icons\bluestack.ico" />
+    <None Remove="Icons\bluestacks.ico" />
+    <None Remove="Icons\brave.ico" />
+    <None Remove="Icons\corsair.ico" />
+    <None Remove="Icons\discord.ico" />
+    <None Remove="Icons\discord_ptb.ico" />
+    <None Remove="Icons\download manager.ico" />
+    <None Remove="Icons\epic_games.ico" />
+    <None Remove="Icons\github.ico" />
+    <None Remove="Icons\google.ico" />
+    <None Remove="Icons\hacker.ico" />
+    <None Remove="Icons\iobit_advanced.ico" />
+    <None Remove="Icons\iobit_driver_booster.ico" />
+    <None Remove="Icons\iobit_unistaller.ico" />
+    <None Remove="Icons\nvidia.ico" />
+    <None Remove="Icons\nvidia_broadcast.ico" />
+    <None Remove="Icons\pngwing.com.ico" />
+    <None Remove="Icons\poweriso.ico" />
+    <None Remove="Icons\ps_remote.ico" />
+    <None Remove="Icons\razer.ico" />
+    <None Remove="Icons\save wizard.ico" />
+    <None Remove="Icons\spotify.ico" />
+    <None Remove="Icons\steam.ico" />
+    <None Remove="Icons\stream_deck.ico" />
+    <None Remove="Icons\temp.ico" />
+    <None Remove="Icons\temporary-files.ico" />
+    <None Remove="Icons\ubisoft.ico" />
+    <None Remove="Icons\update.ico" />
+    <None Remove="Icons\virtualbox.ico" />
+    <None Remove="Icons\visual 2022.ico" />
+    <None Remove="Icons\visual studio.ico" />
+    <None Remove="Icons\wemod.ico" />
+    <None Remove="Icons\winrar.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="hacker.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="credentials.txt" />
+    <EmbeddedResource Include="Icons\better_discord.ico" />
+    <EmbeddedResource Include="Icons\bitdefender.ico" />
+    <EmbeddedResource Include="Icons\bluestack.ico" />
+    <EmbeddedResource Include="Icons\bluestacks.ico" />
+    <EmbeddedResource Include="Icons\brave.ico" />
+    <EmbeddedResource Include="Icons\corsair.ico" />
+    <EmbeddedResource Include="Icons\discord.ico" />
+    <EmbeddedResource Include="Icons\discord_ptb.ico" />
+    <EmbeddedResource Include="Icons\download manager.ico" />
+    <EmbeddedResource Include="Icons\epic_games.ico" />
+    <EmbeddedResource Include="Icons\github.ico" />
+    <EmbeddedResource Include="Icons\google.ico" />
+    <EmbeddedResource Include="Icons\hacker.ico" />
+    <EmbeddedResource Include="Icons\iobit_advanced.ico" />
+    <EmbeddedResource Include="Icons\iobit_driver_booster.ico" />
+    <EmbeddedResource Include="Icons\iobit_unistaller.ico" />
+    <EmbeddedResource Include="Icons\nvidia.ico" />
+    <EmbeddedResource Include="Icons\nvidia_broadcast.ico" />
+    <EmbeddedResource Include="Icons\pngwing.com.ico" />
+    <EmbeddedResource Include="Icons\poweriso.ico" />
+    <EmbeddedResource Include="Icons\ps_remote.ico" />
+    <EmbeddedResource Include="Icons\razer.ico" />
+    <EmbeddedResource Include="Icons\save wizard.ico" />
+    <EmbeddedResource Include="Icons\spotify.ico" />
+    <EmbeddedResource Include="Icons\steam.ico" />
+    <EmbeddedResource Include="Icons\stream_deck.ico" />
+    <EmbeddedResource Include="Icons\temp.ico" />
+    <EmbeddedResource Include="Icons\temporary-files.ico" />
+    <EmbeddedResource Include="Icons\ubisoft.ico" />
+    <EmbeddedResource Include="Icons\update.ico" />
+    <EmbeddedResource Include="Icons\virtualbox.ico" />
+    <EmbeddedResource Include="Icons\visual 2022.ico" />
+    <EmbeddedResource Include="Icons\visual studio.ico" />
+    <EmbeddedResource Include="Icons\wemod.ico" />
+    <EmbeddedResource Include="Icons\winrar.ico" />
   </ItemGroup>
 
 </Project>

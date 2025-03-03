@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MyApp
 {
@@ -12,16 +14,16 @@ namespace MyApp
         private Dictionary<string, (string Email, string Password)> credentials = new Dictionary<string, (string, string)>();
         private Dictionary<string, string> services = new Dictionary<string, string>
         {
-            { "1535_maria", "" }, { "1535_marios", "" }, { "1535_thomas", "" },
-            { "2take1", "" }, { "bitdefender", "" }, { "discord", "" },
-            { "discord_primary", "" }, { "efood", "" }, { "epic_games", "" },
-            { "facebook", "" }, { "github@28", "" }, { "github@3", "" },
-            { "google_@3", "" }, { "google_@28", "" }, { "google_@41", "" },
-            { "google_@78", "" }, { "google_@89", "" }, { "google_@090", "" },
-            { "league_of_legends", "" }, { "microsoft", "" }, { "netflix", "" },
-            { "picsart", "" }, { "playstation", "" }, { "socialclub", "" },
-            { "socialclubprimary", "" }, { "spotify", "" }, { "steam", "" },
-            { "twitch", "" }, { "ubisoft", "" }
+            { "1535_maria", "1535_maria" }, { "1535_marios", "1535_marios" }, { "1535_thomas", "1535_thomas" },
+            { "2take1", "2take1" }, { "bitdefender", "bitdefender" }, { "discord", "discord" },
+            { "discord_primary", "discord_primary" }, { "efood", "efood" }, { "epic_games", "epic_games" },
+            { "facebook", "facebook" }, { "github@28", "github@28" }, { "github@3", "github@3" },
+            { "google_@3", "google_@3" }, { "google_@28", "google_@28" }, { "google_@41", "google_@41" },
+            { "google_@78", "google_@78" }, { "google_@89", "google_@89" }, { "google_@090", "google_@090" },
+            { "league_of_legends", "league_of_legends" }, { "microsoft", "microsoft" }, { "netflix", "netflix" },
+            { "picsart", "picsart" }, { "playstation", "playstation" }, { "socialclub", "socialclub" },
+            { "socialclubprimary", "socialclubprimary" }, { "spotify", "spotify" }, { "steam", "steam" },
+            { "twitch", "twitch" }, { "ubisoft", "ubisoft" }
         };
 
         public private_password()
@@ -35,13 +37,14 @@ namespace MyApp
         {
             try
             {
-                if (!File.Exists(filePath))
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
+                if (!File.Exists(fullPath))
                 {
                     MessageBox.Show("Δεν βρέθηκε το αρχείο διαπιστευτηρίων!", "Σφάλμα", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                foreach (var line in File.ReadAllLines(filePath))
+                foreach (var line in File.ReadAllLines(fullPath))
                 {
                     var parts = line.Split(':');
                     if (parts.Length == 3)
@@ -70,15 +73,7 @@ namespace MyApp
                         Orientation = Orientation.Horizontal,
                         Children =
                         {
-                            new TextBlock
-                            {
-                                Text = service.Value,
-                                FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                                FontSize = 24,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Foreground = Brushes.White,
-                                Margin = new Thickness(0, 0, 15, 0)
-                            },
+                            GetIconImage(service.Key),
                             new TextBlock
                             {
                                 Text = service.Key,
@@ -92,12 +87,75 @@ namespace MyApp
 
                 button.Click += (s, e) => CopyCredentials(service.Key);
 
-                // Κατηγοριοποίηση
                 if (service.Key.StartsWith("google_")) GooglePanel.Children.Add(button);
                 else if (IsGameService(service.Key)) GamesPanel.Children.Add(button);
                 else if (IsAppService(service.Key)) AppsPanel.Children.Add(button);
                 else OtherPanel.Children.Add(button);
             }
+        }
+
+        private Image GetIconImage(string serviceKey)
+        {
+            string resourceName = $"MyApp.Icons.{serviceKey}.ico";
+            var assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream != null)
+                {
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = stream;
+                    bitmap.DecodePixelWidth = 24;
+                    bitmap.DecodePixelHeight = 24;
+                    bitmap.EndInit();
+
+                    return new Image
+                    {
+                        Source = bitmap,
+                        Width = 24,
+                        Height = 24,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0, 0, 15, 0)
+                    };
+                }
+            }
+            // Fallback to default icon if resource not found
+            return GetDefaultIcon();
+        }
+
+        private Image GetDefaultIcon()
+        {
+            string defaultResourceName = "MyApp.Icons.default.ico";
+            var assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream(defaultResourceName))
+            {
+                if (stream != null)
+                {
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = stream;
+                    bitmap.DecodePixelWidth = 24;
+                    bitmap.DecodePixelHeight = 24;
+                    bitmap.EndInit();
+
+                    return new Image
+                    {
+                        Source = bitmap,
+                        Width = 24,
+                        Height = 24,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0, 0, 15, 0)
+                    };
+                }
+            }
+            // Ultimate fallback: empty image if default.ico is missing
+            return new Image
+            {
+                Width = 24,
+                Height = 24,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, 15, 0)
+            };
         }
 
         private bool IsGameService(string key) =>
@@ -124,7 +182,6 @@ namespace MyApp
             MessageBox.Show($"Ο κωδικός για {serviceName} αντιγράφηκε!", "Επιτυχία", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        // Window Controls
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
         private void CloseButton_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
         private void BackButton_Click(object sender, RoutedEventArgs e) => Close();

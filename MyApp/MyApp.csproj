@@ -14,7 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="credentials.txt" />
     <None Remove="hacker.ico" />
     <None Remove="Icons\1535.ico" />
     <None Remove="Icons\1535_maria.ico" />
@@ -43,6 +42,8 @@
     <None Remove="Icons\github.ico" />
     <None Remove="Icons\google.ico" />
     <None Remove="Icons\hacker.ico" />
+    <None Remove="Icons\install.png" />
+    <None Remove="Icons\install.svg" />
     <None Remove="Icons\iobit_advanced.ico" />
     <None Remove="Icons\iobit_driver_booster.ico" />
     <None Remove="Icons\iobit_unistaller.ico" />
@@ -86,7 +87,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="credentials.txt" />
     <EmbeddedResource Include="Icons\1535_maria.ico" />
     <EmbeddedResource Include="Icons\1535_marios.ico" />
     <EmbeddedResource Include="Icons\1535_thomas.ico" />
@@ -100,6 +100,9 @@
     <EmbeddedResource Include="Icons\github.ico" />
     <EmbeddedResource Include="Icons\google.ico" />
     <EmbeddedResource Include="Icons\hacker.ico" />
+    <Resource Include="Icons\install.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <EmbeddedResource Include="Icons\microsoft.ico" />
     <EmbeddedResource Include="Icons\netflix.ico" />
     <EmbeddedResource Include="Icons\picsart.ico" />

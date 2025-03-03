@@ -17,7 +17,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 447,
+          "DockedWidth": 469,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -28,15 +28,15 @@
               "RelativeDocumentMoniker": "private_password.xaml.cs",
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\private_password.xaml.cs",
               "RelativeToolTip": "private_password.xaml.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAADwv6MAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T19:05:19.54Z",
+              "WhenOpened": "2025-03-03T19:36:34.366Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 313,
+          "DockedWidth": 469,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -48,7 +48,7 @@
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\private_password.xaml",
               "RelativeToolTip": "private_password.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-02T19:05:16.615Z",
+              "WhenOpened": "2025-03-03T19:36:31.361Z",
               "EditorCaption": ""
             }
           ]

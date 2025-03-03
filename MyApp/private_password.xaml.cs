@@ -47,7 +47,8 @@ namespace MyApp
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
                 if (!File.Exists(fullPath))
                 {
-                    MessageBox.Show("Δεν βρέθηκε το αρχείο διαπιστευτηρίων!", "Σφάλμα", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox messageBox = new CustomMessageBox("Δεν βρέθηκε το αρχείο διαπιστευτηρίων!", "Σφάλμα", IconType.Error);
+                    messageBox.ShowDialog();
                     return;
                 }
 
@@ -62,7 +63,8 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Σφάλμα κατά τη φόρτωση: {ex.Message}", "Σφάλμα", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox messageBox = new CustomMessageBox($"Σφάλμα κατά τη φόρτωση: {ex.Message}", "Σφάλμα", IconType.Error);
+                messageBox.ShowDialog();
             }
         }
 
@@ -163,8 +165,6 @@ namespace MyApp
             return GetDefaultIcon();
         }
 
-
-
         private Image GetDefaultIcon()
         {
             string defaultResourceName = "MyApp.Icons.default.ico";
@@ -195,10 +195,12 @@ namespace MyApp
             if (!credentials.TryGetValue(serviceName, out var credential)) return;
 
             Clipboard.SetText(credential.Email);
-            MessageBox.Show($"Το email για {serviceName} αντιγράφηκε!", "Επιτυχία", MessageBoxButton.OK, MessageBoxImage.Information);
+            CustomMessageBox messageBox1 = new CustomMessageBox($"Το email για {serviceName} αντιγράφηκε!", "Επιτυχία", IconType.Success);
+            messageBox1.ShowDialog();
             await System.Threading.Tasks.Task.Delay(2000);
             Clipboard.SetText(credential.Password);
-            MessageBox.Show($"Ο κωδικός για {serviceName} αντιγράφηκε!", "Επιτυχία", MessageBoxButton.OK, MessageBoxImage.Information);
+            CustomMessageBox messageBox2 = new CustomMessageBox($"Ο κωδικός για {serviceName} αντιγράφηκε!", "Επιτυχία", IconType.Success);
+            messageBox2.ShowDialog();
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;

@@ -18,7 +18,8 @@ namespace MyApp
             { "MediaEncoder", "Set-up.exe" },
             { "LightroomClassic", "Set-up.exe" },
             { "Office2024", "OInstall_x64.exe" },
-            { "ClipStudio", "clipstudio_crack.exe" }
+            { "ClipStudio", "clipstudio_crack.exe" },
+            { "DaVinci_Resolve", "Install Resolve 19.1.3.exe" }
         };
 
         public PublicInstallWindow()
@@ -31,6 +32,71 @@ namespace MyApp
             if (e.ButtonState == MouseButtonState.Pressed)
             {
                 this.DragMove();
+            }
+        }
+        private void clipstudio_Click(object sender, RoutedEventArgs e)
+        {
+            string sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Clip_Studio_Paint", "CLIPStudioPaint.exe");
+            string destinationPath = @"C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO PAINT\CLIPStudioPaint.exe";
+
+            try
+            {
+                // Ελέγχει αν το αρχείο προορισμού υπάρχει
+                if (File.Exists(destinationPath))
+                {
+                    // Διαγραφή του υπάρχοντος αρχείου
+                    File.Delete(destinationPath);
+                }
+
+                // Αντιγραφή του νέου αρχείου στον προορισμό
+                File.Copy(sourcePath, destinationPath);
+
+                MessageBox.Show("Η αντικατάσταση του αρχείου ολοκληρώθηκε επιτυχώς.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Προέκυψε σφάλμα: {ex.Message}");
+            }
+        }
+
+        private void davinci_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string basePath = @"C:\Program Files\TEAM R2R\DVREMU2 Manager\commands";
+
+                // Λίστα με τα commands
+                string[] commands = new string[]
+                {
+                    "DVREMU2 - Install Emulator.cmd",
+                    "DVREMU2 - Renew Emulator License.cmd",
+                    "DVREMU2 - Test License and Emulator.cmd",
+                    "DVREMU2 - Use Shared VCRuntime.cmd"
+                };
+
+                // Εκτέλεση κάθε command ξεχωριστά
+                for (int i = 0; i < commands.Length; i++)
+                {
+                    string fullPath = Path.Combine(basePath, commands[i]);
+                    ProcessStartInfo processInfo = new ProcessStartInfo
+                    {
+                        FileName = fullPath,
+                        WorkingDirectory = basePath,
+                        UseShellExecute = true,
+                        CreateNoWindow = false // Το παράθυρο θα εμφανίζεται για κάθε command
+                    };
+
+                    MessageBox.Show($"Εκτέλεση command {i + 1} από {commands.Length}: {commands[i]}");
+
+                    Process process = Process.Start(processInfo);
+                    process.WaitForExit(); // Περιμένει να ολοκληρωθεί πριν προχωρήσει στο επόμενο
+                }
+
+                MessageBox.Show("Όλα τα commands ολοκληρώθηκαν επιτυχώς!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Σφάλμα κατά την εκτέλεση: " + ex.Message);
             }
         }
 
@@ -69,6 +135,11 @@ namespace MyApp
             {
                 fileUrl = "https://drive.usercontent.google.com/download?id=1Ur66w8CIGlKScy21ZoNQUzyidZPsJD39&export=download&authuser=0&confirm=t&uuid=d77760ad-9e12-438e-991f-745c5c508928&at=AEz70l7KibMmZL_RFs-3o8UVlaov:1740762499506";
                 savePath = Path.Combine(savePath, "Office2024.zip");
+            }
+            else if (sender == DaVinci_Resolve)
+            {
+                fileUrl = "https://drive.usercontent.google.com/download?id=12tzYDLQ6kthDIdAZuAtSpeeoi58uxtNn&export=download&authuser=0&confirm=t&uuid=d77760ad-9e12-438e-991f-745c5c508928&at=AEz70l7KibMmZL_RFs-3o8UVlaov:1740762499506";
+                savePath = Path.Combine(savePath, "DaVinci_Resolve.zip");
             }
             else if (sender == ClipStudioButton)
             {
@@ -273,6 +344,38 @@ namespace MyApp
         // Event handlers για τα κουμπιά
         private void BackButton_Click(object sender, RoutedEventArgs e) => this.Close();
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Minimized;
-        private void CloseButton_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Λίστα με τους φακέλους που θέλεις να διαγραφούν
+            string[] foldersToDelete = new string[]
+            {
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Photoshop"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "PremierePro"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "MediaEncoder"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "LightroomClassic"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Illustrator"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Office2024"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "DaVinci_Resolve"),
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "ClipStudio")
+            };
+
+            // Διαγραφή των φακέλων
+            foreach (var folder in foldersToDelete)
+            {
+                try
+                {
+                    if (Directory.Exists(folder))
+                    {
+                        Directory.Delete(folder, true); // Διαγραφή του φακέλου και όλων των υποφακέλων και αρχείων
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            // Κλείσιμο της εφαρμογής
+            Application.Current.Shutdown();
+        }
     }
 }

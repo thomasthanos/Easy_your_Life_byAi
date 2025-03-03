@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
+
 
 namespace MyApp
 {
@@ -16,6 +18,19 @@ namespace MyApp
             _errorDetails = errorDetails;
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
             AdjustWindowHeight();
+
+            // Ορίστε το παράθυρο να εμφανίζεται πάνω από άλλα παράθυρα για 0.6 δευτερόλεπτα
+            this.Topmost = true;
+
+            // Δημιουργήστε ένα DispatcherTimer για 0.6 δευτερόλεπτα
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(0.6); // Ορίστε το χρονικό διάστημα σε 0.6 δευτερόλεπτα
+            timer.Tick += (s, e) =>
+            {
+                this.Topmost = false; // Επαναφέρετε το Topmost σε false μετά από 0.6 δευτερόλεπτα
+                timer.Stop(); // Σταματήστε το timer
+            };
+            timer.Start();
 
             // Set the icon based on the iconType
             switch (iconType)

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        xmlns:local="clr-namespace:MyApp"
         Title="Πληροφορίες" Height="450" Width="700"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -359,10 +360,12 @@
                                            Text="Απλό και φιλικό περιβάλλον με κουμπιά γρήγορης πρόσβασης." 
                                            Foreground="White" FontSize="14" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
+                            
                         </Border>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
         </Border>
+        
     </Grid>
 </Window>

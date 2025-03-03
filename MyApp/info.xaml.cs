@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace MyApp
@@ -52,6 +51,17 @@ namespace MyApp
             {
                 this.DragMove(); // Allows moving the window when dragged
             }
+        }
+        // Event handler for the GitHub button
+        private void GitHubButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Open the GitHub profile in the default browser
+            string githubUrl = "https://github.com/ThomasThanos"; // Replace with your GitHub profile URL
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = githubUrl,
+                UseShellExecute = true
+            });
         }
     }
 }

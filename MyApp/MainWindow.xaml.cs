@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace MyApp
 {
@@ -8,7 +9,22 @@ namespace MyApp
         public MainWindow()
         {
             InitializeComponent();
+            // Add an event handler for the CodeTextBox to check the code when Enter is pressed or focus is lost
+            CodeTextBox.KeyDown += CodeTextBox_KeyDown;
+            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
+            // Ορίστε το παράθυρο να εμφανίζεται πάνω από άλλα παράθυρα για 0.2 δευτερόλεπτα
+            this.Topmost = true;
+
+            // Δημιουργήστε ένα DispatcherTimer για 0.2 δευτερόλεπτα
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(0.2);
+            timer.Tick += (s, e) =>
+            {
+                this.Topmost = false; // Επαναφέρετε το Topmost σε false μετά από 0.2 δευτερόλεπτα
+                timer.Stop(); // Σταματήστε το timer
+            };
+            timer.Start();
             // Add an event handler for the CodeTextBox to check the code when Enter is pressed or focus is lost
             CodeTextBox.KeyDown += CodeTextBox_KeyDown;
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;

@@ -9,10 +9,10 @@ Category = System maintenance
 ProductVersion = 8.4.5
 URL = https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&st=vg4jr140&dl=1
 URL1 = https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe
-Size = 20385736
+Size = 20378056
 ReleaseDate = 03/03/2025
-SHA256 = 17832217D9BC59DFF79CB49BF706F96AFA4F6E76CD3B3F9312931BE3813917C2
-MD5 = 8d9e94d3e28060abe934aa5d715aa505
+SHA256 = 0D9F7556DA726E8DB0F863048559480DFC0745970BE306FFAFCCFB0E632896B1
+MD5 = 9754bda74b5feb1d9b93a91ebf253859
 ServerFileName = make your life easier2.exe
 Flags = Critical
 RegistryKey = HKUD\Software\Kolokithes A.E.\Make your life easier\Version

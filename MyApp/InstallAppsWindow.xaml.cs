@@ -249,7 +249,8 @@ namespace MyApp
                                 RedirectStandardError = true,
                                 UseShellExecute = false,
                                 CreateNoWindow = true,
-                                StandardOutputEncoding = System.Text.Encoding.UTF8
+                                StandardOutputEncoding = System.Text.Encoding.UTF8,
+                                WindowStyle = ProcessWindowStyle.Hidden // Διασφάλιση ότι η διεργασία συνεχίζει να εκτελείται
                             }
                         };
 
@@ -277,16 +278,18 @@ namespace MyApp
                         }
                         DownloadButton.IsEnabled = true;
                         isDownloading = false; // Ορισμός του flag σε false μετά το τέλος της λήψης
+
+                        // Ξεπιλέγουμε την εφαρμογή από το ListBox
+                        AppsListBox.UnselectAll();
                     });
+
                     if (installationSuccess)
                     {
                         DownloadProgressBar.Value = 100;
                         selectedApp.Version = await GetPackageVersionAsync(selectedApp.PackageName); // Ενημέρωση της έκδοσης
                         AppsListBox.Items.Refresh(); // Ανανεώνει τη λίστα στο UI
                     }
-
                 }
-
                 catch (Exception ex)
                 {
                     await Dispatcher.InvokeAsync(() =>

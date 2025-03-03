@@ -137,10 +137,10 @@
     <ROW Property="AiWinUIBtnViewReadmeForegroundPressed" MultiBuildValue="DefaultBuild:White"/>
     <ROW Property="AppLogoIcon" Value="applogo.ico" MultiBuildValue="DefaultBuild:hacker.ico" Type="1" MsiKey="AppLogoIcon"/>
     <ROW Property="Manufacturer" Value="Kolokithes A.E."/>
-    <ROW Property="ProductCode" Value="1031:{B25BE1DD-05EE-410A-89B3-37A84640F2FA} 1032:{B25BE1DD-05EE-410A-89B3-37A84640F2FA} 1033:{B25BE1DD-05EE-410A-89B3-37A84640F2FA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{F7316B01-7E7C-47B1-BE54-F34BC2405E28} 1032:{F7316B01-7E7C-47B1-BE54-F34BC2405E28} 1033:{F7316B01-7E7C-47B1-BE54-F34BC2405E28} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Make your life easier"/>
-    <ROW Property="ProductVersion" Value="8.4.6" Options="32"/>
+    <ROW Property="ProductVersion" Value="8.5.0" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{569352C8-103B-4E71-80D5-7D3E5D574480}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -177,7 +177,7 @@
     <ROW Component="ProductInformation" Value="{5798BBB1-33E6-4FF2-B46D-6A1D26852024}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{7937D8B6-0FA7-476E-8853-CAEBAA7233B2}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{536B7C3B-24E0-4EF8-B293-78D68CAC1751}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{F47E4DDC-A47A-4646-80D0-1C5A3EB3D892}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_SHORTCUTSREG" ComponentId="{8445FE54-B573-42B4-9F90-3310DC7CCDDF}" Directory_="APPDIR" Attributes="4" KeyPath="AI_SHORTCUTSREG" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{5A5EC9E9-5F46-4466-A15E-EDCFE850B3A1}" Directory_="APPDIR" Attributes="0"/>

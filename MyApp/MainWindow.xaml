@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="650"
+        Title="MainWindow" Height="370" Width="650"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Icon="hacker.ico">
@@ -305,10 +305,12 @@
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
+
                 </Grid>
+                <!-- Bottom Buttons -->
 
                 <!-- Info Button and Code TextBox (Bottom) -->
-                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,302,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="190"/>

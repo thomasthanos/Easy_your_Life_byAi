@@ -142,10 +142,18 @@ namespace MyApp
                 }
                 else
                 {
-                    MessageBox.Show("Invalid code. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    // Use CustomMessageBox for warning message
+                    CustomMessageBox warningMessage = new CustomMessageBox(
+                        "Μη έγκυρος κωδικός. Παρακαλώ δοκιμάστε ξανά.",
+                        "Προειδοποίηση",
+                        IconType.Danger  // Ή IconType.Warning αν υπάρχει
+                    );
+                    warningMessage.ShowDialog(); // Show as modal dialog
                 }
             }
         }
         #endregion
+
+
     }
 }

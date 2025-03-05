@@ -24,6 +24,8 @@
     <None Remove="Icons\bluestack.ico" />
     <None Remove="Icons\bluestacks.ico" />
     <None Remove="Icons\brave.ico" />
+    <None Remove="Icons\copy.ico" />
+    <None Remove="Icons\copy.png" />
     <None Remove="Icons\corsair.ico" />
     <None Remove="Icons\default.ico" />
     <None Remove="Icons\discord #1.ico" />
@@ -102,6 +104,9 @@
     <EmbeddedResource Include="Icons\github.ico" />
     <EmbeddedResource Include="Icons\google.ico" />
     <EmbeddedResource Include="Icons\hacker.ico" />
+    <Resource Include="Icons\copy.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Icons\hide.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

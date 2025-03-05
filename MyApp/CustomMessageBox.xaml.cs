@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using System.Windows.Threading;
 
-
 namespace MyApp
 {
     public partial class CustomMessageBox : Window
@@ -17,51 +16,60 @@ namespace MyApp
             Title = title;
             _errorDetails = errorDetails;
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
-            AdjustWindowHeight();
-
-            // Ορίστε το παράθυρο να εμφανίζεται πάνω από όλα τα παράθυρα
+            this.Loaded += CustomMessageBox_Loaded;
             this.Topmost = true;
 
-            // Δημιουργήστε ένα DispatcherTimer για να διασφαλίσετε ότι παραμένει πάνω από όλα τα παράθυρα
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100); // Ελέγχει κάθε 100ms
+            timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += (s, e) =>
             {
-                if (!this.Topmost) // Αν το Topmost γίνει false, το επαναφέρουμε
+                if (!this.Topmost)
                 {
                     this.Topmost = true;
                 }
             };
             timer.Start();
 
-            // Ορισμός του εικονιδίου βάσει του iconType
+            // Ορισμός εικονιδίων και κουμπιών
             switch (iconType)
             {
                 case IconType.Info:
                     InfoIcon.Visibility = Visibility.Visible;
+                    OkButton.HorizontalAlignment = HorizontalAlignment.Center; // Κέντρο όταν δεν είναι Error
                     break;
                 case IconType.Success:
                     SuccessIcon.Visibility = Visibility.Visible;
                     OkButton.Visibility = Visibility.Visible;
+                    OkButton.HorizontalAlignment = HorizontalAlignment.Center; // Κέντρο όταν δεν είναι Error
                     break;
                 case IconType.Danger:
                     DangerIcon.Visibility = Visibility.Visible;
                     OkButton.Visibility = Visibility.Visible;
                     InfoButton.Visibility = string.IsNullOrEmpty(errorDetails) ? Visibility.Collapsed : Visibility.Visible;
+                    OkButton.HorizontalAlignment = HorizontalAlignment.Center; // Κέντρο όταν δεν είναι Error
                     break;
                 case IconType.Error:
                     ErrorIcon.Visibility = Visibility.Visible;
                     OkButton.Visibility = Visibility.Visible;
                     InfoButton.Visibility = string.IsNullOrEmpty(errorDetails) ? Visibility.Collapsed : Visibility.Visible;
+                    CopyButton.Visibility = Visibility.Visible; // Εμφάνιση CopyButton μόνο για Error
+                    OkButton.HorizontalAlignment = HorizontalAlignment.Left; // Αριστερά για Error
                     break;
                 case IconType.Question:
                     InfoIcon.Visibility = Visibility.Visible;
                     YesButton.Visibility = Visibility.Visible;
                     CancelButton.Visibility = Visibility.Visible;
+                    OkButton.HorizontalAlignment = HorizontalAlignment.Center; // Κέντρο όταν δεν είναι Error
                     break;
                 default:
+                    OkButton.HorizontalAlignment = HorizontalAlignment.Center; // Κέντρο όταν δεν είναι Error
                     break;
             }
+        }
+
+        private void CustomMessageBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            AdjustWindowHeight();
         }
 
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -74,10 +82,19 @@ namespace MyApp
 
         private void AdjustWindowHeight()
         {
-            double messageHeight = MessageText.ActualHeight;
-            if (messageHeight > 50)
+            MessageText.Measure(new Size(MessageText.MaxWidth, double.PositiveInfinity));
+            double messageHeight = MessageText.DesiredSize.Height;
+
+            double baseHeight = 40 + 50 + 40; // Title Bar + Buttons + Margins
+            double newHeight = baseHeight + messageHeight;
+
+            if (messageHeight <= MessageText.MaxHeight)
             {
-                Height += messageHeight - 50;
+                this.Height = newHeight + (CopyButton.Visibility == Visibility.Visible ? 40 : 0);
+            }
+            else
+            {
+                this.Height = baseHeight + MessageText.MaxHeight + (CopyButton.Visibility == Visibility.Visible ? 40 : 0);
             }
         }
 
@@ -93,11 +110,8 @@ namespace MyApp
             {
                 ErrorDetailsTextBox.Text = _errorDetails ?? "No error details available.";
                 ErrorDetailsTextBox.Visibility = Visibility.Visible;
-
-                // Υπολογισμός του απαιτούμενου ύψους για τα error details
-                double requiredHeight = ErrorDetailsTextBox.ActualHeight + 20; // Προσθήκη περιθωρίου
+                double requiredHeight = ErrorDetailsTextBox.ActualHeight + 20;
                 Height += requiredHeight;
-
                 _isErrorDetailsVisible = true;
             }
         }
@@ -112,6 +126,12 @@ namespace MyApp
         {
             DialogResult = false;
             Close();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(MessageText.Text);
+            new CustomMessageBox("Το κείμενο αντιγράφηκε στο πρόχειρο!", "Επιτυχία", IconType.Success).ShowDialog();
         }
     }
 

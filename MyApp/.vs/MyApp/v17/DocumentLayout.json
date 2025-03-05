@@ -4,22 +4,6 @@
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{25FA3AEB-0AD9-4E8A-8595-113B32DCB210}|..\\make_your_life_easier\\make_your_life_easier.aiproj|E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\multitool.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:multitool.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\multitool.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:multitool.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\cleartempwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:cleartempwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\cleartempwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:cleartempwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,7 +12,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 430,
+          "DockedWidth": 103,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -40,63 +24,7 @@
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip",
               "RelativeToolTip": "..\\make_your_life_easier\\make_your_life_easier.aip",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHRSURBVDhPhdJPiIxhHAfwz7xrWzU1Lk7Exha5\u002BZfoTaRtFKc57OaixEFvSXIaXJy02Wy2NnNBDhzs1ryyNxdKc9td/3KSxooVi7JsRtodB8\u002Bw8x741tPT7/f98zw9zy8H8wPrVuIFangQ1qN8ub7gX2g2mzm/A/pxO0PP4SEefF4o3Dj05vynWqXUzGhEYd\u002Bf6UMBB3HxwsfDu/E8TtK\u002BrKgV0JvpwzvcxcTTRs8ObMJonKRX4yTtaImi\u002BYF1G7C23Ut1bs/R4vTQ7JkPx89h6cnHMNgqIhSXkGO4CYWO\u002BQgzk983ltGzRAOn4iTdLgTsCs0nxemhh8XpoVmM9eYnRu91ny515X5eafeCHE5CdOD14P07X3f3LYouYU135/spbEUeb380O6u4kU3APsjFSdr6mjkUIosj11cP3Fq17ONOvMyX6\u002BNxkm7BVLufWqWUi9AIdQEWRSeOvD27Ml\u002BuX86X6\u002BOBW/3X9gcN4Q2eZRkMx0m6DeIk3YrhrKDli1DNMliPiThJG5gMdRZVIWAEM1k2oCvbCJgJPlGtUvqG/iVv8T800B98v0e5VinVsBevsuoMXmFv0BMG4g/iJF0eRrUPm7ECX/A4TOm1WqXUdtNfzkGPxBC9wFQAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-03-05T00:05:10.531Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ClearTempWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\ClearTempWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ClearTempWindow.xaml.cs",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\ClearTempWindow.xaml.cs",
-              "RelativeToolTip": "ClearTempWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T23:50:37.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "multitool.xaml.cs",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml.cs",
-              "RelativeDocumentMoniker": "multitool.xaml.cs",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml.cs",
-              "RelativeToolTip": "multitool.xaml.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAG4AAABrAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T23:47:11.283Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 288,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ClearTempWindow.xaml",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\ClearTempWindow.xaml",
-              "RelativeDocumentMoniker": "ClearTempWindow.xaml",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\ClearTempWindow.xaml",
-              "RelativeToolTip": "ClearTempWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-04T23:49:29.993Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "multitool.xaml",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml",
-              "RelativeDocumentMoniker": "multitool.xaml",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\multitool.xaml",
-              "RelativeToolTip": "multitool.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-04T23:47:05.054Z",
+              "WhenOpened": "2025-03-05T18:16:48.038Z",
               "EditorCaption": ""
             }
           ]

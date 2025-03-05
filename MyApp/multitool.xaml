@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Modern Window" Height="450" Width="400"
+        Title="Modern Window" Height="380" Width="380"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -109,19 +109,6 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Title (Centered) -->
-                        <TextBlock Text="Multitool" 
-                                   Foreground="White" 
-                                   VerticalAlignment="Center" 
-                                   HorizontalAlignment="Center" 
-                                   FontSize="18" 
-                                   FontWeight="Bold" 
-                                   Grid.ColumnSpan="4" 
-                                   FontFamily="Segoe UI"
-                                   TextOptions.TextFormattingMode="Display"
-                                   TextOptions.TextRenderingMode="ClearType"
-                                   UseLayoutRounding="True"/>
-
                         <!-- Back Button -->
                         <Button Grid.Column="1" Style="{StaticResource WindowButtonStyle}" Width="30" Height="30" Content="←" Click="BackButton_Click" Margin="0,0,5,0"/>
 
@@ -135,10 +122,10 @@
 
                 <!-- Buttons Stack -->
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
-                    <Button Content="Ενημέρωση Εφαρμογών" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="WingetUpgradeAllButton_Click"/>
-                    <Button Content="Σβήσιμο 'Σκουπιδιών'" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="ClearTempButton_Click"/>
-                    <Button Content="Επιδιόρθωση" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="SfcScanButton_Click"/>
-                    <Button Content="Exit" Width="200" Height="40" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="ExitButton_Click"/>
+                    <Button Content="Ενημέρωση Εφαρμογών" Width="225" Height="45" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="WingetUpgradeAllButton_Click" FontSize="18" FontFamily="Comic Sans MS"/>
+                    <Button Content="Σβήσιμο 'Σκουπιδιών'" Width="225" Height="45" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="ClearTempButton_Click" FontSize="18" FontFamily="Comic Sans MS"/>
+                    <Button Content="Επιδιόρθωση" Width="225" Height="45" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="SfcScanButton_Click" FontSize="18" FontFamily="Comic Sans MS"/>
+                    <Button Content="Exit" Width="85" Height="45" Margin="0,10" Style="{StaticResource ModernButtonStyle}" Click="ExitButton_Click" FontSize="18" FontFamily="Comic Sans MS"/>
                 </StackPanel>
             </Grid>
         </Border>

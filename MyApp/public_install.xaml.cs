@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -53,11 +49,11 @@ namespace MyApp
                 }
 
                 File.Copy(sourcePath, destinationPath);
-                MessageBox.Show("Η αντικατάσταση του αρχείου ολοκληρώθηκε επιτυχώς.");
+                new CustomMessageBox("Η αντικατάσταση του αρχείου ολοκληρώθηκε επιτυχώς!", "Επιτυχία", IconType.Success).ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Προέκυψε σφάλμα: {ex.Message}");
+                new CustomMessageBox($"Προέκυψε σφάλμα: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -86,17 +82,17 @@ namespace MyApp
                         CreateNoWindow = false
                     };
 
-                    MessageBox.Show($"Εκτέλεση command {i + 1} από {commands.Length}: {commands[i]}");
+                    new CustomMessageBox($"Εκτέλεση εντολής {i + 1} από {commands.Length}: {commands[i]}", "Πληροφορίες", IconType.Info).ShowDialog();
 
                     Process process = Process.Start(processInfo);
                     process.WaitForExit();
                 }
 
-                MessageBox.Show("Όλα τα commands ολοκληρώθηκαν επιτυχώς!");
+                new CustomMessageBox("Όλες οι εντολές ολοκληρώθηκαν επιτυχώς!", "Επιτυχία", IconType.Success).ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Σφάλμα κατά την εκτέλεση: " + ex.Message);
+                new CustomMessageBox($"Σφάλμα κατά την εκτέλεση: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -157,7 +153,7 @@ namespace MyApp
             if (extractionSuccess)
             {
                 File.Delete(savePath);
-                new CustomMessageBox("Extraction completed and ZIP file deleted!", "Success", IconType.Success).ShowDialog();
+                new CustomMessageBox("Η εξαγωγή ολοκληρώθηκε και το ZIP αρχείο διαγράφηκε!", "Επιτυχία", IconType.Success).ShowDialog();
 
                 string zipName = Path.GetFileNameWithoutExtension(savePath);
                 if (_installExecutables.ContainsKey(zipName))
@@ -168,21 +164,21 @@ namespace MyApp
                     if (File.Exists(executablePath))
                     {
                         RunExecutableAsAdmin(executablePath);
-                        new CustomMessageBox($"Installation of {zipName} has started!", "Info", IconType.Info).ShowDialog();
+                        new CustomMessageBox($"Η εγκατάσταση του {zipName} ξεκίνησε!", "Πληροφορίες", IconType.Info).ShowDialog();
                     }
                     else
                     {
-                        new CustomMessageBox($"Executable {executableName} not found in {extractPath}!", "Error", IconType.Error).ShowDialog();
+                        new CustomMessageBox($"Το εκτελέσιμο {executableName} δεν βρέθηκε στον φάκελο {extractPath}!", "Σφάλμα", IconType.Error).ShowDialog();
                     }
                 }
                 else
                 {
-                    new CustomMessageBox($"No installation executable found for {zipName}!", "Error", IconType.Error).ShowDialog();
+                    new CustomMessageBox($"Δεν βρέθηκε εκτελέσιμο εγκατάστασης για το {zipName}!", "Σφάλμα", IconType.Error).ShowDialog();
                 }
             }
             else
             {
-                new CustomMessageBox("Extraction failed! Check if the password is correct.", "Error", IconType.Error).ShowDialog();
+                new CustomMessageBox("Η εξαγωγή απέτυχε! Ελέγξτε αν ο κωδικός είναι σωστός.", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -204,7 +200,7 @@ namespace MyApp
             }
             catch (System.ComponentModel.Win32Exception ex)
             {
-                new CustomMessageBox($"Failed to start process: {ex.Message}", "Error", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Αποτυχία εκκίνησης διαδικασίας: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -261,16 +257,16 @@ namespace MyApp
 
                 if (!cancellationToken.IsCancellationRequested)
                 {
-                    new CustomMessageBox("Download completed!", "Success", IconType.Success).ShowDialog();
+                    new CustomMessageBox("Η λήψη ολοκληρώθηκε!", "Επιτυχία", IconType.Success).ShowDialog();
                 }
             }
             catch (OperationCanceledException)
             {
-                new CustomMessageBox("Download paused.", "Info", IconType.Info).ShowDialog();
+                new CustomMessageBox("Η λήψη τέθηκε σε παύση.", "Πληροφορίες", IconType.Info).ShowDialog();
             }
             catch (Exception ex)
             {
-                new CustomMessageBox($"Error downloading file: {ex.Message}", "Error", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Σφάλμα κατά τη λήψη του αρχείου: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -282,7 +278,7 @@ namespace MyApp
 
                 if (!File.Exists(zipPath))
                 {
-                    new CustomMessageBox("ZIP file does not exist!", "Error", IconType.Error).ShowDialog();
+                    new CustomMessageBox("Το ZIP αρχείο δεν υπάρχει!", "Σφάλμα", IconType.Error).ShowDialog();
                     return false;
                 }
 
@@ -308,18 +304,18 @@ namespace MyApp
                     {
                         if (error.Contains("Wrong password"))
                         {
-                            new CustomMessageBox("Wrong password for the ZIP file!", "Error", IconType.Error).ShowDialog();
+                            new CustomMessageBox("Λάθος κωδικός για το ZIP αρχείο!", "Σφάλμα", IconType.Error).ShowDialog();
                             string downloadFolder = Path.GetDirectoryName(zipPath);
                             Process.Start("explorer.exe", downloadFolder);
                             return false;
                         }
                         else if (error.Contains("Unexpected end of archive") || error.Contains("CRC Failed"))
                         {
-                            new CustomMessageBox("The ZIP file is corrupted or incomplete. Please download it again.", "Error", IconType.Error).ShowDialog();
+                            new CustomMessageBox("Το ZIP αρχείο είναι κατεστραμμένο ή ελλιπές. Παρακαλώ κατεβάστε το ξανά.", "Σφάλμα", IconType.Error).ShowDialog();
                         }
                         else
                         {
-                            new CustomMessageBox($"Error extracting file: {error}", "Error", IconType.Error).ShowDialog();
+                            new CustomMessageBox($"Σφάλμα κατά την εξαγωγή του αρχείου: {error}", "Σφάλμα", IconType.Error).ShowDialog();
                         }
                         return false;
                     }
@@ -328,7 +324,7 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-                new CustomMessageBox($"Error extracting file: {ex.Message}", "Error", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Σφάλμα κατά την εξαγωγή του αρχείου: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
                 return false;
             }
         }

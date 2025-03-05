@@ -31,7 +31,6 @@ E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MyApp.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MyApp.pdb
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\ClearTempWindow.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CrackSiteWindow.baml
-E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CustomMessageBox.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\InstallAppsWindow.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\multitool.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\Sims.baml
@@ -52,6 +51,7 @@ E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\App.g.cs
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp_Content.g.cs
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp_MarkupCompile.cache
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp_MarkupCompile.lref
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\CustomMessageBox.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\info.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MainWindow.baml
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\private_password.baml
@@ -61,6 +61,7 @@ E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.GeneratedMSBu
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.AssemblyInfoInputs.cache
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.AssemblyInfo.cs
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.csproj.CoreCompileInputs.cache
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.sourcelink.json
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.dll
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\refint\MyApp.dll
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.pdb

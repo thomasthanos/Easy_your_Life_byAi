@@ -40,9 +40,14 @@ namespace MyApp
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κλείνει το multitool και επιστρέφει στο MainWindow
+            // Ανοίγει ξανά το multitool πριν κλείσει το ClearTempWindow
+            multitool multiToolWindow = new multitool();
+            multiToolWindow.Show();
+
+            // Κλείνει το ClearTempWindow
             this.Close();
         }
+
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -57,7 +62,6 @@ namespace MyApp
             {
                 try
                 {
-                    this.WindowState = WindowState.Minimized; // Κάντε minimize το MainWindow
 
                     Process process = new Process();
                     process.StartInfo.FileName = filePath;
@@ -97,9 +101,9 @@ namespace MyApp
 
         private void ClearTempButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Dispatcher.Invoke(() => this.Hide()); // Κρύβει το κύριο παράθυρο
             ClearTempWindow clearTempWindow = new ClearTempWindow();
             clearTempWindow.Show(); // Εμφάνιση του παραθύρου χωρίς ιδιοκτήτη
-            this.WindowState = WindowState.Minimized; // Κάντε minimize μόνο το MainWindow
         }
 
         private void SfcScanButton_Click(object sender, RoutedEventArgs e)
@@ -109,7 +113,6 @@ namespace MyApp
             {
                 try
                 {
-                    WindowState = WindowState.Minimized;
                     Process process = new Process();
                     process.StartInfo.FileName = filePath;
                     process.Start();

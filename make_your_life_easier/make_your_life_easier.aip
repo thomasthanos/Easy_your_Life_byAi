@@ -137,10 +137,10 @@
     <ROW Property="AiWinUIBtnViewReadmeForegroundPressed" MultiBuildValue="DefaultBuild:White"/>
     <ROW Property="AppLogoIcon" Value="applogo.ico" MultiBuildValue="DefaultBuild:hacker.ico" Type="1" MsiKey="AppLogoIcon"/>
     <ROW Property="Manufacturer" Value="Kolokithes A.E."/>
-    <ROW Property="ProductCode" Value="1031:{F7316B01-7E7C-47B1-BE54-F34BC2405E28} 1032:{F7316B01-7E7C-47B1-BE54-F34BC2405E28} 1033:{F7316B01-7E7C-47B1-BE54-F34BC2405E28} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{8FDAE8F7-E833-46B6-82D6-6A79ED9A12AB} 1032:{8FDAE8F7-E833-46B6-82D6-6A79ED9A12AB} 1033:{8FDAE8F7-E833-46B6-82D6-6A79ED9A12AB} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Make your life easier"/>
-    <ROW Property="ProductVersion" Value="8.5.0" Options="32"/>
+    <ROW Property="ProductVersion" Value="8.5.5" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{569352C8-103B-4E71-80D5-7D3E5D574480}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -177,7 +177,7 @@
     <ROW Component="ProductInformation" Value="{5798BBB1-33E6-4FF2-B46D-6A1D26852024}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{536B7C3B-24E0-4EF8-B293-78D68CAC1751}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{B59C36CF-4653-49B6-86DF-ECDD632B2D4A}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{F47E4DDC-A47A-4646-80D0-1C5A3EB3D892}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_SHORTCUTSREG" ComponentId="{8445FE54-B573-42B4-9F90-3310DC7CCDDF}" Directory_="APPDIR" Attributes="4" KeyPath="AI_SHORTCUTSREG" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{5A5EC9E9-5F46-4466-A15E-EDCFE850B3A1}" Directory_="APPDIR" Attributes="0"/>
@@ -318,8 +318,8 @@
     <ROW File="yo.txt" Component_="af.txt" FileName="yo.txt" Attributes="0" SourcePath="G:\7-Zip\Lang\yo.txt" SelfReg="false"/>
     <ROW File="zhcn.txt" Component_="af.txt" FileName="zh-cn.txt" Attributes="0" SourcePath="G:\7-Zip\Lang\zh-cn.txt" SelfReg="false"/>
     <ROW File="zhtw.txt" Component_="af.txt" FileName="zh-tw.txt" Attributes="0" SourcePath="G:\7-Zip\Lang\zh-tw.txt" SelfReg="false"/>
-    <ROW File="healthcare.exe" Component_="healthcare.exe" FileName="HEALTH~1.EXE|healthcare.exe" Attributes="2" SourcePath="C:\Users\thoma\AppData\Roaming\Kolokithes A.E\healthcare.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="update.exe" Component_="update.exe" FileName="update.exe" Attributes="2" SourcePath="C:\Users\thoma\AppData\Roaming\Kolokithes A.E\update.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="healthcare.exe" Component_="healthcare.exe" FileName="HEALTH~1.EXE|healthcare.exe" Attributes="0" SourcePath="C:\Users\thoma\AppData\Roaming\Kolokithes A.E\healthcare.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="update.exe" Component_="update.exe" FileName="update.exe" Attributes="0" SourcePath="C:\Users\thoma\AppData\Roaming\Kolokithes A.E\update.exe" SelfReg="false" DigSign="true"/>
     <ROW File="MyApp.dll" Component_="MyApp.dll" FileName="MyApp.dll" Attributes="0" SourcePath="..\MyApp\bin\Debug\net9.0-windows\MyApp.dll" SelfReg="false"/>
     <ROW File="MyApp.exe" Component_="MyApp.exe" FileName="MyApp.exe" Attributes="0" SourcePath="..\MyApp\bin\Debug\net9.0-windows\MyApp.exe" SelfReg="false" DigSign="true"/>
     <ROW File="MyApp.pdb" Component_="MyApp.exe" FileName="MyApp.pdb" Attributes="0" SourcePath="..\MyApp\bin\Debug\net9.0-windows\MyApp.pdb" SelfReg="false"/>

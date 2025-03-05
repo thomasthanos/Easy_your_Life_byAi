@@ -19,20 +19,22 @@ namespace MyApp
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
             AdjustWindowHeight();
 
-            // Ορίστε το παράθυρο να εμφανίζεται πάνω από άλλα παράθυρα για 0.6 δευτερόλεπτα
+            // Ορίστε το παράθυρο να εμφανίζεται πάνω από όλα τα παράθυρα
             this.Topmost = true;
 
-            // Δημιουργήστε ένα DispatcherTimer για 0.6 δευτερόλεπτα
+            // Δημιουργήστε ένα DispatcherTimer για να διασφαλίσετε ότι παραμένει πάνω από όλα τα παράθυρα
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(0.6); // Ορίστε το χρονικό διάστημα σε 0.6 δευτερόλεπτα
+            timer.Interval = TimeSpan.FromMilliseconds(100); // Ελέγχει κάθε 100ms
             timer.Tick += (s, e) =>
             {
-                this.Topmost = false; // Επαναφέρετε το Topmost σε false μετά από 0.6 δευτερόλεπτα
-                timer.Stop(); // Σταματήστε το timer
+                if (!this.Topmost) // Αν το Topmost γίνει false, το επαναφέρουμε
+                {
+                    this.Topmost = true;
+                }
             };
             timer.Start();
 
-            // Set the icon based on the iconType
+            // Ορισμός του εικονιδίου βάσει του iconType
             switch (iconType)
             {
                 case IconType.Info:

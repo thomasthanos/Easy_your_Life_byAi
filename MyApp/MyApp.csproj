@@ -42,6 +42,7 @@
     <None Remove="Icons\github.ico" />
     <None Remove="Icons\google.ico" />
     <None Remove="Icons\hacker.ico" />
+    <None Remove="Icons\hide.ico" />
     <None Remove="Icons\install.png" />
     <None Remove="Icons\install.svg" />
     <None Remove="Icons\iobit_advanced.ico" />
@@ -64,6 +65,7 @@
     <None Remove="Icons\rockstar #2.ico" />
     <None Remove="Icons\rockstar.ico" />
     <None Remove="Icons\save wizard.ico" />
+    <None Remove="Icons\see.ico" />
     <None Remove="Icons\spotify.ico" />
     <None Remove="Icons\steam.ico" />
     <None Remove="Icons\stream_deck.ico" />
@@ -100,6 +102,12 @@
     <EmbeddedResource Include="Icons\github.ico" />
     <EmbeddedResource Include="Icons\google.ico" />
     <EmbeddedResource Include="Icons\hacker.ico" />
+    <Resource Include="Icons\hide.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\see.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Icons\install.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

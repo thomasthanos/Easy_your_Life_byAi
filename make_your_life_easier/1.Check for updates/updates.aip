@@ -8,7 +8,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
     <ROW Section="Update" Key="Name" Value="Make your life easier"/>
     <ROW Section="Update" Key="Category" Value="System maintenance" ValueLocId="-"/>
-    <ROW Section="Update" Key="ProductVersion" Value="8.5.0" ValueLocId="-"/>
+    <ROW Section="Update" Key="ProductVersion" Value="8.5.5" ValueLocId="-"/>
     <ROW Section="Update" Key="URL" Value="https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&amp;st=vg4jr140&amp;dl=1" ValueLocId="-"/>
     <ROW Section="Update" Key="URL1" Value="https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Size" Value="..\make_your_life_easier-SetupFiles\all\make your life easier2.exe" ValueLocId="-"/>
@@ -18,7 +18,7 @@
     <ROW Section="Update" Key="ServerFileName" Value="make your life easier2.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Flags" Value="Critical" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Kolokithes A.E.\Make your life easier\Version" ValueLocId="-"/>
-    <ROW Section="Update" Key="Version" Value="8.5.0" ValueLocId="-"/>
+    <ROW Section="Update" Key="Version" Value="8.5.5" ValueLocId="-"/>
     <ROW Section="Update" Key="Description" Value="NEW APP"/>
     <ROW Section="Update" Key="Feature" Value="Improved Window Management: Sub-windows close and restore the main window once completed.&#13;&#10;&#13;&#10;New Auto-Activation System: Added a feature to activate Windows via the automatic execution of activate.bat.&#13;&#10;&#13;&#10;Software Management &amp; Installation: Ability to download and install software such as Photoshop, Premiere Pro, and Office 2024.&#13;&#10;&#13;&#10;System Maintenance: Added a feature for cleaning temporary files and upgrading applications via winget.&#13;&#10;&#13;&#10;Special Actions for Sims: Automatic installation and updating of the EA-DLC-Unlocker for Sims 4.&#13;&#10;&#13;&#10;Add Crack Sites: Access to websites for downloading software and games.&#13;&#10;&#13;&#10;Installation of Additional Applications: New window for bulk installation of applications using winget.&#13;&#10;&#13;&#10;Special Information Window: Added an informational window with basic usage instructions.&#13;&#10;&#13;&#10;New Custom Message Box: Ability to display warnings, errors, and confirmations with dynamic messages."/>
     <ROW Section="General" Key="LicenseIdCheckURL" Value="https://thomasthanos.github.io/Make_your_life_easier/Licence/EULA.html" ValueLocId="-"/>

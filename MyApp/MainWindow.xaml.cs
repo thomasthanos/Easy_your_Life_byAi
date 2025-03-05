@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -41,16 +42,19 @@ namespace MyApp
         }
 
         #region --> buttons
+
+
         private void InstallAppsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κρύψε το MainWindow
-            this.Hide();
+            this.Dispatcher.Invoke(() => this.Hide()); // Κρύβει το κύριο παράθυρο
 
-            // Άνοιγμα του InstallAppsWindow
             InstallAppsWindow installAppsWindow = new InstallAppsWindow();
-            installAppsWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το InstallAppsWindow, εμφάνισε ξανά το MainWindow
+            installAppsWindow.Closed += (s, args) => this.Dispatcher.Invoke(() => this.Show()); // Επαναφέρει το κύριο παράθυρο όταν κλείσει
             installAppsWindow.Show();
         }
+
+
+
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
@@ -61,14 +65,13 @@ namespace MyApp
 
         private void CrackSitesButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κρύψε το MainWindow
-            this.Hide();
+            this.Dispatcher.Invoke(() => this.Hide()); // Κρύβει το κύριο παράθυρο
 
-            // Άνοιγμα του CrackSiteWindow
             CrackSiteWindow crackSiteWindow = new CrackSiteWindow();
-            crackSiteWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το CrackSiteWindow, εμφάνισε ξανά το MainWindow
+            crackSiteWindow.Closed += (s, args) => this.Dispatcher.Invoke(() => this.Show()); // Όταν κλείσει το CrackSiteWindow, εμφάνισε ξανά το MainWindow
             crackSiteWindow.Show();
         }
+
 
         private void CrackAppsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -119,10 +122,12 @@ namespace MyApp
         {
             if (e.Key == Key.Enter)
             {
+                e.Handled = true; // Stop further processing of the KeyDown event
+
                 string enteredCode = CodeTextBox.Text.Trim().ToLower(); // Get the code from the TextBox and convert to lowercase
                 if (enteredCode == "sims")
                 {
-                    this.Hide();
+                    this.Hide(); // Hide the MainWindow
                     Sims simsWindow = new Sims();
                     simsWindow.Closed += (s, args) => this.Show(); // Show MainWindow when Sims window closes
                     simsWindow.Show();
@@ -130,7 +135,7 @@ namespace MyApp
                 }
                 else if (enteredCode == "2873")
                 {
-                    this.Hide();
+                    this.Hide(); // Hide the MainWindow
                     private_password privatePasswordWindow = new private_password();
                     privatePasswordWindow.Closed += (s, args) => this.Show(); // Show MainWindow when PrivatePassword window closes
                     privatePasswordWindow.Show();

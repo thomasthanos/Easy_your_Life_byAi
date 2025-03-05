@@ -3,7 +3,9 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
 
 namespace MyApp
 {
@@ -19,23 +21,37 @@ namespace MyApp
             "socialclubprimary", "spotify", "steam", "twitch", "ubisoft"
         };
 
-        // Dictionary για τα ονόματα εμφάνισης (display names)
         private readonly Dictionary<string, string> displayNames = new()
         {
-            { "discord", "discord #2" }, // Αλλαγή του "discord" σε "discord_ptb"
-            { "discord_primary", "discord #1" }, // Παραμένει ίδιο
-            { "epic_games", "Epic Games" }, // Παραμένει ίδιο
-            { "league_of_legends", "Riot Games" }, // Παραμένει ίδιο
-            { "socialclubprimary", "rockstar #1" }, // Παραμένει ίδιο
-            { "socialclub", "rockstar #2" }, // Παραμένει ίδιο
-            // Προσθήκη περισσότερων mappings αν χρειάζεται
+            { "discord", "discord #2" },
+            { "discord_primary", "discord #1" },
+            { "epic_games", "Epic Games" },
+            { "league_of_legends", "Riot Games" },
+            { "socialclubprimary", "rockstar #1" },
+            { "socialclub", "rockstar #2" },
+            { "github@3", "github #1" },
+            { "github@28", "github #2" },
         };
+
+        private bool _arePasswordsHidden = true;
 
         public private_password()
         {
             InitializeComponent();
             LoadCredentialsFromFile("E:\\Github\\Easy_your_Life_byAi\\MyApp\\credentials.txt");
             AddButtons();
+
+            // Αρχικοποίηση του κουμπιού
+            if (_arePasswordsHidden)
+            {
+                HideUnhideIcon.Source = (ImageSource)FindResource("HideIcon");
+                HideUnhideText.Text = "Hide Passwords";
+            }
+            else
+            {
+                HideUnhideIcon.Source = (ImageSource)FindResource("SeeIcon");
+                HideUnhideText.Text = "Show Passwords";
+            }
         }
 
         private void LoadCredentialsFromFile(string filePath)
@@ -80,39 +96,54 @@ namespace MyApp
                     {
                         Orientation = Orientation.Horizontal,
                         Children =
+                {
+                    GetIconImage(displayName),
+                    new StackPanel
+                    {
+                        Orientation = Orientation.Vertical,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Children =
                         {
-                            GetIconImage(displayName), // Χρήση του displayName για το εικονίδιο
+                            new TextBlock
+                            {
+                                Text = displayName,
+                                FontSize = 16,
+                                FontWeight = FontWeights.Bold,
+                                Foreground = Brushes.White,
+                                Margin = new Thickness(0, 0, 0, 5)
+                            },
+                            new TextBlock
+                            {
+                                Text = $"Email: {credential.Email}",
+                                FontSize = 12,
+                                Foreground = Brushes.LightGray,
+                                Margin = new Thickness(0, 0, 0, 2)
+                            },
                             new StackPanel
                             {
-                                Orientation = Orientation.Vertical,
-                                VerticalAlignment = VerticalAlignment.Center,
+                                Orientation = Orientation.Horizontal,
                                 Children =
                                 {
                                     new TextBlock
                                     {
-                                        Text = displayName,
-                                        FontSize = 16,
-                                        FontWeight = FontWeights.Bold,
-                                        Foreground = Brushes.White,
-                                        Margin = new Thickness(0, 0, 0, 5)
-                                    },
-                                    new TextBlock
-                                    {
-                                        Text = $"Email: {credential.Email}",
-                                        FontSize = 12,
-                                        Foreground = Brushes.LightGray,
-                                        Margin = new Thickness(0, 0, 0, 2)
-                                    },
-                                    new TextBlock
-                                    {
-                                        Text = $"Password: {credential.Password}",
+                                        Text = "Password: ",
                                         FontSize = 12,
                                         Foreground = Brushes.LightGray
+                                    },
+                                    new TextBlock
+                                    {
+                                        Text = credential.Password, // Πάντα εμφανίζουμε τον πραγματικό κωδικό
+                                        FontSize = 12,
+                                        Foreground = Brushes.LightGray,
+                                        Effect = _arePasswordsHidden ? new BlurEffect { Radius = 10 } : null // Εφαρμογή Blur μόνο στον κωδικό
                                     }
                                 }
                             }
                         }
                     }
+                }
+                    },
+                    Tag = service // Ορισμός του Tag με το όνομα της υπηρεσίας
                 };
 
                 button.Click += (s, e) => CopyCredentials(service);
@@ -126,28 +157,25 @@ namespace MyApp
 
         private Image GetIconImage(string iconName)
         {
-            var assembly = Assembly.GetExecutingAssembly(); // Δήλωση της μεταβλητής assembly εδώ, μία φορά
+            var assembly = Assembly.GetExecutingAssembly();
 
-            // Αν το όνομα του εικονιδίου ξεκινά με "google_", χρησιμοποίησε το ίδιο εικονίδιο για όλα
             if (iconName.StartsWith("google_"))
             {
-                string googleResourceName = "MyApp.Icons.google.ico"; // Όνομα του εικονιδίου για τα Google services
-                using Stream? googleStream = assembly.GetManifestResourceStream(googleResourceName); // Χρησιμοποίησε διαφορετικό όνομα (googleStream)
-                if (googleStream != null)
-                {
-                    var bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.StreamSource = googleStream;
-                    bitmap.DecodePixelWidth = 24;
-                    bitmap.DecodePixelHeight = 24;
-                    bitmap.EndInit();
-                    return new Image { Source = bitmap, Width = 24, Height = 24, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 15, 0) };
-                }
+                return LoadIconImage("MyApp.Icons.google.ico", assembly);
             }
 
-            // Για τα υπόλοιπα services, χρησιμοποίησε το κανονικό εικονίδιο
+            if (iconName.StartsWith("github"))
+            {
+                return LoadIconImage("MyApp.Icons.github.ico", assembly);
+            }
+
             string resourceName = $"MyApp.Icons.{iconName}.ico";
-            using Stream? stream = assembly.GetManifestResourceStream(resourceName); // Χρησιμοποίησε το όνομα "stream" εδώ
+            return LoadIconImage(resourceName, assembly);
+        }
+
+        private Image LoadIconImage(string resourceName, Assembly assembly)
+        {
+            using Stream? stream = assembly.GetManifestResourceStream(resourceName);
             if (stream != null)
             {
                 var bitmap = new BitmapImage();
@@ -159,7 +187,6 @@ namespace MyApp
                 return new Image { Source = bitmap, Width = 24, Height = 24, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 15, 0) };
             }
 
-            // Αν δεν βρεθεί το εικονίδιο, επέστρεψε το default εικονίδιο
             return GetDefaultIcon();
         }
 
@@ -192,12 +219,19 @@ namespace MyApp
         {
             if (!credentials.TryGetValue(serviceName, out var credential)) return;
 
+            // Αντιγραφή email
             Clipboard.SetText(credential.Email);
             CustomMessageBox messageBox1 = new CustomMessageBox($"Το email για {serviceName} αντιγράφηκε!", "Επιτυχία", IconType.Success);
-            messageBox1.ShowDialog();
-            await System.Threading.Tasks.Task.Delay(2000);
+            messageBox1.Topmost = true; // Εμφάνιση πάνω από όλα τα παράθυρα
+            bool emailCopied = messageBox1.ShowDialog() ?? false;
+
+            if (!emailCopied) return; // Αν ο χρήστης δεν πατήσει OK, σταματάμε εδώ
+
+            // Αντιγραφή κωδικού
+            await System.Threading.Tasks.Task.Delay(2000); // Προσθήκη καθυστέρησης
             Clipboard.SetText(credential.Password);
             CustomMessageBox messageBox2 = new CustomMessageBox($"Ο κωδικός για {serviceName} αντιγράφηκε!", "Επιτυχία", IconType.Success);
+            messageBox2.Topmost = true; // Εμφάνιση πάνω από όλα τα παράθυρα
             messageBox2.ShowDialog();
         }
 
@@ -208,5 +242,66 @@ namespace MyApp
         {
             if (e.ChangedButton == System.Windows.Input.MouseButton.Left) DragMove();
         }
+
+        private void HideUnhideButton_Click(object sender, RoutedEventArgs e)
+        {
+            _arePasswordsHidden = !_arePasswordsHidden; // Αλλαγή κατάστασης
+
+            // Ενημέρωση εικονιδίου και κειμένου
+            if (_arePasswordsHidden)
+            {
+                HideUnhideIcon.Source = (ImageSource)FindResource("HideIcon");
+                HideUnhideText.Text = "Hide Passwords";
+            }
+            else
+            {
+                HideUnhideIcon.Source = (ImageSource)FindResource("SeeIcon");
+                HideUnhideText.Text = "Show Passwords";
+            }
+
+            UpdatePasswordVisibility(); // Ενημέρωση της εμφάνισης των κωδικών
+        }
+
+        private void UpdatePasswordVisibility()
+        {
+            foreach (var panel in new[] { AppsPanel, GamesPanel, GooglePanel, OtherPanel })
+            {
+                foreach (Button button in panel.Children)
+                {
+                    if (button.Content is StackPanel stackPanel && stackPanel.Children.Count > 1 && stackPanel.Children[1] is StackPanel innerStackPanel)
+                    {
+                        foreach (var child in innerStackPanel.Children)
+                        {
+                            if (child is StackPanel passwordPanel && passwordPanel.Children.Count > 1 && passwordPanel.Children[1] is TextBlock passwordTextBlock)
+                            {
+                                if (button.Tag != null && credentials.ContainsKey(button.Tag.ToString()))
+                                {
+                                    // Ενημέρωση του κειμένου με τον πραγματικό κωδικό
+                                    passwordTextBlock.Text = credentials[button.Tag.ToString()].Password;
+
+                                    // Εφαρμογή ή αφαίρεση του BlurEffect
+                                    if (_arePasswordsHidden)
+                                    {
+                                        passwordTextBlock.Effect = new BlurEffect { Radius = 10 }; // Εφαρμογή Blur
+                                    }
+                                    else
+                                    {
+                                        passwordTextBlock.Effect = null; // Αφαίρεση Blur
+                                    }
+                                }
+                                else
+                                {
+                                    passwordTextBlock.Text = "*******";
+                                    passwordTextBlock.Effect = null; // Αφαίρεση Blur αν δεν υπάρχει κωδικός
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

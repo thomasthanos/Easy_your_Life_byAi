@@ -333,8 +333,6 @@
                                 </ListBox.ItemContainerStyle>
                             </ListBox>
                         </Border>
-                    
-                    
                     </ScrollViewer>
 
                     <!-- Download Button -->

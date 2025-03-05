@@ -6,17 +6,17 @@ LicenseIdCheckURL = https://thomasthanos.github.io/Make_your_life_easier/Licence
 [Update]
 Name = Make your life easier
 Category = System maintenance
-ProductVersion = 8.5.0
+ProductVersion = 8.5.5
 URL = https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&st=vg4jr140&dl=1
 URL1 = https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe
-Size = 20375568
+Size = 20412952
 ReleaseDate = 04/03/2025
-SHA256 = 72EF7965FD293AC971762BDB8BA20B170E34E9D37571F2E029C0FC029BD98469
-MD5 = b78f473a78e19716503d03a0a57fed7f
+SHA256 = C915E11595147CB02B00D0C786D09206C665C0AA6E1C67F429D835691DCCE9ED
+MD5 = 5a6d746ba5d6028b0b60bfd606e6cd9f
 ServerFileName = make your life easier2.exe
 Flags = Critical
 RegistryKey = HKUD\Software\Kolokithes A.E.\Make your life easier\Version
-Version = 8.5.0
+Version = 8.5.5
 Description = NEW APP
 Feature = Improved Window Management: Sub-windows close and restore the main window once completed.
 Feature1 = New Auto-Activation System: Added a feature to activate Windows via the automatic execution of activate.bat.

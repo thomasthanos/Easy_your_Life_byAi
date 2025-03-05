@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MyApp.CrackSiteWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Crack Sites" Height="300" Width="500"
+        Title="Crack Sites" Height="300" Width="600"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Icon="hacker.ico">
@@ -13,7 +13,7 @@
         <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackground}"/>
 
         <!-- Glow Effect -->
-        <DropShadowEffect x:Key="ButtonGlow" Color="#00B4FF" BlurRadius="20" Opacity="0" Direction="0"/>
+        <DropShadowEffect x:Key="ButtonGlow" Color="#00B4FF" BlurRadius="25" Opacity="0" Direction="0"/>
 
         <!-- Modern Button Style -->
         <Style x:Key="ModernButtonStyle" TargetType="Button">
@@ -21,7 +21,8 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
             <Setter Property="BorderThickness" Value="2.5"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="16"/>
+            <!-- Increased FontSize -->
             <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -40,7 +41,8 @@
                                 <Setter Property="Background" Value="#2A2A2A"/>
                                 <Setter Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="#00B4FF" BlurRadius="20" Opacity="0.8"/>
+                                        <DropShadowEffect Color="#00B4FF" BlurRadius="25" Opacity="0.8"/>
+                                        <!-- Increased BlurRadius -->
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -59,8 +61,10 @@
         <Style x:Key="WindowButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#606060"/>
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="35"/>
+            <!-- Increased Width -->
+            <Setter Property="Height" Value="35"/>
+            <!-- Increased Height -->
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -92,11 +96,8 @@
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Placement" Value="Bottom"/>
-            <!-- Εμφάνιση κάτω από το κουμπί -->
             <Setter Property="HorizontalOffset" Value="0"/>
-            <!-- Κεντράρισμα οριζόντια -->
             <Setter Property="VerticalOffset" Value="5"/>
-            <!-- Απόσταση από το κουμπί -->
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="Black" Opacity="0.5"/>
@@ -132,15 +133,17 @@
 
         <!-- Style για τα Info Buttons -->
         <Style x:Key="InfoButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="20"/>
+            <!-- Increased FontSize -->
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Foreground" Value="#FFD2691E"/>
-            <!-- Αλλαγή χρώματος σε πιο έντονο -->
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="2"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="35"/>
+            <!-- Increased Height -->
+            <Setter Property="Width" Value="35"/>
+            <!-- Increased Width -->
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -157,7 +160,6 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="#FFFF4500"/>
-                    <!-- Χρώμα hover -->
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
@@ -175,7 +177,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -200,19 +202,18 @@
                         <TextBlock Text="Make Your Life Easier" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="4" FontFamily="Segoe UI"/>
 
                         <!-- Back Button -->
-                        <Button Grid.Column="1" Style="{StaticResource WindowButtonStyle}" Width="30" Height="30" Content="←" Click="BackButton_Click" Margin="0,0,5,0"/>
+                        <Button Grid.Column="1" Style="{StaticResource WindowButtonStyle}" Width="35" Height="35" Content="←" Click="BackButton_Click" Margin="0,0,5,0"/>
 
                         <!-- Minimize Button -->
-                        <Button Grid.Column="2" Style="{StaticResource WindowButtonStyle}" Width="30" Height="30" Content="─" Click="MinimizeButton_Click" Margin="0,0,5,0"/>
+                        <Button Grid.Column="2" Style="{StaticResource WindowButtonStyle}" Width="35" Height="35" Content="─" Click="MinimizeButton_Click" Margin="0,0,5,0"/>
 
                         <!-- Close Button -->
-                        <Button Grid.Column="3" Style="{StaticResource WindowButtonStyle}" Width="30" Height="30" Content="✕" Click="CloseButton_Click" Margin="0,0,10,0"/>
+                        <Button Grid.Column="3" Style="{StaticResource WindowButtonStyle}" Width="35" Height="35" Content="✕" Click="CloseButton_Click" Margin="0,0,10,0"/>
                     </Grid>
                 </Border>
 
                 <!-- Buttons Section -->
                 <Grid Margin="0,40,0,0">
-                    <!-- Προσθέτουμε Margin="0,40,0,0" για να μετακινήσουμε τα κουμπιά κάτω από το Title Bar -->
                     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -227,68 +228,54 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Left Column (Site Buttons - Tag="🌐") -->
-                        <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#1" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#1" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="20" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                    FileCR
-                                </TextBlock>
+                                <TextBlock>FileCR</TextBlock>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#2" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#2" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="20" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                    Download Pirate
-                                </TextBlock>
+                                <TextBlock>Download Pirate</TextBlock>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#3" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#3" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="20" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                    Pirate City
-                                </TextBlock>
+                                <TextBlock>Pirate City</TextBlock>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#4" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource ModernButtonStyle}" Content="Crack Site#4" Tag="🌐" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="20" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                </TextBlock>
+                                <TextBlock></TextBlock>
                             </Button.ToolTip>
                         </Button>
 
                         <!-- Right Column (Games Buttons - Tag="🎮") -->
-                        <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#1" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#1" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="19" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                    Repack Games
-                                </TextBlock>
+                                <TextBlock>Repack Games</TextBlock>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#2" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#2" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="19" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                    Steam Unlocked
-                                </TextBlock>
+                                <TextBlock>Steam Unlocked</TextBlock>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#3" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#3" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="19" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                </TextBlock>
+                                <TextBlock></TextBlock>
                             </Button.ToolTip>
                         </Button>
-                        <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#4" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="30" Width="150"/>
-                        <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="30" Width="20">
+                        <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource ModernButtonStyle}" Content="Crack Games#4" Tag="🎮" Click="NavigateToLink_Click" Margin="5,2" Height="40" Width="175" FontSize="19" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Button Grid.Column="3" Grid.Row="3" Style="{StaticResource InfoButtonStyle}" Content="ℹ" Margin="2,2" Height="35" Width="35">
                             <Button.ToolTip>
-                                <TextBlock>
-                                </TextBlock>
+                                <TextBlock></TextBlock>
                             </Button.ToolTip>
                         </Button>
                     </Grid>

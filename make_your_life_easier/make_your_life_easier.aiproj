@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>25fa3aeb-0ad9-4e8a-8595-113b32dcb210</ProjectGuid>
+    <ProjectGuid>{ce86d595-d6fd-4d43-8cc6-06c3f5f08588}</ProjectGuid>
     <OutputType>msi</OutputType>
     <ProjectHome>.</ProjectHome>
     <StartupFile>make_your_life_easier.aip</StartupFile>

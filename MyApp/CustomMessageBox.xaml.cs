@@ -100,8 +100,8 @@ namespace MyApp
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-            Close();
+            this.DialogResult = true; // Ορίζει το DialogResult σε true
+            this.Close(); // Κλείνει το παράθυρο
         }
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)

@@ -46,11 +46,33 @@ namespace MyApp
 
         private void InstallAppsButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Dispatcher.Invoke(() => this.Hide()); // Κρύβει το κύριο παράθυρο
+            // Hide the main window
+            this.Hide();
 
-            InstallAppsWindow installAppsWindow = new InstallAppsWindow();
-            installAppsWindow.Closed += (s, args) => this.Dispatcher.Invoke(() => this.Show()); // Επαναφέρει το κύριο παράθυρο όταν κλείσει
-            installAppsWindow.Show();
+            // Create a new process to run PowerShell
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "powershell.exe",
+                Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://christitus.com/win | iex\"",
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
+
+            Process process = new Process
+            {
+                StartInfo = psi
+            };
+
+            // Start the process
+            process.Start();
+
+            // Wait for the process to exit
+            process.WaitForExit();
+
+            // Show the main window again after the process has finished
+            this.Show();
         }
 
 

@@ -111,10 +111,10 @@
     <ROW Property="Background" Value="background_white.png" Type="1" MsiKey="Background"/>
     <ROW Property="BackgroundDark" Value="background_black.jpg" Type="1" MsiKey="BackgroundDark"/>
     <ROW Property="Manufacturer" Value="Kolokithes A.E."/>
-    <ROW Property="ProductCode" Value="1031:{B88DF1E7-75A2-4D8C-BC75-87B4D5E31BF5} 1032:{B88DF1E7-75A2-4D8C-BC75-87B4D5E31BF5} 1033:{B88DF1E7-75A2-4D8C-BC75-87B4D5E31BF5} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{814BB18D-8966-48CD-8B0B-183F79295E1D} 1032:{814BB18D-8966-48CD-8B0B-183F79295E1D} 1033:{814BB18D-8966-48CD-8B0B-183F79295E1D} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Make your life easier"/>
-    <ROW Property="ProductVersion" Value="8.5.6" Options="32"/>
+    <ROW Property="ProductVersion" Value="8.5.8" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{569352C8-103B-4E71-80D5-7D3E5D574480}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -146,7 +146,7 @@
     <ROW Component="ProductInformation" Value="{5798BBB1-33E6-4FF2-B46D-6A1D26852024}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{509262C4-4A9B-400A-BE7C-130E8B4EB975}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{B40C5922-B434-4887-B2A7-969618FFCEC8}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{F47E4DDC-A47A-4646-80D0-1C5A3EB3D892}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_SHORTCUTSREG" ComponentId="{8445FE54-B573-42B4-9F90-3310DC7CCDDF}" Directory_="APPDIR" Attributes="4" KeyPath="AI_SHORTCUTSREG" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{5A5EC9E9-5F46-4466-A15E-EDCFE850B3A1}" Directory_="APPDIR" Attributes="0"/>
@@ -324,7 +324,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_de.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="8AABD25BCB16AA0272ADACF03BA768096158A4DA Subject: KOLOKITHES A.E.&#10;Issuer: KOLOKITHES A.E.&#10;Valid from 02/23/2025 to 02/23/2026" Subject="CN=KOLOKITHES A.E." Store="Machine\Root"/>
+    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="6A1D0CC424E9027139AE47FCC801105F15168BF7 Subject: Kolokithes A.E.&#10;Issuer: Kolokithes A.E.&#10;Valid from 03/06/2025 to 03/06/2026" Subject="CN=Kolokithes A.E." Store="User\MY"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>

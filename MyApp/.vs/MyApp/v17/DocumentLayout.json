@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CE86D595-D6FD-4D43-8CC6-06C3F5F08588}|..\\make_your_life_easier\\make_your_life_easier.aiproj|E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE86D595-D6FD-4D43-8CC6-06C3F5F08588}|..\\make_your_life_easier\\make_your_life_easier.aiproj|E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,11 +17,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 103,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "make_your_life_easier.aip",
               "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip",
               "RelativeDocumentMoniker": "..\\make_your_life_easier\\make_your_life_easier.aip",
@@ -33,14 +33,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-06T20:16:40.074Z"
+              "WhenOpened": "2025-03-06T20:16:40.074Z",
+              "EditorCaption": ""
             }
           ]
         }

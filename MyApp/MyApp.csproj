@@ -131,4 +131,9 @@
     <EmbeddedResource Include="Icons\update.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="3.1.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+  </ItemGroup>
+
 </Project>

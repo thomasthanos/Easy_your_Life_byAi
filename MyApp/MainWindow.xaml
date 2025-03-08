@@ -23,12 +23,10 @@
         <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
         <Color x:Key="GradientStart">#FF2A2A2A</Color>
         <Color x:Key="GradientEnd">#FF1E1E1E</Color>
-        <Color x:Key="ShadowColor">#4000CCFF</Color>
-        <!-- Προσαρμοσμένο χρώμα σκιάς με χαμηλή διαφάνεια -->
 
         <!-- Glow Effects -->
         <DropShadowEffect x:Key="ButtonGlow" Color="{StaticResource AccentColor}" BlurRadius="20" Opacity="0" Direction="0"/>
-        <DropShadowEffect x:Key="OuterGlow" Color="{StaticResource ShadowColor}" BlurRadius="40" Opacity="0.5" ShadowDepth="0"/>
+        <DropShadowEffect x:Key="OuterGlow" Color="{StaticResource AccentColor}" BlurRadius="30" Opacity="0.9" ShadowDepth="0"/>
 
         <!-- Modern Button Style with Gradient -->
         <Style x:Key="ModernButtonStyle" TargetType="Button">
@@ -230,17 +228,24 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Shadow Border -->
-        <Border Background="Transparent" 
-                CornerRadius="25" 
-                Margin="5"
-                Effect="{StaticResource OuterGlow}"/>
+        <Grid.Effect>
+            <DropShadowEffect/>
+        </Grid.Effect>
         <!-- Main Content -->
         <Border Background="{StaticResource DarkBackgroundBrush}" 
                 CornerRadius="25" 
                 Margin="10"
                 BorderBrush="{StaticResource AccentBrush}" 
-                BorderThickness="4">
+                BorderThickness="4"
+                Effect="{StaticResource OuterGlow}">
+            <!-- Προσθήκη του Clip για στρογγυλεμένο shadow -->
+            <Border.Clip>
+                <RectangleGeometry RadiusX="25" RadiusY="25">
+                    <RectangleGeometry.Rect>
+                        <Rect X="0" Y="0" Width="630" Height="350"/>
+                    </RectangleGeometry.Rect>
+                </RectangleGeometry>
+            </Border.Clip>
             <Grid>
                 <!-- Title Bar -->
                 <Border Background="{StaticResource LightBackgroundBrush}" 
@@ -273,7 +278,7 @@
                 </Border>
 
                 <!-- Main Content Area -->
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,35,0,0">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,78,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="20"/>
@@ -431,7 +436,7 @@
                 </Grid>
 
                 <!-- Info Button and Code TextBox (Bottom) -->
-                <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,302,0,0">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,293,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="190"/>
@@ -443,7 +448,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Button Content="Info" Style="{StaticResource SmallButtonStyle}" Grid.Column="0" Click="InfoButton_Click"/>
-                    <TextBox x:Name="CodeTextBox" Style="{StaticResource CodeTextBoxStyle}" Width="50" Height="25" Grid.Column="2"/>
+                    <TextBox x:Name="CodeTextBox" Style="{StaticResource CodeTextBoxStyle}" Width="50" Height="25" Grid.Column="2" Cursor="IBeam"/>
                 </Grid>
             </Grid>
         </Border>

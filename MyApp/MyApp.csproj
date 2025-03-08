@@ -82,6 +82,7 @@
     <None Remove="Icons\visual studio.ico" />
     <None Remove="Icons\wemod.ico" />
     <None Remove="Icons\winrar.ico" />
+    <None Remove="intro.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -115,6 +116,9 @@
     </Resource>
     <Resource Include="Icons\install.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="intro.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <EmbeddedResource Include="Icons\microsoft.ico" />
     <EmbeddedResource Include="Icons\netflix.ico" />

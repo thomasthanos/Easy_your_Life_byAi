@@ -12,8 +12,9 @@
         Icon="hacker.ico">
 
     <Window.Resources>
-        <!-- Enhanced Color Palette -->
-        <Color x:Key="AccentColor">#FF00CCFF</Color>
+        <!-- Simplified Color Palette -->
+        <Color x:Key="AccentColor">#FF00A3E0</Color>
+        <!-- Πιο ήπιο μπλε -->
         <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
         <Color x:Key="DarkBackground">#FF1E1E1E</Color>
         <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackground}"/>
@@ -21,31 +22,22 @@
         <SolidColorBrush x:Key="LightBackgroundBrush" Color="{StaticResource LightBackground}"/>
         <Color x:Key="TextColor">#FFD9E6F2</Color>
         <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
-        <Color x:Key="GradientStart">#FF2A2A2A</Color>
-        <Color x:Key="GradientEnd">#FF1E1E1E</Color>
+        <Color x:Key="ButtonBackground">#FF2A2A2A</Color>
+        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackground}"/>
 
-        <!-- Glow Effects -->
-        <DropShadowEffect x:Key="ButtonGlow" Color="{StaticResource AccentColor}" BlurRadius="20" Opacity="0" Direction="0"/>
-        <DropShadowEffect x:Key="OuterGlow" Color="{StaticResource AccentColor}" BlurRadius="30" Opacity="0.9" ShadowDepth="0"/>
+        <!-- Reduced Glow Effects -->
+        <DropShadowEffect x:Key="ButtonGlow" Color="{StaticResource AccentColor}" BlurRadius="8" Opacity="0" Direction="0"/>
+        <DropShadowEffect x:Key="OuterGlow" Color="{StaticResource AccentColor}" BlurRadius="10" Opacity="0.5" ShadowDepth="0"/>
 
-        <!-- Modern Button Style with Gradient -->
+        <!-- Modern Button Style with Flat Background -->
         <Style x:Key="ModernButtonStyle" TargetType="Button">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="{StaticResource GradientStart}" Offset="0"/>
-                        <GradientStop Color="{StaticResource GradientEnd}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
-            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
             <Setter Property="Padding" Value="15,5"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -54,35 +46,22 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="25">
+                                CornerRadius="10">
+                            <!-- Μειωμένο border-radius -->
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                            <GradientStop Color="#FF333333" Offset="0"/>
-                                            <GradientStop Color="#FF252526" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter TargetName="border" Property="Background" Value="#FF333333"/>
                                 <Setter TargetName="border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="20" Opacity="1"/>
+                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="8" Opacity="0.8"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                            <GradientStop Color="#FF404040" Offset="0"/>
-                                            <GradientStop Color="#FF2A2A2A" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter TargetName="border" Property="BorderBrush" Value="#FF00E0FF"/>
+                                <Setter TargetName="border" Property="Background" Value="#FF404040"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF00C8FF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -100,7 +79,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="15">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -109,7 +88,7 @@
                                 <Setter TargetName="border" Property="Background" Value="#2000CCFF"/>
                                 <Setter TargetName="border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="10" Opacity="0.8"/>
+                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="5" Opacity="0.6"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -124,17 +103,10 @@
 
         <!-- Small Button Style for Info Button -->
         <Style x:Key="SmallButtonStyle" TargetType="Button">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="{StaticResource GradientStart}" Offset="0"/>
-                        <GradientStop Color="{StaticResource GradientEnd}" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
-            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -147,34 +119,20 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12">
+                                CornerRadius="8">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                            <GradientStop Color="#FF333333" Offset="0"/>
-                                            <GradientStop Color="#FF252526" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter TargetName="border" Property="Background" Value="#FF333333"/>
                                 <Setter TargetName="border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="10" Opacity="0.8"/>
+                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="5" Opacity="0.6"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                            <GradientStop Color="#FF404040" Offset="0"/>
-                                            <GradientStop Color="#FF2A2A2A" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter TargetName="border" Property="Background" Value="#FF404040"/>
                                 <Setter TargetName="border" Property="BorderBrush" Value="#FF00E0FF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -188,7 +146,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
-            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
             <Setter Property="TextAlignment" Value="Center"/>
@@ -200,7 +158,7 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12">
+                                CornerRadius="8">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="2"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -208,7 +166,7 @@
                                 <Setter TargetName="border" Property="BorderBrush" Value="#FF00E0FF"/>
                                 <Setter TargetName="border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="10" Opacity="0.8"/>
+                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="5" Opacity="0.6"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -216,7 +174,7 @@
                                 <Setter TargetName="border" Property="BorderBrush" Value="#FF00E0FF"/>
                                 <Setter TargetName="border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="15" Opacity="1"/>
+                                        <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="8" Opacity="0.8"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -228,19 +186,15 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.Effect>
-            <DropShadowEffect/>
-        </Grid.Effect>
         <!-- Main Content -->
         <Border Background="{StaticResource DarkBackgroundBrush}" 
-                CornerRadius="25" 
+                CornerRadius="10" 
                 Margin="10"
                 BorderBrush="{StaticResource AccentBrush}" 
-                BorderThickness="4"
+                BorderThickness="2"
                 Effect="{StaticResource OuterGlow}">
-            <!-- Προσθήκη του Clip για στρογγυλεμένο shadow -->
             <Border.Clip>
-                <RectangleGeometry RadiusX="25" RadiusY="25">
+                <RectangleGeometry RadiusX="10" RadiusY="10">
                     <RectangleGeometry.Rect>
                         <Rect X="0" Y="0" Width="630" Height="350"/>
                     </RectangleGeometry.Rect>
@@ -251,7 +205,7 @@
                 <Border Background="{StaticResource LightBackgroundBrush}" 
                         Height="40" 
                         VerticalAlignment="Top" 
-                        CornerRadius="20 20 0 0">
+                        CornerRadius="10 10 0 0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -260,15 +214,15 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="Make Your Life Easier" 
-                                 Foreground="{StaticResource TextBrush}" 
-                                 VerticalAlignment="Center" 
-                                 HorizontalAlignment="Center" 
-                                 FontSize="18" 
-                                 FontWeight="Bold" 
-                                 FontFamily="Segoe UI"
-                                 Grid.ColumnSpan="3">
+                                   Foreground="{StaticResource TextBrush}" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center" 
+                                   FontSize="18" 
+                                   FontWeight="Bold" 
+                                   FontFamily="Segoe UI"
+                                   Grid.ColumnSpan="3">
                             <TextBlock.Effect>
-                                <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="10" Opacity="0.5" ShadowDepth="0"/>
+                                <DropShadowEffect Color="{StaticResource AccentColor}" BlurRadius="5" Opacity="0.4" ShadowDepth="0"/>
                             </TextBlock.Effect>
                         </TextBlock>
 
@@ -281,9 +235,9 @@
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,78,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="15"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -293,32 +247,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Top Buttons -->
-                    <Button Content="Install Apps" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="0" Grid.Column="0"
-                            RenderTransformOrigin="0.5, 0.5" Click="InstallAppsButton_Click">
-                        <Button.RenderTransform>
-                            <ScaleTransform ScaleX="1" ScaleY="1"/>
-                        </Button.RenderTransform>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="0.9" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
+
 
                     <Button Content="Activate / Auto Login" Style="{StaticResource ModernButtonStyle}" Width="220" Height="50" Grid.Row="0" Grid.Column="2"
                             RenderTransformOrigin="0.5, 0.5" Click="ActivateAutoLoginButton_Click">
@@ -329,18 +258,18 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="0.9" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="0.95" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -349,11 +278,10 @@
 
                     <!-- Middle Button -->
                     <Button Content="Sys Maintenance" 
-                            Style="{StaticResource ModernButtonStyle}" 
-                            Width="220" Height="50"
-                            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                            Style="{StaticResource ModernButtonStyle}" Height="50"
+                            Grid.Row="1" Grid.Column="0"
                             RenderTransformOrigin="0.5, 0.5"
-                            Click="SysMaintenanceButton_Click">
+                            Click="SysMaintenanceButton_Click" Margin="46,15,46,15" Grid.RowSpan="3" Grid.ColumnSpan="3">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
@@ -361,18 +289,18 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="0.9" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="0.95" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -389,18 +317,18 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="0.9" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="0.95" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -416,22 +344,31 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1.05" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.03" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
-                                        <DoubleAnimation To="1" Duration="0:0:0.3" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
-                                        <DoubleAnimation To="0.9" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                        <DoubleAnimation To="0.95" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Button.Triggers>
+                    </Button>
+                    <Button Content="Chris Titus App" 
+                        Style="{StaticResource ModernButtonStyle}" 
+                        Width="220" Height="50"
+                        RenderTransformOrigin="0.5, 0.5"
+                        Click="ChrisappsButton_Click">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Button.RenderTransform>
                     </Button>
                 </Grid>
 

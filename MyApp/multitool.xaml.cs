@@ -108,23 +108,35 @@ namespace MyApp
 
         private void SfcScanButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide(); // Κρύβει την κύρια εφαρμογή
             string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Kolokithes A.E\healthcare.exe";
+
             if (System.IO.File.Exists(filePath))
             {
                 try
                 {
                     Process process = new Process();
                     process.StartInfo.FileName = filePath;
+                    process.StartInfo.UseShellExecute = true; // Για να εμφανιστεί το παράθυρο
+                    process.StartInfo.CreateNoWindow = false; // Εξασφαλίζει ότι θα δούμε το terminal
                     process.Start();
-                    System.Threading.Thread.Sleep(1000);
-                    IntPtr handle = process.MainWindowHandle;
-                    if (handle == IntPtr.Zero)
+
+                    // Περίμενε μέχρι να πάρεις έγκυρο handle (μέγιστο 5 δευτερόλεπτα)
+                    IntPtr handle = IntPtr.Zero;
+                    int timeout = 5000; // 5 δευτερόλεπτα
+                    int elapsed = 0;
+                    int delay = 500; // 0.5 δευτερόλεπτα ανά επανάληψη
+
+                    while (handle == IntPtr.Zero && elapsed < timeout)
                     {
-                        System.Threading.Thread.Sleep(500);
+                        System.Threading.Thread.Sleep(delay);
+                        elapsed += delay;
                         handle = process.MainWindowHandle;
                     }
+
                     if (handle != IntPtr.Zero)
                     {
+                        // Κεντράρισμα του παραθύρου
                         var screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
                         var screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
                         RECT rect;
@@ -136,17 +148,28 @@ namespace MyApp
                             int y = (int)((screenHeight - windowHeight) / 2);
                             SetWindowPos(handle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
                         }
+                        else
+                        {
+                            MessageBox.Show("Αποτυχία ανάκτησης διαστάσεων παραθύρου.");
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Δεν βρέθηκε handle παραθύρου μετά από 5 δευτερόλεπτα.");
+                    }
+
+                    process.WaitForExit(); // Περιμένει να κλείσει το healthcare.exe
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Σφάλμα: " + ex.ToString());
                 }
             }
             else
             {
-                MessageBox.Show("File not found: " + filePath);
+                MessageBox.Show("Το αρχείο δεν βρέθηκε: " + filePath);
             }
+            this.Show(); // Εμφανίζει ξανά την κύρια εφαρμογή
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

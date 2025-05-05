@@ -33,6 +33,7 @@
     <None Remove="Icons\discord.ico" />
     <None Remove="Icons\discord_primary.ico" />
     <None Remove="Icons\discord_ptb.ico" />
+    <None Remove="Icons\disney.ico" />
     <None Remove="Icons\download manager.ico" />
     <None Remove="Icons\efood.ico" />
     <None Remove="Icons\email_icon.png" />
@@ -80,9 +81,10 @@
     <None Remove="Icons\virtualbox.ico" />
     <None Remove="Icons\visual 2022.ico" />
     <None Remove="Icons\visual studio.ico" />
+    <None Remove="Icons\vodafone.ico" />
+    <None Remove="Icons\Vodafone_TV.ico" />
     <None Remove="Icons\wemod.ico" />
     <None Remove="Icons\winrar.ico" />
-    <None Remove="intro.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -99,12 +101,21 @@
     <EmbeddedResource Include="Icons\default.ico" />
     <EmbeddedResource Include="Icons\discord #1.ico" />
     <EmbeddedResource Include="Icons\discord #2.ico" />
+    <EmbeddedResource Include="Icons\disney.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Icons\efood.ico" />
     <EmbeddedResource Include="Icons\Epic Games.ico" />
     <EmbeddedResource Include="Icons\facebook.ico" />
     <EmbeddedResource Include="Icons\github.ico" />
     <EmbeddedResource Include="Icons\google.ico" />
     <EmbeddedResource Include="Icons\hacker.ico" />
+    <EmbeddedResource Include="Icons\vodafone.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\Vodafone_TV.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Resource Include="Icons\copy.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -116,9 +127,6 @@
     </Resource>
     <Resource Include="Icons\install.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="intro.wav">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <EmbeddedResource Include="Icons\microsoft.ico" />
     <EmbeddedResource Include="Icons\netflix.ico" />

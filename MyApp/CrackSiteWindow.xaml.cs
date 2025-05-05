@@ -16,8 +16,8 @@ namespace MyApp
             { "Crack Site#4", "" }, // Προσθέστε το URL όταν είστε έτοιμοι
             { "Crack Games#1", "https://repack-games.com/" },
             { "Crack Games#2", "https://steamunlocked.net/" },
-            { "Crack Games#3", "" }, // Προσθέστε το URL όταν είστε έτοιμοι
-            { "Crack Games#4", "" }  // Προσθέστε το URL όταν είστε έτοιμοι
+            { "Crack Games#3", "https://fitgirl-repacks.site" },
+            { "Crack Games#4", "https://online-fix.me" }  // Προσθέστε το URL όταν είστε έτοιμοι
         };
 
         public CrackSiteWindow()

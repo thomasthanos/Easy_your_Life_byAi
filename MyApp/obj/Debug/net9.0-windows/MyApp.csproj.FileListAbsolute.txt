@@ -72,3 +72,6 @@ E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MaterialDesignTheme
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Xaml.Behaviors.dll
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.csproj.AssemblyReference.cache
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\MyApp.csproj.Up2Date
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Icons\vodafone.ico
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Icons\Vodafone_TV.ico
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Icons\disney.ico

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -30,7 +31,24 @@ namespace MyApp
             CodeTextBox.KeyDown += CodeTextBox_KeyDown;
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        private const uint SWP_NOSIZE = 0x0001;
+        private const uint SWP_NOZORDER = 0x0004;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -44,7 +62,73 @@ namespace MyApp
         #region --> buttons
 
 
-        private void InstallAppsButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateAppsButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Kolokithes A.E\update.exe";
+
+            if (System.IO.File.Exists(filePath))
+            {
+                try
+                {
+                    Process process = new Process();
+                    process.StartInfo.FileName = filePath;
+                    process.StartInfo.UseShellExecute = true; // Για να εμφανιστεί το παράθυρο
+                    process.StartInfo.CreateNoWindow = false; // Εξασφαλίζει ότι θα δούμε το terminal
+                    process.Start();
+
+                    // Περίμενε μέχρι να πάρεις έγκυρο handle (μέγιστο 5 δευτερόλεπτα)
+                    IntPtr handle = IntPtr.Zero;
+                    int timeout = 5000; // 5 δευτερόλεπτα
+                    int elapsed = 0;
+                    int delay = 500; // 0.5 δευτερόλεπτα ανά επανάληψη
+
+                    while (handle == IntPtr.Zero && elapsed < timeout)
+                    {
+                        System.Threading.Thread.Sleep(delay);
+                        elapsed += delay;
+                        handle = process.MainWindowHandle;
+                    }
+
+                    if (handle != IntPtr.Zero)
+                    {
+                        // Κεντράρισμα του παραθύρου
+                        var screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+                        var screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+                        RECT rect;
+                        if (GetWindowRect(handle, out rect))
+                        {
+                            int windowWidth = rect.Right - rect.Left;
+                            int windowHeight = rect.Bottom - rect.Top;
+                            int x = (int)((screenWidth - windowWidth) / 2);
+                            int y = (int)((screenHeight - windowHeight) / 2);
+                            SetWindowPos(handle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Αποτυχία ανάκτησης διαστάσεων παραθύρου.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Δεν βρέθηκε handle παραθύρου μετά από 5 δευτερόλεπτα.");
+                    }
+
+                    process.WaitForExit(); // Περιμένει να κλείσει το update.exe
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Σφάλμα: " + ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Το αρχείο δεν βρέθηκε: " + filePath);
+            }
+            this.Show();
+        }
+
+        private void ChrisappsButton_Click(object sender, RoutedEventArgs e)
         {
             // Hide the main window
             this.Hide();
@@ -74,8 +158,6 @@ namespace MyApp
             // Show the main window again after the process has finished
             this.Show();
         }
-
-
 
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

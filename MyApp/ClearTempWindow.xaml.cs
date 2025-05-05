@@ -1,6 +1,8 @@
 ﻿using MyApp;
+using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -20,11 +22,10 @@ namespace multitool
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
-            // Ξεκινάμε τον καθαρισμό ασύγχρονα
             Loaded += async (s, e) => await StartCleaningAsync();
         }
 
-        public void AppendOutput(string text, SolidColorBrush color)
+        private void AppendOutput(string text, SolidColorBrush color)
         {
             if (string.IsNullOrEmpty(text)) return;
             text = text.Trim();
@@ -39,7 +40,7 @@ namespace multitool
                 };
                 OutputRichTextBox.Document.Blocks.Add(paragraph);
                 OutputRichTextBox.ScrollToEnd();
-            }, DispatcherPriority.Background); // Χαμηλότερη προτεραιότητα για το UI
+            }, DispatcherPriority.Background);
         }
 
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -62,43 +63,107 @@ namespace multitool
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κλείνει το multitool και επιστρέφει στο MainWindow
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
 
-
-
-
         private async Task StartCleaningAsync()
         {
             AppendOutput("Starting to clear temp folders...", Brushes.White);
 
-            // Εκτέλεση σε background thread
+            var progress = new Progress<string>(message => AppendOutput(message, Brushes.White));
+
             await Task.Run(async () =>
             {
-                var resultTemp = await ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Temp"));
-                var resultEnvTemp = await ClearFolderWithDetails(Environment.GetEnvironmentVariable("TEMP"));
-                var resultPrefetch = await ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Prefetch"));
-                var resultSoftwareDistribution = await ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "SoftwareDistribution", "Download"));
-                var resultWindowsOld = await ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Windows.old"));
-                var resultCBSLogs = await ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Logs", "CBS"));
+                AppendOutput("Stopping Windows Update service...", Brushes.Yellow);
+                await StopWindowsUpdateServiceAsync();
 
-                ClearRecycleBin();
+                AppendOutput("Cleaning folders...", Brushes.White);
 
-                await Task.Delay(2000);
+                var tasks = new List<Task<(int, long)>>();
+                tasks.Add(ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Temp"), progress));
+                tasks.Add(ClearFolderWithDetails(Environment.GetEnvironmentVariable("TEMP"), progress));
+                tasks.Add(ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Prefetch"), progress));
+                tasks.Add(ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "SoftwareDistribution", "Download"), progress));
+                tasks.Add(ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Windows.old"), progress));
+                tasks.Add(ClearFolderWithDetails(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Logs", "CBS"), progress));
 
-                // Ενημέρωση UI από το UI thread
+                // Περιμένουμε όλες τις εργασίες διαγραφής να ολοκληρωθούν
+                var results = await Task.WhenAll(tasks);
+
+                AppendOutput("All folder cleaning tasks completed.", Brushes.Green);
+
+                await ClearRecycleBinAsync(progress);
+
+                AppendOutput("Starting Windows Update service...", Brushes.Yellow);
+                await StartWindowsUpdateServiceAsync();
+
+                AppendOutput("All cleaning tasks completed. Displaying results...", Brushes.Green);
+
+                // Ενημέρωση UI μόνο αφού ολοκληρωθούν όλες οι εργασίες
                 await Dispatcher.InvokeAsync(() =>
                 {
                     OutputRichTextBox.Document.Blocks.Clear();
-                    UpdateFinalResult(resultTemp, resultEnvTemp, resultPrefetch, resultSoftwareDistribution, resultWindowsOld, resultCBSLogs);
+                    UpdateFinalResult(
+                        results[0], // Temp
+                        results[1], // %TEMP%
+                        results[2], // Prefetch
+                        results[3], // SoftwareDistribution
+                        results[4], // Windows.old
+                        results[5]  // CBS Logs
+                    );
                 });
             });
         }
 
-        private void ClearRecycleBin()
+        private async Task StopWindowsUpdateServiceAsync()
+        {
+            try
+            {
+                using (Process process = new Process())
+                {
+                    process.StartInfo.FileName = "net";
+                    process.StartInfo.Arguments = "stop wuauserv";
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.CreateNoWindow = true;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.RedirectStandardError = true;
+                    process.Start();
+
+                    await process.WaitForExitAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                AppendOutput($"Error stopping Windows Update service: {ex.Message}", Brushes.Red);
+            }
+        }
+
+        private async Task StartWindowsUpdateServiceAsync()
+        {
+            try
+            {
+                using (Process process = new Process())
+                {
+                    process.StartInfo.FileName = "net";
+                    process.StartInfo.Arguments = "start wuauserv";
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.CreateNoWindow = true;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.RedirectStandardError = true;
+                    process.Start();
+
+                    await process.WaitForExitAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                AppendOutput($"Error starting Windows Update service: {ex.Message}", Brushes.Red);
+            }
+        }
+
+        private async Task ClearRecycleBinAsync(IProgress<string> progress)
         {
             try
             {
@@ -116,22 +181,23 @@ namespace multitool
                 {
                     process.StartInfo = processStartInfo;
                     process.Start();
-                    process.WaitForExit();
 
-                    string output = process.StandardOutput.ReadToEnd();
-                    string error = process.StandardError.ReadToEnd();
+                    string output = await process.StandardOutput.ReadToEndAsync();
+                    string error = await process.StandardError.ReadToEndAsync();
 
-                    if (!string.IsNullOrEmpty(output)) AppendOutput(output, Brushes.White);
-                    if (!string.IsNullOrEmpty(error)) AppendOutput(error, Brushes.Red);
+                    await process.WaitForExitAsync();
+
+                    if (!string.IsNullOrEmpty(output)) progress.Report(output);
+                    if (!string.IsNullOrEmpty(error)) progress.Report(error);
                 }
             }
             catch (Exception ex)
             {
-                AppendOutput($"Error clearing Recycle Bin: {ex.Message}", Brushes.Red);
+                progress.Report($"Error clearing Recycle Bin: {ex.Message}");
             }
         }
 
-        private async Task<Tuple<int, long>> ClearFolderWithDetails(string folderPath)
+        private async Task<(int, long)> ClearFolderWithDetails(string folderPath, IProgress<string> progress)
         {
             int deletedFilesInThisFolder = 0;
             long deletedSizeInThisFolder = 0;
@@ -140,8 +206,10 @@ namespace multitool
             {
                 if (Directory.Exists(folderPath))
                 {
+                    progress.Report($"Cleaning: {folderPath}");
                     DirectoryInfo directory = new DirectoryInfo(folderPath);
 
+                    // Διαγραφή αρχείων
                     foreach (FileInfo file in directory.GetFiles())
                     {
                         try
@@ -153,44 +221,47 @@ namespace multitool
                             Interlocked.Increment(ref totalFilesDeleted);
                             Interlocked.Increment(ref deletedFilesInThisFolder);
                             file.Delete();
-                            AppendOutput($"Deleted file: {file.FullName} (Size: {FormatSize(fileSize)})", Brushes.White);
                         }
                         catch (Exception ex)
                         {
-                            AppendOutput($"Error deleting file: {file.FullName} - {ex.Message}", Brushes.Red);
+                            progress.Report($"Error deleting file: {file.FullName} - {ex.Message}");
                         }
+                        await Task.Yield();
                     }
 
+                    // Διαγραφή φακέλων
                     foreach (DirectoryInfo dir in directory.GetDirectories())
                     {
                         try
                         {
                             dir.Attributes = FileAttributes.Normal;
-                            long dirSize = DeleteDirectoryRecursivelyAndCalculateSize(dir);
+                            long dirSize = await DeleteDirectoryRecursivelyAndCalculateSizeAsync(dir, progress);
                             Interlocked.Add(ref totalSizeDeleted, dirSize);
                             Interlocked.Add(ref deletedSizeInThisFolder, dirSize);
                             Interlocked.Increment(ref totalFoldersDeleted);
-                            AppendOutput($"Deleted directory: {dir.FullName} (Size: {FormatSize(dirSize)})", Brushes.White);
+                            progress.Report($"Deleted directory: {dir.FullName} (Size: {FormatSize(dirSize)})");
                         }
                         catch (Exception ex)
                         {
-                            AppendOutput($"Error deleting directory: {dir.FullName} - {ex.Message}", Brushes.Red);
+                            progress.Report($"Error deleting directory: {dir.FullName} - {ex.Message}");
                         }
+                        await Task.Yield();
                     }
                 }
             }
             catch (Exception ex)
             {
-                AppendOutput($"Error clearing folder: {folderPath} - {ex.Message}", Brushes.Red);
+                progress.Report($"Error clearing folder: {folderPath} - {ex.Message}");
             }
 
-            return Tuple.Create(deletedFilesInThisFolder, deletedSizeInThisFolder);
+            return (deletedFilesInThisFolder, deletedSizeInThisFolder);
         }
 
-        private long DeleteDirectoryRecursivelyAndCalculateSize(DirectoryInfo directory)
+        private async Task<long> DeleteDirectoryRecursivelyAndCalculateSizeAsync(DirectoryInfo directory, IProgress<string> progress)
         {
             long size = 0;
 
+            // Διαγραφή αρχείων
             foreach (FileInfo file in directory.GetFiles())
             {
                 try
@@ -201,21 +272,24 @@ namespace multitool
                 }
                 catch (Exception ex)
                 {
-                    AppendOutput($"Error deleting file: {file.FullName} - {ex.Message}", Brushes.Red);
+                    progress.Report($"Error deleting file: {file.FullName} - {ex.Message}");
                 }
+                await Task.Yield();
             }
 
+            // Διαγραφή υποφακέλων
             foreach (DirectoryInfo subDir in directory.GetDirectories())
             {
                 try
                 {
                     subDir.Attributes = FileAttributes.Normal;
-                    size += DeleteDirectoryRecursivelyAndCalculateSize(subDir);
+                    size += await DeleteDirectoryRecursivelyAndCalculateSizeAsync(subDir, progress);
                 }
                 catch (Exception ex)
                 {
-                    AppendOutput($"Error deleting subdirectory: {subDir.FullName} - {ex.Message}", Brushes.Red);
+                    progress.Report($"Error deleting subdirectory: {subDir.FullName} - {ex.Message}");
                 }
+                await Task.Yield();
             }
 
             try
@@ -224,7 +298,7 @@ namespace multitool
             }
             catch (Exception ex)
             {
-                AppendOutput($"Error deleting directory: {directory.FullName} - {ex.Message}", Brushes.Red);
+                progress.Report($"Error deleting directory: {directory.FullName} - {ex.Message}");
             }
 
             return size;
@@ -245,8 +319,8 @@ namespace multitool
             return $"{len:0.##} {sizes[order]}";
         }
 
-        private void UpdateFinalResult(Tuple<int, long> resultTemp, Tuple<int, long> resultEnvTemp, Tuple<int, long> resultPrefetch,
-            Tuple<int, long> resultSoftwareDistribution, Tuple<int, long> resultWindowsOld, Tuple<int, long> resultCBSLogs)
+        private void UpdateFinalResult((int, long) resultTemp, (int, long) resultEnvTemp, (int, long) resultPrefetch,
+            (int, long) resultSoftwareDistribution, (int, long) resultWindowsOld, (int, long) resultCBSLogs)
         {
             FinalResultBorder.Visibility = Visibility.Visible;
 
@@ -259,6 +333,19 @@ namespace multitool
             TotalFilesText.Text = $"Total files deleted: {totalFilesDeleted}";
             TotalFoldersText.Text = $"Total folders deleted: {totalFoldersDeleted}";
             TotalSizeText.Text = $"Total size deleted: {FormatSize(totalSizeDeleted)}";
+        }
+    }
+
+    public static class ProcessExtensions
+    {
+        public static Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
+        {
+            var tcs = new TaskCompletionSource<object>();
+            process.EnableRaisingEvents = true;
+            process.Exited += (sender, args) => tcs.TrySetResult(null);
+            if (cancellationToken != default)
+                cancellationToken.Register(() => tcs.TrySetCanceled());
+            return tcs.Task;
         }
     }
 }

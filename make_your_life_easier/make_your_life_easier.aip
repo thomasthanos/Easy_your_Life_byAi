@@ -108,10 +108,10 @@
     <ROW Property="AiWinUIBtnViewReadmeForegroundPointerOver" MultiBuildValue="DefaultBuild:White"/>
     <ROW Property="AiWinUIBtnViewReadmeForegroundPressed" MultiBuildValue="DefaultBuild:White"/>
     <ROW Property="Manufacturer" Value="Kolokithes A.E."/>
-    <ROW Property="ProductCode" Value="1031:{5776E126-00B8-4689-8CE1-E905A1D0FCA2} 1032:{5776E126-00B8-4689-8CE1-E905A1D0FCA2} 1033:{5776E126-00B8-4689-8CE1-E905A1D0FCA2} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{8C573CF5-7D5A-4B26-8DB7-42727F45E556} 1032:{8C573CF5-7D5A-4B26-8DB7-42727F45E556} 1033:{8C573CF5-7D5A-4B26-8DB7-42727F45E556} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Make your life easier"/>
-    <ROW Property="ProductVersion" Value="8.6.1" Options="32"/>
+    <ROW Property="ProductVersion" Value="8.6.2" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{569352C8-103B-4E71-80D5-7D3E5D574480}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -143,7 +143,7 @@
     <ROW Component="ProductInformation" Value="{5798BBB1-33E6-4FF2-B46D-6A1D26852024}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{227A067D-586D-41F1-8D95-641D4D5A0A7A}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{604DE026-C174-47D3-A793-CD347E45578E}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{F47E4DDC-A47A-4646-80D0-1C5A3EB3D892}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_SHORTCUTSREG" ComponentId="{8445FE54-B573-42B4-9F90-3310DC7CCDDF}" Directory_="APPDIR" Attributes="4" KeyPath="AI_SHORTCUTSREG" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{5A5EC9E9-5F46-4466-A15E-EDCFE850B3A1}" Directory_="APPDIR" Attributes="0"/>

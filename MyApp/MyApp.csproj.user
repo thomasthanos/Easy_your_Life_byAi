@@ -17,6 +17,9 @@
     <Compile Update="InstallAppsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="install_public_primary.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="multitool.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

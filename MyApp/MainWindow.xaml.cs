@@ -128,36 +128,13 @@ namespace MyApp
             this.Show();
         }
 
-        private void ChrisappsButton_Click(object sender, RoutedEventArgs e)
+        private void install_public2_Click(object sender, RoutedEventArgs e)
         {
-            // Hide the main window
-            this.Hide();
-
-            // Create a new process to run PowerShell
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "powershell.exe",
-                Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://christitus.com/win | iex\"",
-                UseShellExecute = false,
-                CreateNoWindow = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true
-            };
-
-            Process process = new Process
-            {
-                StartInfo = psi
-            };
-
-            // Start the process
-            process.Start();
-
-            // Wait for the process to exit
-            process.WaitForExit();
-
-            // Show the main window again after the process has finished
-            this.Show();
+            install_public_primary nextWindow = new install_public_primary();
+            nextWindow.Show();
+            this.Close();
         }
+
 
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -231,31 +208,68 @@ namespace MyApp
                 string enteredCode = CodeTextBox.Text.Trim().ToLower(); // Get the code from the TextBox and convert to lowercase
                 if (enteredCode == "sims")
                 {
-                    this.Hide(); // Hide the MainWindow
+                    this.Hide();
                     Sims simsWindow = new Sims();
-                    simsWindow.Closed += (s, args) => this.Show(); // Show MainWindow when Sims window closes
+                    simsWindow.Closed += (s, args) => this.Show();
                     simsWindow.Show();
-                    CodeTextBox.Text = ""; // Clear the code after successful entry
+                    CodeTextBox.Text = "";
                 }
                 else if (enteredCode == "2873")
                 {
-                    this.Hide(); // Hide the MainWindow
+                    this.Hide();
                     private_password privatePasswordWindow = new private_password();
-                    privatePasswordWindow.Closed += (s, args) => this.Show(); // Show MainWindow when PrivatePassword window closes
+                    privatePasswordWindow.Closed += (s, args) => this.Show();
                     privatePasswordWindow.Show();
+                }
+                else if (enteredCode == "chris")
+                {
+                    this.Hide();
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = "powershell.exe",
+                        Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://christitus.com/win | iex\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true
+                    };
+
+                    Process process = new Process { StartInfo = psi };
+                    process.Start();
+                    process.WaitForExit();
+                    this.Show();
+                }
+                else if (enteredCode == "spotify")
+                {
+                    this.Hide();
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = "powershell.exe",
+                        Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://raw.githubusercontent.com/thomasthanos/SpotifyBlocker/refs/heads/main/spotify.ps1 | iex\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true
+                    };
+
+                    Process process = new Process { StartInfo = psi };
+                    process.Start();
+                    process.WaitForExit();
+                    this.Show();
                 }
                 else
                 {
-                    // Use CustomMessageBox for warning message
                     CustomMessageBox warningMessage = new CustomMessageBox(
                         "Μη έγκυρος κωδικός. Παρακαλώ δοκιμάστε ξανά.",
                         "Προειδοποίηση",
-                        IconType.Danger  // Ή IconType.Warning αν υπάρχει
+                        IconType.Danger
                     );
-                    warningMessage.ShowDialog(); // Show as modal dialog
+                    warningMessage.ShowDialog();
                 }
             }
         }
+
+
         #endregion
 
 

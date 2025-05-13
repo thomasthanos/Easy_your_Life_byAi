@@ -361,11 +361,11 @@
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Content="Chris Titus App" 
+                    <Button Content="Install Apps" 
                         Style="{StaticResource ModernButtonStyle}" 
                         Width="220" Height="50"
                         RenderTransformOrigin="0.5, 0.5"
-                        Click="ChrisappsButton_Click">
+                        Click="install_public2_Click">
                         <Button.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>

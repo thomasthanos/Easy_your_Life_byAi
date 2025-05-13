@@ -1,0 +1,384 @@
+﻿<Window x:Class="MyApp.install_public_primary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Make Your Life Easier"
+        Height="600" Width="800"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Icon="hacker.ico">
+
+    <Window.Resources>
+        <!-- Colors and Brushes -->
+        <Color x:Key="AccentColor">#FF00A3E0</Color>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <Color x:Key="DarkBackground">#FF1E1E1E</Color>
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackground}"/>
+        <Color x:Key="LightBackground">#FF252526</Color>
+        <SolidColorBrush x:Key="LightBackgroundBrush" Color="{StaticResource LightBackground}"/>
+        <Color x:Key="TextColor">#FFD9E6F2</Color>
+        <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
+        <Color x:Key="ButtonBackground">#FF333333</Color>
+        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackground}"/>
+
+        <!-- Simplified Effect -->
+        <DropShadowEffect x:Key="OuterGlow" Color="{StaticResource AccentColor}" BlurRadius="5" Opacity="0.3" ShadowDepth="0"/>
+
+        <!-- Modern Button Style (Smaller buttons) -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <!-- Adjusted for smaller size -->
+            <Setter Property="MinWidth" Value="100"/>
+            <!-- Reduced width -->
+            <Setter Property="Height" Value="30"/>
+            <!-- Reduced height -->
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF4A4A4A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF353535"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Window Button Style -->
+        <Style x:Key="WindowButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                <Setter TargetName="border" Property="Background" Value="#2000CCFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#4000CCFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Small Button Style -->
+        <Style x:Key="SmallButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF4A4A4A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF353535"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ListBox Style -->
+        <Style x:Key="AppListBoxStyle" TargetType="ListBox">
+            <Setter Property="Background" Value="{StaticResource DarkBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="Margin" Value="4"/>
+                        <Setter Property="Background" Value="#FF2A2A2A"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="IsHitTestVisible" Value="False"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="8">
+                                        <ContentPresenter VerticalAlignment="Center" Margin="10,2"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ProgressBar Style -->
+        <Style x:Key="ModernProgressBarStyle" TargetType="ProgressBar">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Background" Value="#FF2A2A2A"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <Grid x:Name="PART_Track">
+                                <Rectangle x:Name="PART_Indicator" Fill="{TemplateBinding Foreground}" 
+                                           RadiusX="10" RadiusY="10" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="{StaticResource DarkBackgroundBrush}" CornerRadius="8" Margin="10" 
+                BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+                Effect="{StaticResource OuterGlow}">
+            <Grid>
+                <!-- Title Bar -->
+                <Border Background="{StaticResource LightBackgroundBrush}" Height="40" 
+                        VerticalAlignment="Top" CornerRadius="8 8 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Make Your Life Easier" Foreground="{StaticResource TextBrush}" 
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   FontSize="18" FontWeight="Bold" FontFamily="Segoe UI" 
+                                   Grid.ColumnSpan="3"/>
+                        <Button Grid.Column="1" Style="{StaticResource WindowButtonStyle}" 
+                                Content="─" Click="MinimizeButton_Click" Margin="0,0,5,0"/>
+                        <Button Grid.Column="2" Style="{StaticResource WindowButtonStyle}" 
+                                Content="✕" Click="CloseButton_Click" Margin="0,0,10,0"/>
+                    </Grid>
+                </Border>
+
+                <!-- Main Area -->
+                <Grid Margin="20,50,20,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- App Buttons -->
+                    <Grid Grid.Row="0" Grid.RowSpan="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True">
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <!-- Games Category -->
+                                <Expander Header="Games" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Steam" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="steam" Click="AppButton_Click"/>
+                                        <Button Content="Epic Games" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="epic_games" Click="AppButton_Click"/>
+                                        <Button Content="Ubisoft" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="ubisoft" Click="AppButton_Click"/>
+                                        <Button Content="PS Remote" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="ps_remote" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Browsers Category -->
+                                <Expander Header="Browsers" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Brave" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="brave" Click="AppButton_Click"/>
+                                        <Button Content="Chrome" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="google_chrome" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Communication Category -->
+                                <Expander Header="Communication" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Discord" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="discord" Click="AppButton_Click"/>
+                                        <Button Content="Discord PTB" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="discord_ptb" Click="AppButton_Click"/>
+                                        <Button Content="BetterDiscord" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="better_discord" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Utilities Category -->
+                                <Expander Header="Utilities" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Driver Booster" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="driver_booster" Click="AppButton_Click"/>
+                                        <Button Content="Uninstaller" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="iobit_unistaller" Click="AppButton_Click"/>
+                                        <Button Content="Advanced Installer" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="advancedinstaller" Click="AppButton_Click"/>
+                                        <Button Content="WinRAR" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="winrar" Click="AppButton_Click"/>
+                                        <Button Content="Malwarebytes" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="malwarebytes" Click="AppButton_Click"/>
+                                        <Button Content="Download Manager" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="download_manager" Click="AppButton_Click"/>
+                                        <Button Content="WeMod" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="wemod" Click="AppButton_Click"/>
+                                        <Button Content="PowerISO" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="poweriso" Click="AppButton_Click"/>
+                                        <Button Content="VirtualBox" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="virtualbox" Click="AppButton_Click"/>
+                                        <Button Content="Save Wizard" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="savewizard" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Development Category -->
+                                <Expander Header="Development" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="VS Code" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="vs_code" Click="AppButton_Click"/>
+                                        <Button Content="Visual Studio" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="visualstudio" Click="AppButton_Click"/>
+                                        <Button Content="GitHub" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="github" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Devices Category -->
+                                <Expander Header="Devices" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="NVIDIA" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="nvidia" Click="AppButton_Click"/>
+                                        <Button Content="NVIDIA Broadcast" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="nvidia_broadcast" Click="AppButton_Click"/>
+                                        <Button Content="Corsair" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="corsair" Click="AppButton_Click"/>
+                                        <Button Content="Razer" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="razer" Click="AppButton_Click"/>
+                                        <Button Content="Stream Deck" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="streamdeck" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Security Category -->
+                                <Expander Header="Security" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Bitdefender" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="bitdefender" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Android / Emulation Category -->
+                                <Expander Header="Android / Emulation" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Bluestacks" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="bluestack" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+
+                                <!-- Media Category -->
+                                <Expander Header="Media" Background="{StaticResource LightBackgroundBrush}" 
+                                          Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" 
+                                          Margin="0,5">
+                                    <WrapPanel Margin="10">
+                                        <Button Content="Spotify" Style="{StaticResource ModernButtonStyle}" 
+                                                Tag="spotify" Click="AppButton_Click"/>
+                                    </WrapPanel>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- ListBox, ProgressBar & Download -->
+                    <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="AppListBox" Style="{StaticResource AppListBoxStyle}" 
+                                 Height="250" Margin="0,32,0,201" Cursor="No"/>
+                        <ProgressBar x:Name="DownloadProgressBar" 
+                                     Style="{StaticResource ModernProgressBarStyle}" 
+                                     Margin="0,326,0,137"/>
+                        <Button Content="Download All" Style="{StaticResource ModernButtonStyle}" 
+                                Click="DownloadAll_Click" Margin="26,373,26,80"/>
+                    </Grid>
+
+                    <Button Content="Info" Style="{StaticResource SmallButtonStyle}" 
+                            Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" 
+                            Click="InfoButton_Click" Margin="0,426,0,32"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

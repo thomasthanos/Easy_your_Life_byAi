@@ -144,8 +144,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialDesignColors" Version="3.1.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+    <PackageReference Include="MaterialDesignColors" Version="5.2.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.4" />
+    <PackageReference Include="System.Reactive.Windows.Forms" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

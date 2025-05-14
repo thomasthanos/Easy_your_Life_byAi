@@ -622,11 +622,11 @@
     <ROW Shortcut="CheckforupdatesThomas" Directory_="ProgramMenuFolder" Name="CHECKF~1|Check for updates - Thomas" Component_="updater.exe" Target="[#updater.exe]" Hotkey="0" Icon_="updater.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
     <ROW Shortcut="CheckforupdatesThomas_1" Directory_="StartupFolder" Name="CHECKF~1|Check for updates - Thomas" Component_="updater.exe" Target="[#updater.exe]" Hotkey="0" Icon_="updater.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
     <ROW Shortcut="CheckforupdatesThomas_2" Directory_="StartMenuFolder" Name="CHECKF~1|Check for updates - Thomas" Component_="updater.exe" Target="[#updater.exe]" Hotkey="0" Icon_="updater.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
-    <ROW Shortcut="MakeYourLifeEasier" Directory_="SHORTCUTDIR" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
-    <ROW Shortcut="MakeYourLifeEasier_1" Directory_="StartMenuFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
-    <ROW Shortcut="MakeYourLifeEasier_2" Directory_="ProgramMenuFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
-    <ROW Shortcut="MakeYourLifeEasier_3" Directory_="StartupFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
-    <ROW Shortcut="MyApp" Directory_="DesktopFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="1"/>
+    <ROW Shortcut="MakeYourLifeEasier" Directory_="SHORTCUTDIR" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="MakeYourLifeEasier_1" Directory_="StartMenuFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="MakeYourLifeEasier_2" Directory_="ProgramMenuFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="MakeYourLifeEasier_3" Directory_="StartupFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="MyApp" Directory_="DesktopFolder" Name="MAKEYO~1|Make Your Life Easier" Component_="MyApp.exe" Target="[#MyApp.exe]" Hotkey="0" Icon_="hacker_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

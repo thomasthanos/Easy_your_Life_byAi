@@ -44,5 +44,5 @@
 
 ## 🧪 Preview
 
-![Preview](pictures/home/main.png)
+![Preview](https://github.com/user-attachments/assets/ad5381f9-188e-470e-8a14-df47c07bbf0f)
 

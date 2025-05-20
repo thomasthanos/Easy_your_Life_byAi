@@ -257,6 +257,18 @@ namespace MyApp
                     process.WaitForExit();
                     this.Show();
                 }
+                else if (enteredCode == "bios")
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = "shutdown",
+                        Arguments = "/r /fw /t 0", // Restart to BIOS/UEFI if supported
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+
+                    Process.Start(psi);
+                }
                 else
                 {
                     CustomMessageBox warningMessage = new CustomMessageBox(

@@ -3,12 +3,15 @@
   "WorkspaceRootPath": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\info.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:info.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE86D595-D6FD-4D43-8CC6-06C3F5F08588}|..\\make_your_life_easier\\make_your_life_easier.aiproj|E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip||{AE40A4D1-A614-4A08-B9E2-B74E011783ED}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,13 +26,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "info.xaml",
-              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\info.xaml",
-              "RelativeDocumentMoniker": "info.xaml",
-              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\info.xaml",
-              "RelativeToolTip": "info.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-13T13:03:47.067Z",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAgwA4BAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T15:31:14.056Z",
               "EditorCaption": ""
             }
           ]
@@ -47,7 +51,19 @@
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-13T10:20:02.252Z",
+              "WhenOpened": "2025-05-16T15:31:11.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "make_your_life_easier.aip",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip",
+              "RelativeDocumentMoniker": "..\\make_your_life_easier\\make_your_life_easier.aip",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\make_your_life_easier\\make_your_life_easier.aip",
+              "RelativeToolTip": "..\\make_your_life_easier\\make_your_life_easier.aip",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|",
+              "WhenOpened": "2025-05-13T13:04:54.877Z",
               "EditorCaption": ""
             }
           ]

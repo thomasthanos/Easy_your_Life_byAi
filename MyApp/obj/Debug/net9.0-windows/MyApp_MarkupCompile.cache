@@ -8,12 +8,12 @@ E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\
 MyApp
 none
 false
-TRACE;DEBUG;NET;NET9_0;NETCOREAPP
+TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 E:\Github\Easy_your_Life_byAi\MyApp\App.xaml
 121943723642
 1-960570038
 15989857804
-2071380795773
+2071747909273
 ClearTempWindow.xaml;CrackSiteWindow.xaml;CustomMessageBox.xaml;info.xaml;InstallAppsWindow.xaml;install_public_primary.xaml;MainWindow.xaml;multitool.xaml;private_password.xaml;public_install.xaml;Sims.xaml;windows.xaml;
 
 False

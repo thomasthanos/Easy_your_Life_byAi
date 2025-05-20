@@ -8,18 +8,18 @@
   <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
     <ROW Section="Update" Key="Name" Value="Make your life easier"/>
     <ROW Section="Update" Key="Category" Value="System maintenance" ValueLocId="-"/>
-    <ROW Section="Update" Key="ProductVersion" Value="8.6.3" ValueLocId="-"/>
+    <ROW Section="Update" Key="ProductVersion" Value="8.6.4" ValueLocId="-"/>
     <ROW Section="Update" Key="URL" Value="https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&amp;st=vg4jr140&amp;dl=1" ValueLocId="-"/>
     <ROW Section="Update" Key="URL1" Value="https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Size" Value="..\make_your_life_easier-SetupFiles\make your life easier2.exe" ValueLocId="-"/>
-    <ROW Section="Update" Key="ReleaseDate" Value="23213" ValueLocId="-"/>
+    <ROW Section="Update" Key="ReleaseDate" Value="23216" ValueLocId="-"/>
     <ROW Section="Update" Key="SHA256" Value="..\make_your_life_easier-SetupFiles\make your life easier2.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="MD5" Value="..\make_your_life_easier-SetupFiles\make your life easier2.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="ServerFileName" Value="make your life easier2.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Flags" Value="Critical" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Kolokithes A.E.\Make your life easier\Version" ValueLocId="-"/>
-    <ROW Section="Update" Key="Version" Value="8.6.3" ValueLocId="-"/>
-    <ROW Section="Update" Key="Feature" Value="&lt;b&gt;ADD&lt;/b&gt;&#13;&#10;with code &lt;b&gt;chris&lt;/b&gt; ( christitus app )&#13;&#10;with code &lt;b&gt;spotify&lt;/b&gt; ( SPOTIFY ADD BLOCKER - UI REMAKE AND BLOCK UPDATES )&#13;&#10;"/>
+    <ROW Section="Update" Key="Version" Value="8.6.4" ValueLocId="-"/>
+    <ROW Section="Update" Key="Feature" Value="&lt;b&gt;ADD&lt;/b&gt;&#13;&#10;with code &lt;b&gt;chris&lt;/b&gt; ( christitus app )&#13;&#10;with code &lt;b&gt;spotify&lt;/b&gt; ( SPOTIFY ADD BLOCKER - UI REMAKE AND BLOCK UPDATES )&#13;&#10;with code &lt;b&gt;Bios&lt;/b&gt; ( ENTER BIOS WITH ONE COMMAND :p )"/>
     <ROW Section="Update" Key="Enhancement" Value="13/05/2025&#13;&#10;&#13;&#10;13/03/2025"/>
     <ROW Section="General" Key="LicenseIdCheckURL" Value="https://thomasthanos.github.io/Make_your_life_easier/Licence/EULA.html" ValueLocId="-"/>
     <ATTRIBUTE name="OutputFileName" value=".txt"/>

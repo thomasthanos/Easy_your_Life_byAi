@@ -11,3 +11,7 @@ make_your_life_easier/make_your_life_easier-cache/part21/make_your_life_easier1.
 make_your_life_easier/make_your_life_easier-cache/part21/output-info.ini
 make_your_life_easier/make_your_life_easier.aip
 /make_your_life_easier/make_your_life_easier-cache
+/MyApp/bin
+/MyApp/obj
+/MyApp/obj/Debug
+/MyApp/obj/Debug/net9.0-windows

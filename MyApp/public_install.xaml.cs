@@ -1,6 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,6 +18,7 @@ namespace MyApp
             { "PremierePro", "Set-up.exe" },
             { "MediaEncoder", "Set-up.exe" },
             { "LightroomClassic", "Set-up.exe" },
+            { "Illustrator", "Set-up.exe" },
             { "Office2024", "OInstall_x64.exe" },
             { "ClipStudio", "clipstudio_crack.exe" },
             { "DaVinci_Resolve", "Install Resolve 19.1.3.exe" }
@@ -38,7 +43,7 @@ namespace MyApp
 
         private void clipstudio_Click(object sender, RoutedEventArgs e)
         {
-            string sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "Clip_Studio_Paint", "CLIPStudioPaint.exe");
+            string sourcePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "ClipStudio", "CLIPStudioPaint.exe");
             string destinationPath = @"C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO PAINT\CLIPStudioPaint.exe";
 
             try
@@ -53,7 +58,7 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-                new CustomMessageBox($"Προέκυψε σφάλμα: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Προέκυψε σφάλμα: {ex.ToString()}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -79,20 +84,23 @@ namespace MyApp
                         FileName = fullPath,
                         WorkingDirectory = basePath,
                         UseShellExecute = true,
-                        CreateNoWindow = false
+                        CreateNoWindow = false,
+                        ErrorDialog = false
                     };
 
                     new CustomMessageBox($"Εκτέλεση εντολής {i + 1} από {commands.Length}: {commands[i]}", "Πληροφορίες", IconType.Info).ShowDialog();
 
-                    Process process = Process.Start(processInfo);
-                    process.WaitForExit();
+                    using (Process process = Process.Start(processInfo))
+                    {
+                        process.WaitForExit();
+                    }
                 }
 
                 new CustomMessageBox("Όλες οι εντολές ολοκληρώθηκαν επιτυχώς!", "Επιτυχία", IconType.Success).ShowDialog();
             }
             catch (Exception ex)
             {
-                new CustomMessageBox($"Σφάλμα κατά την εκτέλεση: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Σφάλμα κατά την εκτέλεση: {ex.ToString()}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
@@ -152,8 +160,15 @@ namespace MyApp
 
             if (extractionSuccess)
             {
-                File.Delete(savePath);
-                new CustomMessageBox("Η εξαγωγή ολοκληρώθηκε και το ZIP αρχείο διαγράφηκε!", "Επιτυχία", IconType.Success).ShowDialog();
+                try
+                {
+                    File.Delete(savePath);
+                    new CustomMessageBox("Η εξαγωγή ολοκληρώθηκε και το ZIP αρχείο διαγράφηκε!", "Επιτυχία", IconType.Success).ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    new CustomMessageBox($"Σφάλμα κατά τη διαγραφή του αρχείου: {ex.ToString()}", "Σφάλμα", IconType.Error).ShowDialog();
+                }
 
                 string zipName = Path.GetFileNameWithoutExtension(savePath);
                 if (_installExecutables.ContainsKey(zipName))
@@ -190,7 +205,8 @@ namespace MyApp
                 {
                     FileName = executablePath,
                     UseShellExecute = true,
-                    Verb = "runas"
+                    Verb = "runas",
+                    ErrorDialog = false
                 };
 
                 using (Process process = Process.Start(processStartInfo))
@@ -198,14 +214,17 @@ namespace MyApp
                     process.WaitForExit();
                 }
             }
-            catch (System.ComponentModel.Win32Exception ex)
+            catch (Exception ex)
             {
-                new CustomMessageBox($"Αποτυχία εκκίνησης διαδικασίας: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Αποτυχία εκκίνησης διαδικασίας: {ex.ToString()}", "Σφάλμα", IconType.Error).ShowDialog();
             }
         }
 
         private async Task DownloadFileWithProgressAsync(string fileUrl, string savePath)
         {
+            FileStream fileStream = null;
+            Stream stream = null;
+
             try
             {
                 _cancellationTokenSource = new CancellationTokenSource();
@@ -219,40 +238,39 @@ namespace MyApp
                     var totalBytes = response.Content.Headers.ContentLength ?? -1L;
                     var canReportProgress = totalBytes != -1;
 
-                    using (var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
-                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true);
+                    stream = await response.Content.ReadAsStreamAsync();
+
+                    var totalBytesRead = 0L;
+                    var buffer = new byte[8192];
+                    var isMoreToRead = true;
+
+                    do
                     {
-                        var totalBytesRead = 0L;
-                        var buffer = new byte[8192];
-                        var isMoreToRead = true;
-
-                        do
+                        if (_isPaused)
                         {
-                            if (_isPaused)
-                            {
-                                await Task.Delay(500, cancellationToken); // Περιμένει μέχρι να ξαναγίνει resume
-                                continue;
-                            }
+                            await Task.Delay(500, cancellationToken);
+                            continue;
+                        }
 
-                            var bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
-                            if (bytesRead == 0)
-                            {
-                                isMoreToRead = false;
-                            }
-                            else
-                            {
-                                await fileStream.WriteAsync(buffer, 0, bytesRead, cancellationToken);
+                        var bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+                        if (bytesRead == 0)
+                        {
+                            isMoreToRead = false;
+                        }
+                        else
+                        {
+                            await fileStream.WriteAsync(buffer, 0, bytesRead, cancellationToken);
 
-                                totalBytesRead += bytesRead;
+                            totalBytesRead += bytesRead;
 
-                                if (canReportProgress)
-                                {
-                                    var progressPercentage = (int)((double)totalBytesRead / totalBytes * 100);
-                                    Dispatcher.Invoke(() => DownloadProgressBar.Value = progressPercentage);
-                                }
+                            if (canReportProgress)
+                            {
+                                var progressPercentage = (int)((double)totalBytesRead / totalBytes * 100);
+                                Dispatcher.Invoke(() => DownloadProgressBar.Value = progressPercentage);
                             }
-                        } while (isMoreToRead && !cancellationToken.IsCancellationRequested);
-                    }
+                        }
+                    } while (isMoreToRead && !cancellationToken.IsCancellationRequested);
                 }
 
                 if (!cancellationToken.IsCancellationRequested)
@@ -266,7 +284,13 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-                new CustomMessageBox($"Σφάλμα κατά τη λήψη του αρχείου: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Σφάλμα κατά τη λήψη του αρχείου: {ex.ToString()}", "Σφάλμα", IconType.Error).ShowDialog();
+            }
+            finally
+            {
+                fileStream?.Dispose();
+                stream?.Dispose();
+                _cancellationTokenSource?.Dispose();
             }
         }
 
@@ -274,7 +298,16 @@ namespace MyApp
         {
             try
             {
-                string sevenZipPath = "\"C:\\Program Files (x86)\\Kolokithes A.E\\Make your life easier\\7-Zip\\7z.exe\"";
+                string sevenZipPath;
+                try
+                {
+                    sevenZipPath = Get7ZipPath();
+                }
+                catch (FileNotFoundException ex)
+                {
+                    new CustomMessageBox(ex.Message, "Σφάλμα", IconType.Error).ShowDialog();
+                    return false;
+                }
 
                 if (!File.Exists(zipPath))
                 {
@@ -291,7 +324,8 @@ namespace MyApp
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true
+                    CreateNoWindow = true,
+                    ErrorDialog = false
                 };
 
                 using (Process process = Process.Start(processStartInfo))
@@ -324,9 +358,26 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-                new CustomMessageBox($"Σφάλμα κατά την εξαγωγή του αρχείου: {ex.Message}", "Σφάλμα", IconType.Error).ShowDialog();
+                new CustomMessageBox($"Σφάλμα κατά την εξαγωγή του αρχείου: {ex.ToString()}", "Σφάλμα", IconType.Error).ShowDialog();
                 return false;
             }
+        }
+
+        private string Get7ZipPath()
+        {
+            string[] possiblePaths =
+            {
+                @"C:\Program Files (x86)\Kolokithes A.E\Make your life easier\7-Zip\7z.exe",
+                @"C:\Program Files\7-Zip\7z.exe",
+                @"C:\Program Files (x86)\7-Zip\7z.exe"
+            };
+
+            foreach (var path in possiblePaths)
+            {
+                if (File.Exists(path)) return path;
+            }
+
+            throw new FileNotFoundException("Δεν βρέθηκε το 7-Zip. Παρακαλώ εγκαταστήστε το πρώτα.");
         }
 
         private bool CheckIfZipHasPassword(string zipPath, string sevenZipPath)
@@ -339,7 +390,8 @@ namespace MyApp
                     Arguments = $"l -slt \"{zipPath}\"",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true
+                    CreateNoWindow = true,
+                    ErrorDialog = false
                 };
 
                 using (Process process = Process.Start(processStartInfo))
@@ -349,28 +401,24 @@ namespace MyApp
                     return output.Contains("Encrypted = +");
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine($"Σφάλμα ελέγχου κωδικού ZIP: {ex.ToString()}");
                 return false;
             }
         }
 
         private void PauseResumeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_isPaused)
-            {
-                _isPaused = false;
-                PauseResumeButton.Content = "Pause";
-            }
-            else
-            {
-                _isPaused = true;
-                PauseResumeButton.Content = "Resume";
-            }
+            if (PauseResumeButton == null) return;
+
+            _isPaused = !_isPaused;
+            PauseResumeButton.Content = _isPaused ? "Resume" : "Pause";
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e) => this.Close();
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => this.WindowState = WindowState.Minimized;
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             string[] foldersToDelete = new string[]
@@ -394,8 +442,9 @@ namespace MyApp
                         Directory.Delete(folder, true);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Debug.WriteLine($"Αποτυχία διαγραφής φακέλου {folder}: {ex.ToString()}");
                 }
             }
 

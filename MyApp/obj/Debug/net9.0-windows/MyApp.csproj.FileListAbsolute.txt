@@ -83,3 +83,14 @@ E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\System.Reactive.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\System.Reactive.Windows.Forms.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\runtimes\win\lib\net9.0\Microsoft.Win32.SystemEvents.dll
 E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\install_public_primary.baml
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\password_manager.g.cs
+E:\Github\Easy_your_Life_byAi\MyApp\obj\Debug\net9.0-windows\password_manager.baml
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.dll
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.dll
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.dll
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.xml
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.xml
+E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.xml

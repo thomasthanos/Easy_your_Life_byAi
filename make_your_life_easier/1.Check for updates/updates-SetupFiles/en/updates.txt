@@ -2,21 +2,25 @@
 
 [General]
 LicenseIdCheckURL = https://thomasthanos.github.io/Make_your_life_easier/Licence/EULA.html
+MessageTitle = fix 20/06/2025
+MessageBody = updade crack installs
+MessageExpirationDate = 20/06/2025
+MessageImageURL = https://i.postimg.cc/QMPKP5DG/koka.png
 
 [Update]
 Name = Make your life easier
 Category = System maintenance
-ProductVersion = 8.6.4
+ProductVersion = 8.7.2
 URL = https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&st=vg4jr140&dl=1
 URL1 = https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe
-Size = 17671448
-ReleaseDate = 16/05/2025
-SHA256 = 21738F8812B6656C9DF238CC9C5764B2F21A93F23BD55C18947F3122F38DA342
-MD5 = 75b571728af42c8e4abb44593e27afa4
+Size = 21558080
+ReleaseDate = 20/06/2025
+SHA256 = A007C41B4FC025E50E0EB91B2550C71399E747BB0CD4FBE08067CD084BD107EC
+MD5 = dacca969b82b4a497d2dd3d0dd8545cc
 ServerFileName = make your life easier2.exe
 Flags = Critical
 RegistryKey = HKUD\Software\Kolokithes A.E.\Make your life easier\Version
-Version = 8.6.4
+Version = 8.7.2
 FeatureHtml = <b>ADD</b>
 Feature = ADD
 FeatureHtml1 = with code <b>chris</b> ( christitus app )
@@ -25,5 +29,9 @@ FeatureHtml2 = with code <b>spotify</b> ( SPOTIFY ADD BLOCKER - UI REMAKE AND BL
 Feature2 = with code spotify ( SPOTIFY ADD BLOCKER - UI REMAKE AND BLOCK UPDATES )
 FeatureHtml3 = with code <b>Bios</b> ( ENTER BIOS WITH ONE COMMAND :p )
 Feature3 = with code Bios ( ENTER BIOS WITH ONE COMMAND :p )
-Enhancement = 13/05/2025
-Enhancement1 = 13/03/2025
+FeatureHtml4 = <b>fix crack install</b>l
+Feature4 = fix crack installl
+Enhancement = 20/06/2025
+Enhancement1 = 28/05/2025
+Enhancement2 = 13/05/2025
+Enhancement3 = 13/03/2025

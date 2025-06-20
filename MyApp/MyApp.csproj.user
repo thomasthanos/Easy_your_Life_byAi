@@ -23,6 +23,9 @@
     <Compile Update="multitool.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="password_manager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="private_password.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

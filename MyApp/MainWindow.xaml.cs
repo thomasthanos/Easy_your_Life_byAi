@@ -217,10 +217,12 @@ namespace MyApp
                 else if (enteredCode == "2873")
                 {
                     this.Hide();
-                    private_password privatePasswordWindow = new private_password();
-                    privatePasswordWindow.Closed += (s, args) => this.Show();
-                    privatePasswordWindow.Show();
+                    password_manager passwordManagerWindow = new password_manager();
+                    passwordManagerWindow.Closed += (s, args) => this.Show();
+                    passwordManagerWindow.Show();
                 }
+
+
                 else if (enteredCode == "chris")
                 {
                     this.Hide();

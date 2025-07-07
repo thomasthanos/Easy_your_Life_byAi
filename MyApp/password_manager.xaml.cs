@@ -1,5 +1,6 @@
 ﻿using Microsoft.Web.WebView2.Core;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -30,13 +31,55 @@ namespace MyApp
         {
             try
             {
+                // Έλεγχος αν υπάρχει εγκατεστημένο το WebView2 Runtime
+                string version = CoreWebView2Environment.GetAvailableBrowserVersionString();
+                if (string.IsNullOrEmpty(version))
+                {
+                    var result = MessageBox.Show(
+                        "Το WebView2 Runtime δεν είναι εγκατεστημένο.\nΘέλετε να το εγκαταστήσετε τώρα;",
+                        "Απαιτείται WebView2",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Τοπική διαδρομή fallback installer
+                        string localInstaller = Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                            "Kolokithes A.E",
+                            "MicrosoftEdgeWebview2Setup.exe");
+
+                        if (File.Exists(localInstaller))
+                        {
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = localInstaller,
+                                UseShellExecute = true
+                            });
+                        }
+                        else
+                        {
+                            // Αν δεν υπάρχει τοπικά, άνοιξε το επίσημο URL
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = "https://go.microsoft.com/fwlink/p/?LinkId=2124703",
+                                UseShellExecute = true
+                            });
+                        }
+                    }
+
+                    // Τερματισμός εφαρμογής για εγκατάσταση
+                    Application.Current.Shutdown();
+                    return;
+                }
+
                 // Φτιάξε διαδρομή %AppData%\Kolokithes A.E\WebView2UserData
                 string userDataFolder = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                     "Kolokithes A.E",
                     "WebView2UserData");
 
-                Directory.CreateDirectory(userDataFolder); // Βεβαιώσου ότι υπάρχει!
+                Directory.CreateDirectory(userDataFolder); // Βεβαιώσου ότι υπάρχει
 
                 var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
                 await MyWebView.EnsureCoreWebView2Async(env);

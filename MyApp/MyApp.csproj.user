@@ -14,7 +14,7 @@
     <Compile Update="info.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="InstallAppsWindow.xaml.cs">
+    <Compile Update="Archive Projects\InstallAppsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="install_public_primary.xaml.cs">
@@ -26,7 +26,7 @@
     <Compile Update="password_manager.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="private_password.xaml.cs">
+    <Compile Update="Archive Projects\private_password.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="public_install.xaml.cs">

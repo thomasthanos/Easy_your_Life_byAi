@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|e:\\github\\easy_your_life_byai\\myapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D2E5DD25-70D8-450C-84D7-E192DB857736}|MyApp.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
@@ -14,11 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 152,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAAADwBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T14:41:45.064Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -28,14 +45,14 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "E:\\Github\\Easy_your_Life_byAi\\MyApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-28T13:24:49.44Z",
+              "WhenOpened": "2025-07-28T14:41:42.885Z",
               "EditorCaption": ""
             }
           ]

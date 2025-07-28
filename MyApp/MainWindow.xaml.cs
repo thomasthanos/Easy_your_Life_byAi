@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.IO;
 
 namespace MyApp
 {
@@ -11,26 +12,24 @@ namespace MyApp
         public MainWindow()
         {
             InitializeComponent();
-            // Add an event handler for the CodeTextBox to check the code when Enter is pressed or focus is lost
+            // Δηλώνουμε τα handlers μία φορά
             CodeTextBox.KeyDown += CodeTextBox_KeyDown;
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
-            // Ορίστε το παράθυρο να εμφανίζεται πάνω από άλλα παράθυρα για 0.2 δευτερόλεπτα
+            // Εμφάνιση πάνω απ’ όλα για 0,2 δευτ.
             this.Topmost = true;
-
-            // Δημιουργήστε ένα DispatcherTimer για 0.2 δευτερόλεπτα
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(0.2);
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(0.2)
+            };
             timer.Tick += (s, e) =>
             {
-                this.Topmost = false; // Επαναφέρετε το Topmost σε false μετά από 0.2 δευτερόλεπτα
-                timer.Stop(); // Σταματήστε το timer
+                this.Topmost = false;
+                timer.Stop();
             };
             timer.Start();
-            // Add an event handler for the CodeTextBox to check the code when Enter is pressed or focus is lost
-            CodeTextBox.KeyDown += CodeTextBox_KeyDown;
-            this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
         }
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
@@ -49,6 +48,7 @@ namespace MyApp
             public int Right;
             public int Bottom;
         }
+
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -61,28 +61,25 @@ namespace MyApp
 
         #region --> buttons
 
-
         private void UpdateAppsButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Kolokithes A.E\update.exe";
-
-            if (System.IO.File.Exists(filePath))
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\\Kolokithes A.E\\update.exe";
+            if (File.Exists(filePath))
             {
                 try
                 {
                     Process process = new Process();
                     process.StartInfo.FileName = filePath;
-                    process.StartInfo.UseShellExecute = true; // Για να εμφανιστεί το παράθυρο
-                    process.StartInfo.CreateNoWindow = false; // Εξασφαλίζει ότι θα δούμε το terminal
+                    process.StartInfo.UseShellExecute = true;
+                    process.StartInfo.CreateNoWindow = false;
                     process.Start();
 
-                    // Περίμενε μέχρι να πάρεις έγκυρο handle (μέγιστο 5 δευτερόλεπτα)
+                    // Αναμονή έως 5 δευτ. για να πάρετε handle
                     IntPtr handle = IntPtr.Zero;
-                    int timeout = 5000; // 5 δευτερόλεπτα
+                    int timeout = 5000;
                     int elapsed = 0;
-                    int delay = 500; // 0.5 δευτερόλεπτα ανά επανάληψη
-
+                    int delay = 500;
                     while (handle == IntPtr.Zero && elapsed < timeout)
                     {
                         System.Threading.Thread.Sleep(delay);
@@ -92,11 +89,9 @@ namespace MyApp
 
                     if (handle != IntPtr.Zero)
                     {
-                        // Κεντράρισμα του παραθύρου
-                        var screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-                        var screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
-                        RECT rect;
-                        if (GetWindowRect(handle, out rect))
+                        var screenWidth = SystemParameters.PrimaryScreenWidth;
+                        var screenHeight = SystemParameters.PrimaryScreenHeight;
+                        if (GetWindowRect(handle, out RECT rect))
                         {
                             int windowWidth = rect.Right - rect.Left;
                             int windowHeight = rect.Bottom - rect.Top;
@@ -114,7 +109,7 @@ namespace MyApp
                         MessageBox.Show("Δεν βρέθηκε handle παραθύρου μετά από 5 δευτερόλεπτα.");
                     }
 
-                    process.WaitForExit(); // Περιμένει να κλείσει το update.exe
+                    process.WaitForExit();
                 }
                 catch (Exception ex)
                 {
@@ -128,13 +123,13 @@ namespace MyApp
             this.Show();
         }
 
+        // Το όνομα του handler πρέπει να παραμείνει έτσι για να ταιριάζει με το XAML
         private void install_public2_Click(object sender, RoutedEventArgs e)
         {
             install_public_primary nextWindow = new install_public_primary();
             nextWindow.Show();
             this.Close();
         }
-
 
         private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -146,66 +141,51 @@ namespace MyApp
 
         private void CrackSitesButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Dispatcher.Invoke(() => this.Hide()); // Κρύβει το κύριο παράθυρο
-
+            this.Dispatcher.Invoke(() => this.Hide());
             CrackSiteWindow crackSiteWindow = new CrackSiteWindow();
-            crackSiteWindow.Closed += (s, args) => this.Dispatcher.Invoke(() => this.Show()); // Όταν κλείσει το CrackSiteWindow, εμφάνισε ξανά το MainWindow
+            crackSiteWindow.Closed += (s, args) => this.Dispatcher.Invoke(() => this.Show());
             crackSiteWindow.Show();
         }
 
-
         private void CrackAppsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κρύψε το MainWindow
             this.Hide();
-
-            // Άνοιγμα του PublicInstallWindow
             PublicInstallWindow publicInstallWindow = new PublicInstallWindow();
-            publicInstallWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το PublicInstallWindow, εμφάνισε ξανά το MainWindow
+            publicInstallWindow.Closed += (s, args) => this.Show();
             publicInstallWindow.Show();
         }
 
         private void SysMaintenanceButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κρύψε το MainWindow
             this.Hide();
-
-            // Άνοιγμα του multitool window
             multitool multitoolWindow = new multitool();
-            multitoolWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το multitool, εμφάνισε ξανά το MainWindow
+            multitoolWindow.Closed += (s, args) => this.Show();
             multitoolWindow.Show();
         }
 
         private void ActivateAutoLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κρύψε το MainWindow
             this.Hide();
-
-            // Άνοιγμα του CustomWindow
             CustomWindow customWindow = new CustomWindow();
-            customWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το CustomWindow, εμφάνισε ξανά το MainWindow
+            customWindow.Closed += (s, args) => this.Show();
             customWindow.Show();
         }
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
-            // Κρύψε το MainWindow
             this.Hide();
-
-            // Άνοιγμα του info window
             info infoWindow = new info();
-            infoWindow.Closed += (s, args) => this.Show(); // Όταν κλείσει το info, εμφάνισε ξανά το MainWindow
+            infoWindow.Closed += (s, args) => this.Show();
             infoWindow.Show();
         }
 
-        // Handle code checking when Enter is pressed in CodeTextBox
+        // Χειριστής για το Enter στο CodeTextBox
         private void CodeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                e.Handled = true; // Stop further processing of the KeyDown event
-
-                string enteredCode = CodeTextBox.Text.Trim().ToLower(); // Get the code from the TextBox and convert to lowercase
+                e.Handled = true;
+                string enteredCode = CodeTextBox.Text.Trim().ToLower();
                 if (enteredCode == "sims")
                 {
                     this.Hide();
@@ -221,8 +201,6 @@ namespace MyApp
                     passwordManagerWindow.Closed += (s, args) => this.Show();
                     passwordManagerWindow.Show();
                 }
-
-
                 else if (enteredCode == "chris")
                 {
                     this.Hide();
@@ -235,7 +213,6 @@ namespace MyApp
                         RedirectStandardOutput = true,
                         RedirectStandardError = true
                     };
-
                     Process process = new Process { StartInfo = psi };
                     process.Start();
                     process.WaitForExit();
@@ -247,28 +224,80 @@ namespace MyApp
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
                         FileName = "powershell.exe",
-                        Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://raw.githubusercontent.com/thomasthanos/SpotifyBlocker/refs/heads/main/spotify.ps1 | iex\"",
+                        Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://raw.githubusercontent.com/thomasthanos/SpotifyBlocker/a18556e7b12d6cb934bdba944742d9c81aadbe26/spotify.ps1 | iex\"",
                         UseShellExecute = false,
                         CreateNoWindow = true,
                         RedirectStandardOutput = true,
                         RedirectStandardError = true
                     };
-
                     Process process = new Process { StartInfo = psi };
                     process.Start();
                     process.WaitForExit();
                     this.Show();
+                }
+                else if (enteredCode == "auto")
+                {
+                    // Διόρθωση: χρήση WPF WindowState αντί FormWindowState
+                    this.WindowState = WindowState.Minimized;
+
+                    string autoPath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                        "Kolokithes A.E",
+                        "auto_clicker.exe"
+                    );
+
+                    if (File.Exists(autoPath))
+                    {
+                        try
+                        {
+                            Process process = new Process();
+                            process.StartInfo.FileName = autoPath;
+                            process.StartInfo.UseShellExecute = false;
+                            process.Start();
+
+                            System.Threading.Thread.Sleep(1000);
+                            IntPtr handle = IntPtr.Zero;
+                            for (int i = 0; i < 10; i++)
+                            {
+                                handle = process.MainWindowHandle;
+                                if (handle != IntPtr.Zero)
+                                    break;
+                                System.Threading.Thread.Sleep(300);
+                            }
+
+                            if (handle != IntPtr.Zero)
+                            {
+                                var screenWidth = SystemParameters.PrimaryScreenWidth;
+                                var screenHeight = SystemParameters.PrimaryScreenHeight;
+                                if (GetWindowRect(handle, out RECT rect))
+                                {
+                                    int windowWidth = rect.Right - rect.Left;
+                                    int windowHeight = rect.Bottom - rect.Top;
+                                    int x = (int)((screenWidth - windowWidth) / 2);
+                                    int y = (int)((screenHeight - windowHeight) / 2);
+                                    SetWindowPos(handle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("File not found: " + autoPath);
+                    }
                 }
                 else if (enteredCode == "bios")
                 {
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
                         FileName = "shutdown",
-                        Arguments = "/r /fw /t 0", // Restart to BIOS/UEFI if supported
+                        Arguments = "/r /fw /t 0",
                         UseShellExecute = false,
                         CreateNoWindow = true
                     };
-
                     Process.Start(psi);
                 }
                 else
@@ -282,10 +311,6 @@ namespace MyApp
                 }
             }
         }
-
-
         #endregion
-
-
     }
 }

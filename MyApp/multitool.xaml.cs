@@ -57,22 +57,29 @@ namespace MyApp
 
         private void WingetUpgradeAllButton_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Kolokithes A.E\update.exe";
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Kolokithes A.E\patch_my_pc.exe";
             if (System.IO.File.Exists(filePath))
             {
                 try
                 {
-
                     Process process = new Process();
                     process.StartInfo.FileName = filePath;
+                    process.StartInfo.UseShellExecute = true; // Απαραίτητο για runas
+                    process.StartInfo.Verb = "runas";         // Ζητάει admin άδεια
                     process.Start();
-                    System.Threading.Thread.Sleep(1000);
-                    IntPtr handle = process.MainWindowHandle;
-                    if (handle == IntPtr.Zero)
+
+                    System.Threading.Thread.Sleep(1500); // λίγο παραπάνω για admin app
+
+                    IntPtr handle = IntPtr.Zero;
+                    for (int i = 0; i < 10; i++)
                     {
-                        System.Threading.Thread.Sleep(500);
                         handle = process.MainWindowHandle;
+                        if (handle != IntPtr.Zero)
+                            break;
+
+                        System.Threading.Thread.Sleep(300);
                     }
+
                     if (handle != IntPtr.Zero)
                     {
                         var screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -97,6 +104,7 @@ namespace MyApp
             {
                 MessageBox.Show("File not found: " + filePath);
             }
+
         }
 
         private void ClearTempButton_Click(object sender, RoutedEventArgs e)

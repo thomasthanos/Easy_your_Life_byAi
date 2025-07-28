@@ -1,4 +1,4 @@
-﻿using MyApp;
+﻿
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Collections.Generic;
 
 namespace multitool
 {
@@ -17,11 +18,17 @@ namespace multitool
         private long totalSizeDeleted = 0;
         private int totalFilesDeleted = 0;
         private int totalFoldersDeleted = 0;
+        // Indicates whether a cleaning process is currently running. While this flag is true
+        // the window should not be allowed to close, otherwise background tasks that
+        // still try to update the UI can cause the application to freeze.
+        private bool isCleaning = false;
 
         public ClearTempWindow()
         {
             InitializeComponent();
+            // Allow the window to be dragged when clicking anywhere on its surface
             this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
+            // Kick off the cleaning process once the window has finished loading
             Loaded += async (s, e) => await StartCleaningAsync();
         }
 
@@ -58,18 +65,42 @@ namespace multitool
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            // Prevent premature shutdown while cleaning is in progress. Trying to close
+            // the window before the background tasks have completed can cause the
+            // application to hang because those tasks will continue to post messages
+            // to the dispatcher of a closed window. Instead, inform the user and
+            // ignore the close request until cleaning finishes.
+            if (isCleaning)
+            {
+                AppendOutput("Cleaning is still in progress, please wait until it completes.", Brushes.Yellow);
+                return;
+            }
+
+            // Use Environment.Exit to terminate the application immediately without
+            // waiting for the dispatcher to complete pending operations. Calling
+            // Application.Current.Shutdown() can sometimes introduce a noticeable
+            // delay if there are still queued messages to process.
+            Environment.Exit(0);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            // Navigate back to the main window if it exists. In WPF applications
+            // the main window can be accessed via Application.Current.MainWindow.
+            // If a main window has been hidden (not closed), show it again.
+            var mainWindow = Application.Current?.MainWindow;
+            if (mainWindow != null && mainWindow != this)
+            {
+                mainWindow.Show();
+            }
             this.Close();
         }
 
         private async Task StartCleaningAsync()
         {
+            // Mark the beginning of a cleaning session. This flag prevents the user from
+            // closing the window mid-cleaning, which could otherwise result in a freeze.
+            isCleaning = true;
             AppendOutput("Starting to clear temp folders...", Brushes.White);
 
             var progress = new Progress<string>(message => AppendOutput(message, Brushes.White));
@@ -101,6 +132,12 @@ namespace multitool
 
                 AppendOutput("All cleaning tasks completed. Displaying results...", Brushes.Green);
 
+                // Πριν εμφανίσουμε τα τελικά αποτελέσματα, βεβαιωνόμαστε ότι έχουν ολοκληρωθεί
+                // όλες οι εκκρεμείς ενημερώσεις προόδου που προστέθηκαν στον dispatcher με
+                // Background προτεραιότητα. Χωρίς αυτό, μπορεί να εμφανιστούν επιπλέον
+                // μηνύματα διαγραφής μετά την εμφάνιση των αποτελεσμάτων.
+                await Dispatcher.InvokeAsync(() => { }, DispatcherPriority.Background);
+
                 // Ενημέρωση UI μόνο αφού ολοκληρωθούν όλες οι εργασίες
                 await Dispatcher.InvokeAsync(() =>
                 {
@@ -114,7 +151,13 @@ namespace multitool
                         results[5]  // CBS Logs
                     );
                 });
+
             });
+
+            // Ensure the cleaning flag is cleared once the background operation completes.
+            // Placing this statement outside of the Task.Run scope guarantees it runs
+            // regardless of exceptions that might occur within the cleaning loop.
+            isCleaning = false;
         }
 
         private async Task StopWindowsUpdateServiceAsync()
@@ -131,7 +174,24 @@ namespace multitool
                     process.StartInfo.RedirectStandardError = true;
                     process.Start();
 
-                    await process.WaitForExitAsync();
+                    // Wait up to 5 seconds for the service stop command to complete.
+                    // Without a timeout the net.exe call may hang if the user lacks
+                    // permission, causing the UI to freeze and results to never show.
+                    var waitTask = process.WaitForExitAsync();
+                    var timeoutTask = Task.Delay(TimeSpan.FromSeconds(5));
+                    await Task.WhenAny(waitTask, timeoutTask);
+                    // If timeout occurred and process is still running, kill it to avoid blocking.
+                    if (!process.HasExited)
+                    {
+                        try
+                        {
+                            process.Kill();
+                        }
+                        catch
+                        {
+                            // Ignore any errors killing the process; we'll proceed regardless.
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -154,7 +214,22 @@ namespace multitool
                     process.StartInfo.RedirectStandardError = true;
                     process.Start();
 
-                    await process.WaitForExitAsync();
+                    // Wait up to 5 seconds for the service start command to complete.
+                    // If the user does not have the required privileges the command may hang.
+                    var waitTask = process.WaitForExitAsync();
+                    var timeoutTask = Task.Delay(TimeSpan.FromSeconds(5));
+                    await Task.WhenAny(waitTask, timeoutTask);
+                    if (!process.HasExited)
+                    {
+                        try
+                        {
+                            process.Kill();
+                        }
+                        catch
+                        {
+                            // Ignore any errors killing the process.
+                        }
+                    }
                 }
             }
             catch (Exception ex)

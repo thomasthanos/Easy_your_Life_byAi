@@ -8,37 +8,14 @@
     ".NETCoreApp,Version=v9.0": {
       "MyApp/1.0.0": {
         "dependencies": {
-          "MaterialDesignColors": "5.2.1",
-          "MaterialDesignThemes": "5.2.1",
           "Microsoft.Web.WebView2": "1.0.3351.48",
-          "System.Drawing.Common": "9.0.6",
-          "System.Reactive.Windows.Forms": "6.0.1",
+          "System.Drawing.Common": "9.0.7",
           "Microsoft.Web.WebView2.Core": "1.0.3351.48",
           "Microsoft.Web.WebView2.WinForms": "1.0.3351.48",
           "Microsoft.Web.WebView2.Wpf": "1.0.3351.48"
         },
         "runtime": {
           "MyApp.dll": {}
-        }
-      },
-      "MaterialDesignColors/5.2.1": {
-        "runtime": {
-          "lib/net8.0/MaterialDesignColors.dll": {
-            "assemblyVersion": "5.2.1.0",
-            "fileVersion": "5.2.1.0"
-          }
-        }
-      },
-      "MaterialDesignThemes/5.2.1": {
-        "dependencies": {
-          "MaterialDesignColors": "5.2.1",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
-        },
-        "runtime": {
-          "lib/net8.0/MaterialDesignThemes.Wpf.dll": {
-            "assemblyVersion": "5.2.1.0",
-            "fileVersion": "5.2.1.0"
-          }
         }
       },
       "Microsoft.Web.WebView2/1.0.3351.48": {
@@ -60,41 +37,12 @@
           }
         }
       },
-      "Microsoft.Win32.SystemEvents/9.0.6": {},
-      "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
-        "runtime": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
-            "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.39.4716"
-          }
-        }
-      },
-      "System.Drawing.Common/9.0.6": {
+      "Microsoft.Win32.SystemEvents/9.0.7": {},
+      "System.Drawing.Common/9.0.7": {
         "dependencies": {
-          "Microsoft.Win32.SystemEvents": "9.0.6"
+          "Microsoft.Win32.SystemEvents": "9.0.7"
         }
       },
-      "System.Reactive/6.0.1": {
-        "runtime": {
-          "lib/net6.0/System.Reactive.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.1.7420"
-          }
-        }
-      },
-      "System.Reactive.Windows.Forms/6.0.1": {
-        "dependencies": {
-          "System.Reactive": "6.0.1",
-          "System.Threading.Tasks.Extensions": "4.5.4"
-        },
-        "runtime": {
-          "lib/net472/System.Reactive.Windows.Forms.dll": {
-            "assemblyVersion": "3.0.6000.0",
-            "fileVersion": "3.0.6000.0"
-          }
-        }
-      },
-      "System.Threading.Tasks.Extensions/4.5.4": {},
       "Microsoft.Web.WebView2.Core/1.0.3351.48": {
         "runtime": {
           "Microsoft.Web.WebView2.Core.dll": {
@@ -127,20 +75,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MaterialDesignColors/5.2.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D0HW6E2/kzsnEWCh1KDG/K09Fpkvs9mR3n91Y8YSOsEAoQmGZbVAj58ssyAxGTiIPj2zB4ZVnwxkizwO35/v8A==",
-      "path": "materialdesigncolors/5.2.1",
-      "hashPath": "materialdesigncolors.5.2.1.nupkg.sha512"
-    },
-    "MaterialDesignThemes/5.2.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-x8JDqNHJcTLLxIoVts3w7AbSq5Zo0FXTw89XqPN7+n0EKqLXFwWsywiUn08HDyTGAmZVJqbQsWKxKWCI8qfWsQ==",
-      "path": "materialdesignthemes/5.2.1",
-      "hashPath": "materialdesignthemes.5.2.1.nupkg.sha512"
-    },
     "Microsoft.Web.WebView2/1.0.3351.48": {
       "type": "package",
       "serviceable": true,
@@ -148,47 +82,19 @@
       "path": "microsoft.web.webview2/1.0.3351.48",
       "hashPath": "microsoft.web.webview2.1.0.3351.48.nupkg.sha512"
     },
-    "Microsoft.Win32.SystemEvents/9.0.6": {
+    "Microsoft.Win32.SystemEvents/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mUa3Chovao0xQ74j2hUN5kDTn3luY/1e9usJYT0r51cgqfQsgQu5C8Cis9h65SNRbkbBwErfXKlBtHCkMiYa/g==",
-      "path": "microsoft.win32.systemevents/9.0.6",
-      "hashPath": "microsoft.win32.systemevents.9.0.6.nupkg.sha512"
+      "sha512": "sha512-lFGY2aGgmMREPJEfOmZcA6v0CLjWVpcfNHRgqYMoSQhy80+GxhYqdW5xe+DCLrVqE1M7/0RpOkIo49/KH/cd/A==",
+      "path": "microsoft.win32.systemevents/9.0.7",
+      "hashPath": "microsoft.win32.systemevents.9.0.7.nupkg.sha512"
     },
-    "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
+    "System.Drawing.Common/9.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8PZKqw9QOcu42xk8puY4P1+EXHL9YGOR9b7qhaYx5cILHul456H073tj99vyPcCt0W0781T9RwHqkx507ZyUpQ==",
-      "path": "microsoft.xaml.behaviors.wpf/1.1.39",
-      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512"
-    },
-    "System.Drawing.Common/9.0.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-KpPB6e7PYCalslhmq/dVa2tJgCcfUDhEK83j1Eix+BmEcNPP00JJBvFrBT7jGcHLmQzsIA4AthwNFkk+cD3RKA==",
-      "path": "system.drawing.common/9.0.6",
-      "hashPath": "system.drawing.common.9.0.6.nupkg.sha512"
-    },
-    "System.Reactive/6.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rHaWtKDwCi9qJ3ObKo8LHPMuuwv33YbmQi7TcUK1C264V3MFnOr5Im7QgCTdLniztP3GJyeiSg5x8NqYJFqRmg==",
-      "path": "system.reactive/6.0.1",
-      "hashPath": "system.reactive.6.0.1.nupkg.sha512"
-    },
-    "System.Reactive.Windows.Forms/6.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3U2N9OqlZilRNy95xGpzRi0Jm2AwsddPHKWvlunHVigldIf1xJZNqJ6MbkO8kih5GLSITiyH3yBArH1nk53Qyg==",
-      "path": "system.reactive.windows.forms/6.0.1",
-      "hashPath": "system.reactive.windows.forms.6.0.1.nupkg.sha512"
-    },
-    "System.Threading.Tasks.Extensions/4.5.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
-      "path": "system.threading.tasks.extensions/4.5.4",
-      "hashPath": "system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+      "sha512": "sha512-1k/Pk7hcM3vP2tfIRRS2ECCCN7ya+hvocsM1JMc4ZDCU6qw7yOuUmqmCDfgXZ4Q4FS6jass2EAai5ByKodDi0g==",
+      "path": "system.drawing.common/9.0.7",
+      "hashPath": "system.drawing.common.9.0.7.nupkg.sha512"
     },
     "Microsoft.Web.WebView2.Core/1.0.3351.48": {
       "type": "reference",

@@ -2,25 +2,25 @@
 
 [General]
 LicenseIdCheckURL = https://thomasthanos.github.io/Make_your_life_easier/Licence/EULA.html
-MessageTitle =  update password manager 07/07/2025
-MessageBody = updade crack installs
-MessageExpirationDate = 07/07/2025
+MessageTitle = update 28/07/2025
+MessageBody = UPDATES/SPOTIFY/AUTOCLICKER
+MessageExpirationDate = 28/07/2025
 MessageImageURL = https://i.postimg.cc/QMPKP5DG/koka.png
 
 [Update]
 Name = Make your life easier
 Category = System maintenance
-ProductVersion = 8.7.5
+ProductVersion = 8.7.6
 URL = https://www.dropbox.com/scl/fi/8o2z70rfmxa6r7yry6smy/make-your-life-easier2.exe?rlkey=e90oc83koig5fum2nky331dhv&st=vg4jr140&dl=1
 URL1 = https://raw.githubusercontent.com/thomasthanos/Make_your_life_easier/main/.exe%20files/make%20your%20life%20easier2.exe
-Size = 25494240
-ReleaseDate = 07/07/2025
-SHA256 = 66918A1E386A4117D4A8B14BA4CF457D161005A7A6F8AF8D089DD673C16CE029
-MD5 = 3695853509e7b20d581889693cd3727b
+Size = 41587048
+ReleaseDate = 28/07/2025
+SHA256 = D295C03D85AE86D31D5B58A7C466C6B3167ED16AF89D8E9EEB98414C5F963807
+MD5 = 76747f533c313584a7bf342399beb17d
 ServerFileName = make your life easier2.exe
 Flags = Critical
 RegistryKey = HKUD\Software\Kolokithes A.E.\Make your life easier\Version
-Version = 8.7.5
+Version = 8.7.6
 FeatureHtml = <b> update password manager </b>
 Feature =  update password manager 
 FeatureHtml1 = <b>ADD</b>
@@ -31,10 +31,13 @@ FeatureHtml3 = with code <b>spotify</b> ( SPOTIFY ADD BLOCKER - UI REMAKE AND BL
 Feature3 = with code spotify ( SPOTIFY ADD BLOCKER - UI REMAKE AND BLOCK UPDATES )
 FeatureHtml4 = with code <b>Bios</b> ( ENTER BIOS WITH ONE COMMAND :p )
 Feature4 = with code Bios ( ENTER BIOS WITH ONE COMMAND :p )
-FeatureHtml5 = <b>fix crack install</b>l
-Feature5 = fix crack installl
-Enhancement = 07/07/2025
-Enhancement1 = 20/06/2025
-Enhancement2 = 28/05/2025
-Enhancement3 = 13/05/2025
-Enhancement4 = 13/03/2025
+FeatureHtml5 = with code <b>auto</b>(AUTOCLIKER)
+Feature5 = with code auto(AUTOCLIKER)
+FeatureHtml6 = <b>fix crack install</b>l
+Feature6 = fix crack installl
+Enhancement = 28/07/2025
+Enhancement1 = 07/07/2025
+Enhancement2 = 20/06/2025
+Enhancement3 = 28/05/2025
+Enhancement4 = 13/05/2025
+Enhancement5 = 13/03/2025

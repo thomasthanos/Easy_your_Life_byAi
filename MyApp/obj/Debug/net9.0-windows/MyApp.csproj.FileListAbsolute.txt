@@ -35,11 +35,6 @@ E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MyApp.deps.json
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MyApp.runtimeconfig.json
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MyApp.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MyApp.pdb
-E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MaterialDesignColors.dll
-E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\MaterialDesignThemes.Wpf.dll
-E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Xaml.Behaviors.dll
-E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\System.Reactive.dll
-E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\System.Reactive.Windows.Forms.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Core.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.WinForms.dll
 E:\Github\Easy_your_Life_byAi\MyApp\bin\Debug\net9.0-windows\Microsoft.Web.WebView2.Wpf.dll

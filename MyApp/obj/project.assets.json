@@ -2,39 +2,6 @@
   "version": 3,
   "targets": {
     "net9.0-windows7.0": {
-      "MaterialDesignColors/5.2.1": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/MaterialDesignColors.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/MaterialDesignColors.dll": {
-            "related": ".pdb"
-          }
-        }
-      },
-      "MaterialDesignThemes/5.2.1": {
-        "type": "package",
-        "dependencies": {
-          "MaterialDesignColors": "5.2.1",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
-        },
-        "compile": {
-          "lib/net8.0/MaterialDesignThemes.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/MaterialDesignThemes.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "build": {
-          "build/MaterialDesignThemes.targets": {}
-        }
-      },
       "Microsoft.Web.WebView2/1.0.3351.48": {
         "type": "package",
         "build": {
@@ -55,7 +22,7 @@
           }
         }
       },
-      "Microsoft.Win32.SystemEvents/9.0.6": {
+      "Microsoft.Win32.SystemEvents/9.0.7": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
@@ -77,26 +44,10 @@
           }
         }
       },
-      "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
-      },
-      "System.Drawing.Common/9.0.6": {
+      "System.Drawing.Common/9.0.7": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Win32.SystemEvents": "9.0.6"
+          "Microsoft.Win32.SystemEvents": "9.0.7"
         },
         "compile": {
           "lib/net9.0/System.Drawing.Common.dll": {
@@ -117,114 +68,10 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
-      },
-      "System.Reactive/6.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/System.Reactive.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/System.Reactive.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "System.Reactive.Windows.Forms/6.0.1": {
-        "type": "package",
-        "dependencies": {
-          "System.Reactive": "6.0.1",
-          "System.Threading.Tasks.Extensions": "4.5.4"
-        },
-        "compile": {
-          "lib/net472/System.Reactive.Windows.Forms.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net472/System.Reactive.Windows.Forms.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Threading.Tasks.Extensions/4.5.4": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp2.1/_._": {}
-        },
-        "runtime": {
-          "lib/netcoreapp2.1/_._": {}
-        }
       }
     }
   },
   "libraries": {
-    "MaterialDesignColors/5.2.1": {
-      "sha512": "D0HW6E2/kzsnEWCh1KDG/K09Fpkvs9mR3n91Y8YSOsEAoQmGZbVAj58ssyAxGTiIPj2zB4ZVnwxkizwO35/v8A==",
-      "type": "package",
-      "path": "materialdesigncolors/5.2.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "docs/README.md",
-        "images/MaterialDesignColors.Icon.png",
-        "lib/net462/MaterialDesignColors.dll",
-        "lib/net462/MaterialDesignColors.pdb",
-        "lib/net6.0/MaterialDesignColors.dll",
-        "lib/net6.0/MaterialDesignColors.pdb",
-        "lib/net8.0/MaterialDesignColors.dll",
-        "lib/net8.0/MaterialDesignColors.pdb",
-        "materialdesigncolors.5.2.1.nupkg.sha512",
-        "materialdesigncolors.nuspec"
-      ]
-    },
-    "MaterialDesignThemes/5.2.1": {
-      "sha512": "x8JDqNHJcTLLxIoVts3w7AbSq5Zo0FXTw89XqPN7+n0EKqLXFwWsywiUn08HDyTGAmZVJqbQsWKxKWCI8qfWsQ==",
-      "type": "package",
-      "path": "materialdesignthemes/5.2.1",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/MaterialDesignThemes.targets",
-        "build/Resources/Roboto/Roboto-Black.ttf",
-        "build/Resources/Roboto/Roboto-BlackItalic.ttf",
-        "build/Resources/Roboto/Roboto-Bold.ttf",
-        "build/Resources/Roboto/Roboto-BoldItalic.ttf",
-        "build/Resources/Roboto/Roboto-Italic.ttf",
-        "build/Resources/Roboto/Roboto-Light.ttf",
-        "build/Resources/Roboto/Roboto-LightItalic.ttf",
-        "build/Resources/Roboto/Roboto-Medium.ttf",
-        "build/Resources/Roboto/Roboto-MediumItalic.ttf",
-        "build/Resources/Roboto/Roboto-Regular.ttf",
-        "build/Resources/Roboto/Roboto-Thin.ttf",
-        "build/Resources/Roboto/Roboto-ThinItalic.ttf",
-        "build/Resources/Roboto/RobotoCondensed-Bold.ttf",
-        "build/Resources/Roboto/RobotoCondensed-BoldItalic.ttf",
-        "build/Resources/Roboto/RobotoCondensed-Italic.ttf",
-        "build/Resources/Roboto/RobotoCondensed-Light.ttf",
-        "build/Resources/Roboto/RobotoCondensed-LightItalic.ttf",
-        "build/Resources/Roboto/RobotoCondensed-Regular.ttf",
-        "docs/README.md",
-        "images/MaterialDesignThemes.Icon.png",
-        "lib/net462/MaterialDesignThemes.Wpf.dll",
-        "lib/net462/MaterialDesignThemes.Wpf.pdb",
-        "lib/net462/MaterialDesignThemes.Wpf.xml",
-        "lib/net6.0/MaterialDesignThemes.Wpf.dll",
-        "lib/net6.0/MaterialDesignThemes.Wpf.pdb",
-        "lib/net6.0/MaterialDesignThemes.Wpf.xml",
-        "lib/net8.0/MaterialDesignThemes.Wpf.dll",
-        "lib/net8.0/MaterialDesignThemes.Wpf.pdb",
-        "lib/net8.0/MaterialDesignThemes.Wpf.xml",
-        "materialdesignthemes.5.2.1.nupkg.sha512",
-        "materialdesignthemes.nuspec",
-        "tools/VisualStudioToolsManifest.xml"
-      ]
-    },
     "Microsoft.Web.WebView2/1.0.3351.48": {
       "sha512": "UIzXdl3x3H2MX2es7+BHYT3pLkLoT7090omqla9S3MQQCma0slwiY+CXBM6x0LmdLTpksoQ6XUqOAXrtxjtklQ==",
       "type": "package",
@@ -322,10 +169,10 @@
         "tools/wv2winrt/zh-Hant/System.CommandLine.resources.dll"
       ]
     },
-    "Microsoft.Win32.SystemEvents/9.0.6": {
-      "sha512": "mUa3Chovao0xQ74j2hUN5kDTn3luY/1e9usJYT0r51cgqfQsgQu5C8Cis9h65SNRbkbBwErfXKlBtHCkMiYa/g==",
+    "Microsoft.Win32.SystemEvents/9.0.7": {
+      "sha512": "lFGY2aGgmMREPJEfOmZcA6v0CLjWVpcfNHRgqYMoSQhy80+GxhYqdW5xe+DCLrVqE1M7/0RpOkIo49/KH/cd/A==",
       "type": "package",
-      "path": "microsoft.win32.systemevents/9.0.6",
+      "path": "microsoft.win32.systemevents/9.0.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -345,7 +192,7 @@
         "lib/net9.0/Microsoft.Win32.SystemEvents.xml",
         "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
         "lib/netstandard2.0/Microsoft.Win32.SystemEvents.xml",
-        "microsoft.win32.systemevents.9.0.6.nupkg.sha512",
+        "microsoft.win32.systemevents.9.0.7.nupkg.sha512",
         "microsoft.win32.systemevents.nuspec",
         "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll",
         "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.xml",
@@ -354,35 +201,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
-      "sha512": "8PZKqw9QOcu42xk8puY4P1+EXHL9YGOR9b7qhaYx5cILHul456H073tj99vyPcCt0W0781T9RwHqkx507ZyUpQ==",
+    "System.Drawing.Common/9.0.7": {
+      "sha512": "1k/Pk7hcM3vP2tfIRRS2ECCCN7ya+hvocsM1JMc4ZDCU6qw7yOuUmqmCDfgXZ4Q4FS6jass2EAai5ByKodDi0g==",
       "type": "package",
-      "path": "microsoft.xaml.behaviors.wpf/1.1.39",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Design/Microsoft.Xaml.Behaviors.Design.dll",
-        "lib/net45/Microsoft.Xaml.Behaviors.dll",
-        "lib/net45/Microsoft.Xaml.Behaviors.pdb",
-        "lib/net45/Microsoft.Xaml.Behaviors.xml",
-        "lib/net5.0-windows7.0/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
-        "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll",
-        "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.pdb",
-        "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.xml",
-        "lib/netcoreapp3.1/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
-        "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.dll",
-        "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.pdb",
-        "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.xml",
-        "microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
-        "microsoft.xaml.behaviors.wpf.nuspec",
-        "tools/Install.ps1"
-      ]
-    },
-    "System.Drawing.Common/9.0.6": {
-      "sha512": "KpPB6e7PYCalslhmq/dVa2tJgCcfUDhEK83j1Eix+BmEcNPP00JJBvFrBT7jGcHLmQzsIA4AthwNFkk+cD3RKA==",
-      "type": "package",
-      "path": "system.drawing.common/9.0.6",
+      "path": "system.drawing.common/9.0.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -416,99 +238,16 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.drawing.common.9.0.6.nupkg.sha512",
+        "system.drawing.common.9.0.7.nupkg.sha512",
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
-      ]
-    },
-    "System.Reactive/6.0.1": {
-      "sha512": "rHaWtKDwCi9qJ3ObKo8LHPMuuwv33YbmQi7TcUK1C264V3MFnOr5Im7QgCTdLniztP3GJyeiSg5x8NqYJFqRmg==",
-      "type": "package",
-      "path": "system.reactive/6.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/net6.0-windows10.0.19041/_._",
-        "build/net6.0/_._",
-        "buildTransitive/net6.0-windows10.0.19041/_._",
-        "buildTransitive/net6.0/_._",
-        "icon.png",
-        "lib/net472/System.Reactive.dll",
-        "lib/net472/System.Reactive.xml",
-        "lib/net6.0-windows10.0.19041/System.Reactive.dll",
-        "lib/net6.0-windows10.0.19041/System.Reactive.xml",
-        "lib/net6.0/System.Reactive.dll",
-        "lib/net6.0/System.Reactive.xml",
-        "lib/netstandard2.0/System.Reactive.dll",
-        "lib/netstandard2.0/System.Reactive.xml",
-        "lib/uap10.0.18362/System.Reactive.dll",
-        "lib/uap10.0.18362/System.Reactive.pri",
-        "lib/uap10.0.18362/System.Reactive.xml",
-        "readme.md",
-        "system.reactive.6.0.1.nupkg.sha512",
-        "system.reactive.nuspec"
-      ]
-    },
-    "System.Reactive.Windows.Forms/6.0.1": {
-      "sha512": "3U2N9OqlZilRNy95xGpzRi0Jm2AwsddPHKWvlunHVigldIf1xJZNqJ6MbkO8kih5GLSITiyH3yBArH1nk53Qyg==",
-      "type": "package",
-      "path": "system.reactive.windows.forms/6.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "icon.png",
-        "lib/net472/System.Reactive.Windows.Forms.dll",
-        "lib/net472/System.Reactive.Windows.Forms.xml",
-        "readme.md",
-        "system.reactive.windows.forms.6.0.1.nupkg.sha512",
-        "system.reactive.windows.forms.nuspec"
-      ]
-    },
-    "System.Threading.Tasks.Extensions/4.5.4": {
-      "sha512": "zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
-      "type": "package",
-      "path": "system.threading.tasks.extensions/4.5.4",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net461/System.Threading.Tasks.Extensions.dll",
-        "lib/net461/System.Threading.Tasks.Extensions.xml",
-        "lib/netcoreapp2.1/_._",
-        "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll",
-        "lib/netstandard1.0/System.Threading.Tasks.Extensions.xml",
-        "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll",
-        "lib/netstandard2.0/System.Threading.Tasks.Extensions.xml",
-        "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll",
-        "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.xml",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/netcoreapp2.1/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-        "system.threading.tasks.extensions.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0-windows7.0": [
-      "MaterialDesignColors >= 5.2.1",
-      "MaterialDesignThemes >= 5.2.1",
       "Microsoft.Web.WebView2 >= 1.0.3351.48",
-      "System.Drawing.Common >= 9.0.6",
-      "System.Reactive.Windows.Forms >= 6.0.1"
+      "System.Drawing.Common >= 9.0.7"
     ]
   },
   "packageFolders": {
@@ -561,25 +300,13 @@
       "net9.0-windows7.0": {
         "targetAlias": "net9.0-windows",
         "dependencies": {
-          "MaterialDesignColors": {
-            "target": "Package",
-            "version": "[5.2.1, )"
-          },
-          "MaterialDesignThemes": {
-            "target": "Package",
-            "version": "[5.2.1, )"
-          },
           "Microsoft.Web.WebView2": {
             "target": "Package",
             "version": "[1.0.3351.48, )"
           },
           "System.Drawing.Common": {
             "target": "Package",
-            "version": "[9.0.6, )"
-          },
-          "System.Reactive.Windows.Forms": {
-            "target": "Package",
-            "version": "[6.0.1, )"
+            "version": "[9.0.7, )"
           }
         },
         "imports": [
@@ -604,17 +331,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Reactive.Windows.Forms 6.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "System.Reactive.Windows.Forms",
-      "targetGraphs": [
-        "net9.0-windows7.0"
-      ]
-    }
-  ]
+  }
 }

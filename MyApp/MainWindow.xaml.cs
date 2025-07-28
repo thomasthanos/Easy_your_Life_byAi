@@ -221,20 +221,40 @@ namespace MyApp
                 else if (enteredCode == "spotify")
                 {
                     this.Hide();
-                    ProcessStartInfo psi = new ProcessStartInfo
+                    // Καθορίζουμε το πλήρες μονοπάτι του τοπικού script
+                    string scriptPath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                        @"Kolokithes A.E",
+                        "spotify.ps1"
+                    );
+
+                    if (File.Exists(scriptPath))
                     {
-                        FileName = "powershell.exe",
-                        Arguments = "-NoProfile -ExecutionPolicy Bypass -Command \"iwr -useb https://raw.githubusercontent.com/thomasthanos/SpotifyBlocker/a18556e7b12d6cb934bdba944742d9c81aadbe26/spotify.ps1 | iex\"",
-                        UseShellExecute = false,
-                        CreateNoWindow = true,
-                        RedirectStandardOutput = true,
-                        RedirectStandardError = true
-                    };
-                    Process process = new Process { StartInfo = psi };
-                    process.Start();
-                    process.WaitForExit();
+                        var psi = new ProcessStartInfo
+                        {
+                            FileName = "powershell.exe",
+                            // Εκτέλεση τοπικού αρχείου .ps1
+                            Arguments = $"-NoProfile -ExecutionPolicy Bypass -File \"{scriptPath}\"",
+                            UseShellExecute = false,
+                            CreateNoWindow = true,
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true
+                        };
+
+                        using (var process = new Process { StartInfo = psi })
+                        {
+                            process.Start();
+                            process.WaitForExit();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Δεν βρέθηκε το script στο: {scriptPath}");
+                    }
+
                     this.Show();
                 }
+
                 else if (enteredCode == "auto")
                 {
                     // Διόρθωση: χρήση WPF WindowState αντί FormWindowState

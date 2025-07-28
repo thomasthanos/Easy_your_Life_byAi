@@ -50,25 +50,13 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "dependencies": {
-            "MaterialDesignColors": {
-              "target": "Package",
-              "version": "[5.2.1, )"
-            },
-            "MaterialDesignThemes": {
-              "target": "Package",
-              "version": "[5.2.1, )"
-            },
             "Microsoft.Web.WebView2": {
               "target": "Package",
               "version": "[1.0.3351.48, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
-              "version": "[9.0.6, )"
-            },
-            "System.Reactive.Windows.Forms": {
-              "target": "Package",
-              "version": "[6.0.1, )"
+              "version": "[9.0.7, )"
             }
           },
           "imports": [
